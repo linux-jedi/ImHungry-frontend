@@ -1,0 +1,20 @@
+* {
+    box-sizing: border-box;
+}
+
+.Result {
+    justify-content: center;
+    overflow: auto;
+}
+
+#collage{
+    height:50vh;
+    width: 80vw;
+    margin-top:5vh;    
+}
+
+#header{
+    text-align: center;
+}
+
+

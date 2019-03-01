@@ -1,0 +1,32 @@
+
+#rcptitle{
+    background-color:lightgray;
+    width:80vw;
+    height:20vh;
+    margin-left:10vw;
+    align-items:center;
+
+}
+
+#rcpbuttons{
+    padding-top:10vh;
+}
+
+#rcpupper
+{
+    overflow:hidden;
+}
+#rcpimg{
+    float:left;
+    margin-top:10vh;
+    height:50vh;
+    width:50vw;
+
+}
+
+#rcpbody {
+    margin-left:10vw;
+    overflow:hidden;
+    width: 70vw;
+}
+

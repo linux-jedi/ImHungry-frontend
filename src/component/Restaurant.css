@@ -1,0 +1,24 @@
+
+
+
+#restitle{
+    background-color:lightgray;
+    width:80vw;
+    height:20vh;
+    margin-left:10vw;
+    align-items:center;
+
+}
+
+#reswrap{
+    margin-left:10vw;
+}
+
+#resbody{
+    float:left;
+}
+
+#resbuttons{
+    float:right;
+    margin-right:10vw;
+}
