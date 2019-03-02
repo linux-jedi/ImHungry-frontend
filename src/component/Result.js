@@ -7,11 +7,13 @@ class Result extends Component {
         super(props);
                this.state = {
                     //insert json into these resdata:[] and recdata:[]
+                    rstdrop: 'blank',
                     data:[]
                };
 
         this.handleChange = this.handleChange.bind(this);
         this.button2 = this.button2.bind(this);
+        this.buttonManageList = this.buttonManageList.bind(this);
     }
 
 
@@ -25,6 +27,18 @@ class Result extends Component {
         this.props.history.push('/')
     }
 
+    buttonManageList() {
+        alert(this.state.rstdrop);
+        var liststate = this.state.rstdrop;
+        if (liststate == 'blank') {
+            //do nothing
+        }
+        else{
+            this.props.history.push('/' + liststate);
+        }
+
+    }
+
     render() {
         return (
             <div className="Result">
@@ -35,14 +49,14 @@ class Result extends Component {
                         <h1 id="rsttitle"> Results for: {localStorage.getItem('query')}</h1>
 
                         <div className="rstbuttons">
-                            <select id="rstdrop" name="rstdrop">
+                            <select id="rstdrop" name="rstdrop" onChange={this.handleChange} >
                                 <option value="blank" selected></option>
-                                <option value="fave">Favorites</option>
-                                <option value="explo">To Explore</option>
-                                <option value="noshow">Do Not Show</option>
+                                <option value="Favorite">Favorites</option>
+                                <option value="ToExplore">To Explore</option>
+                                <option value="NotShow">Do Not Show</option>
                             </select>
                             <br></br>
-                            <button id="list">Manage List</button>
+                            <button id="list" onClick={this.buttonManageList} > Manage List</button>
                             <br></br>
                             <button id="retsp" onClick={this.button2}>Return to Search Page</button>
                         </div>

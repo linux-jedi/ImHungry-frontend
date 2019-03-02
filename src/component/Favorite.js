@@ -12,6 +12,7 @@ class Favorite extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.button2 = this.button2.bind(this);
+        this.button3 = this.button3.bind(this);
     }
 
 
@@ -23,6 +24,10 @@ class Favorite extends Component {
 
     button2() {
         this.props.history.push('/')
+    }
+
+    button3() {
+        this.props.history.push('/Result')
     }
 
     render() {
@@ -61,7 +66,7 @@ class Favorite extends Component {
                     <br></br>
                     <button id="list1">Manage List</button>
                     <br></br>
-                    <button id="list1rp">Manage List</button>
+                    <button id="list1rp" onClick={this.button3}>Return to Results Page</button>
                     <br></br>
                     <button id="list1sp" onClick={this.button2}>Return to Search Page</button>
                     <br></br>

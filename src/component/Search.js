@@ -11,7 +11,7 @@ class Search extends Component {
     constructor(props) {
         super(props);
                this.state = {
-                    query: '',
+                   query: '',
                    amount: '',
                    open:true
         
