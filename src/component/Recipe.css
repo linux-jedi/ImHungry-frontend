@@ -68,3 +68,19 @@
 #cook {
     margin-left: 20vw;
 }
+
+@media print{
+    .rcpbuttons{
+        display:none;
+    }
+    
+    #rcpimg{
+        height:auto;
+        width:60%;
+    }
+
+    #rcptitle{
+        height:auto;
+    }
+
+ }

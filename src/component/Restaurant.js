@@ -46,7 +46,7 @@ class Restaurant extends Component {
                     </div>
 
                     <div className="resbuttons">
-                        <button id="resprint">Printable View</button>
+                        <button id="resprint" onClick={() => window.print()}>Printable View</button>
                         <br></br>
                         <button id="resrp" onClick={this.button2}>Return to Results Page</button>
                         <br></br>

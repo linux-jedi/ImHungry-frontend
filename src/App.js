@@ -7,7 +7,7 @@ import Search from "./component/Search";
 import Result from "./component/Result";
 import Restaurant from "./component/Restaurant";
 import Recipe from "./component/Recipe";
-
+import Favorite from "./component/Favorite";
 
 class App extends Component {
 
@@ -18,7 +18,8 @@ class App extends Component {
                     <Route path="/" component={Search} exact />
                     <Route path="/Result" component={Result} />
                     <Route path="/Restaurant" component={Restaurant} />
-                    <Route path="/Recipe" component={Recipe}/>
+                    <Route path="/Recipe" component={Recipe} />
+                    <Route path="/Favorite" component={Favorite}/>
                 </Switch>
             </BrowserRouter>
         );

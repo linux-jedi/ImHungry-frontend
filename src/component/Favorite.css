@@ -1,0 +1,70 @@
+
+.Favorite {
+    background-color:whitesmoke;
+    overflow: auto;
+    height:100vh;
+}
+
+
+
+#list1title {
+    margin-left:10vw;
+    background-color:lightgray;
+    height:12vh;
+    padding-top:6vh;
+    padding-left:5vw;
+    width:80vw;
+    margin-top:5vh;
+
+    float:left;
+}
+
+.list1buttons {
+    margin-left:75vw;
+}
+
+.list1buttons #list1drop {
+    width: 12vw;
+    height: 5vh;
+}
+
+.list1buttons #list1{
+    margin-top:5vh;
+    width:12vw;
+    height:5vh;
+}
+
+.list1buttons #list1rp {
+    margin-top: 5vh;
+    width: 12vw;
+    height: 5vh;
+}
+
+.list1buttons #list1sp{
+    margin-top:5vh;
+    width:12vw;
+    height:5vh;
+}
+
+.list1buttons #list1remove {
+    margin-top: 5vh;
+    width: 12vw;
+    height: 5vh;
+}
+
+.list1buttons #list1move {
+    margin-top: 5vh;
+    width: 12vw;
+    height: 5vh;
+}
+
+.list1col{
+    background-color:blue;
+
+    margin-left:10vw;
+    width:60vw;
+    height:80vh;
+
+    float:left;
+}
+

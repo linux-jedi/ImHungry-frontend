@@ -8,8 +8,10 @@ npm start
 
 
 
-notes to self:
-no idea how to do printable view
+notes:
 
-css not aligning b/c somehow css from other pages are interfereing due to same id names
--> rename ids and stuff >.>
+access pages by doing /Recipe or /Restaurant as links for those have not been made
+
+will prob have to do everything as a table as modifying css might be to long
+
+do we have to implement list functionalities...or can that be handled in the backend when generating the json

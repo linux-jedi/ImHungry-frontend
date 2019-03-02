@@ -31,8 +31,9 @@ class Recipe extends Component {
                 <div id="rcpbody">
                     <div id="rcpupper">
                         <img id="rcpimg" src="https://i.imgur.com/HRr2vgs.jpg" />
-                        <div className="rcpbuttons">
-                            <button id="rcpprint">Printable View</button>
+
+                            <div className="rcpbuttons">
+                                <button id="rcpprint" onClick={() => window.print()} > Printable View</button>
                             <br></br>
                             <button id="rcpsp" onClick={this.button2}>Return to Results Page</button>
                             <br></br>
@@ -44,8 +45,10 @@ class Recipe extends Component {
                             </select>
                             <br></br>
                             <button id="rcplist">Add to List</button>
-                        </div>
+                            </div>
+
                     </div>
+
                     <div id="prep">
                         <p>Prep Time:</p>
                         <p>PLACEHOLDER PREPTIME</p>
