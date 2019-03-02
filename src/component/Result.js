@@ -7,7 +7,8 @@ class Result extends Component {
         super(props);
                this.state = {
                     //insert json into these resdata:[] and recdata:[]
-                };
+                    data:[]
+               };
 
         this.handleChange = this.handleChange.bind(this);
         this.button2 = this.button2.bind(this);
@@ -49,9 +50,11 @@ class Result extends Component {
                 </div>
                 <div className="col1">
                     <h2 id="reshead">Restaurants</h2>
-{/*                    <table>         
-                        <tbody>{this.state.data.map(function (item, key) {          //will have to figure out how to do alt colors
-                                                                                    //also this fcks formatting up but can fix later mayb
+
+                    {/*
+                    <table>
+                        <tbody>{this.state.data.map(function (item, key) {
+
                             return (
                                 <tr key={key}>
                                     <td>{item.userId}</td>
@@ -62,8 +65,9 @@ class Result extends Component {
                             )
 
                         })}</tbody>
-                   </table>
-*/}
+                    </table>
+                    */}
+
                 </div>
                 <div className= "col2">
                     <h2 id="rechead">Recipes</h2>

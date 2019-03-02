@@ -1,5 +1,6 @@
 
 .Result {
+    background-color:whitesmoke;
     overflow: auto;
 }
 
@@ -28,7 +29,6 @@
     margin-top:5vh;
 
     float:left;
-
 }
 
 .rstbuttons {

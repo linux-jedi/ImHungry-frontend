@@ -27,70 +27,41 @@ class Restaurant extends Component {
         });
     }
 
-    handleSubmit(event) {
-        localStorage.setItem('query', this.state.query);
-        localStorage.setItem('amount', this.state.amount);
-
-        alert(this.state.query + " " + this.state.amount);
-        event.preventDefault();
-
-        this.props.history.push('/Result')
-
- /* this has not been tested and I prob need to import some library just placing this here for ref
-  *
-  * fetch('http://example.com', {
-            method: "POST",
-            body: JSON.stringify(userData),
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-        }).then(response => {
-            response.json().then(data => {
-                console.log("Successful" + data);
-            })
-        })
-    }  
-  */
-    }
 
     render() {
         return (
             <div className="Restaurant">
-                <div id="restitle">
-                    <h1 >PLaceholder title</h1>
-
-
-                </div>
-
-                <div id="reswrap">
+                <h1 id="restitle" >PLaceholder title</h1>
+                <div id="wrapper">
                     <div id="resbody">
-                    <p>Address:</p>
-                    <p>Placeholder Address</p>
-                    <br></br>
-                    <p>Phone Number:</p>
-                    <p>PLACEHOLDER PHONE#</p>
-                    <br></br>
-                    <p>Website:</p>
-                    <p>PLACDEDFCa WEBSITE</p>
+                        <p>Address:</p>
+                        <p>Placeholder Address</p>
+                        <br></br>
+                        <p>Phone Number:</p>
+                        <p>PLACEHOLDER PHONE#</p>
+                        <br></br>
+                        <p>Website:</p>
+                        <p>PLACEHOLDER WEBSITE</p>
                         <br></br>
                     </div>
-                    <div id="resbuttons">
-                        <button>Printable View</button>
+
+                    <div className="resbuttons">
+                        <button id="resprint">Printable View</button>
                         <br></br>
-                        <button onClick={this.button2}>Return to Results Page</button>
+                        <button id="resrp" onClick={this.button2}>Return to Results Page</button>
                         <br></br>
-                        <select name="resdrop">
+                        <select id="resdrop" name="resdrop">
                             <option value="blank" selected></option>
                             <option value="fave">Favorites</option>
                             <option value="explo">To Explore</option>
                             <option value="noshow">Do Not Show</option>
                         </select>
                         <br></br>
-                        <button>Add to List</button>
+                        <button id="reslist">Add to List</button>
                     </div>
                 </div>
             </div>
+
         );
     }
 }

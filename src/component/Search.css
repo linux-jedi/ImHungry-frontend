@@ -1,10 +1,12 @@
+
 .Search {
+    background-color:whitesmoke;
     text-align: center;
+    height:100vh;
 }
 
-#title{
-    padding-top:20vh;
-    
+#title {
+    margin:0;
 }
 
 #form{
