@@ -27,24 +27,28 @@ class Result extends Component {
     render() {
         return (
             <div className="Result">
-                <div id="header">
+                <div id="rstheader">
                     <img id="collage" src="https://i.imgur.com/LqvxCkC.png" alt="collage" />
-                    <h2 id="title"> Results for: {localStorage.getItem('query')}</h2>
-                    <select name="rstdrop">
-                        <option value="blank" selected></option>
-                        <option value="fave">Favorites</option>
-                        <option value="explo">To Explore</option>
-                        <option value="noshow">Do Not Show</option>
-                    </select>
 
-                    <br></br>
-                    <button>Manage List</button>
+                    <div id="rstheader2">
+                        <h1 id="rsttitle"> Results for: {localStorage.getItem('query')}</h1>
 
-                    <br></br>
-                    <button onClick={this.button2}>Return to Search Page</button>
+                        <div className="rstbuttons">
+                            <select id="rstdrop" name="rstdrop">
+                                <option value="blank" selected></option>
+                                <option value="fave">Favorites</option>
+                                <option value="explo">To Explore</option>
+                                <option value="noshow">Do Not Show</option>
+                            </select>
+                            <br></br>
+                            <button id="list">Manage List</button>
+                            <br></br>
+                            <button id="retsp" onClick={this.button2}>Return to Search Page</button>
+                        </div>
+                    </div>
                 </div>
-
-                <div id="col1">
+                <div className="col1">
+                    <h2 id="reshead">Restaurants</h2>
 {/*                    <table>         
                         <tbody>{this.state.data.map(function (item, key) {          //will have to figure out how to do alt colors
                                                                                     //also this fcks formatting up but can fix later mayb
@@ -61,7 +65,9 @@ class Result extends Component {
                    </table>
 */}
                 </div>
-
+                <div className= "col2">
+                    <h2 id="rechead">Recipes</h2>
+                </div>
                
             </div>
         );

@@ -1,20 +1,84 @@
-* {
-    box-sizing: border-box;
-}
 
 .Result {
-    justify-content: center;
     overflow: auto;
 }
 
 #collage{
-    height:50vh;
+    height:60vh;
     width: 80vw;
     margin-top:5vh;    
 }
 
-#header{
+#rstheader {
     text-align: center;
 }
 
+#rstheader2{
+    margin-left:10vw;
+    width:80vw;
+    overflow:hidden;
+}
 
+#rsttitle {
+
+    background-color:lightgray;
+    height:12vh;
+    padding-top:6vh;
+    width:60vw;
+    margin-top:5vh;
+
+    float:left;
+
+}
+
+.rstbuttons {
+    margin-top: 5vh;
+}
+
+.rstbuttons #rstdrop {
+    width: 12vw;
+    height: 5vh;
+}
+
+.rstbuttons #list{
+    margin-top:1vh;
+    width:12vw;
+    height:5vh;
+}
+
+.rstbuttons #retsp{
+    margin-top:1vh;
+    width:12vw;
+    height:5vh;
+}
+
+.col1{
+    margin-left:10vw;
+    
+
+
+    float:left;
+}
+
+.col1 #reshead {
+    text-align: center;
+    background-color: lightgray;
+    width: 35vw;
+    height: 10vh;
+    padding-top:5vh;
+}
+
+.col2{
+    margin-left:10vw;
+
+   float:left;
+}
+
+.col2 #rechead {
+        text-align: center;
+        background-color: lightgray;
+        width: 34vw;
+        height: 10vh;
+        padding-top: 5vh;
+        overflow:hidden;
+}
