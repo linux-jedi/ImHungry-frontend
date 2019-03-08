@@ -1,19 +1,24 @@
 import React, { Component } from 'react';
 
 import './Result.css';
+import recip from './JSON/recip'
+import rest  from './JSON/rest'
 
 class Result extends Component {
     constructor(props) {
         super(props);
-               this.state = {
-                    //insert json into these resdata:[] and recdata:[]
-                    rstdrop: 'blank',
-                    data:[]
-               };
 
+        this.state = {
+                   rstdrop: 'blank',
+                   recdata: recip,
+                   resdata: rest,
+                   size: localStorage.getItem('amount')
+        };
         this.handleChange = this.handleChange.bind(this);
         this.button2 = this.button2.bind(this);
+        this.button4 = this.button4.bind(this);
         this.buttonManageList = this.buttonManageList.bind(this);
+        
     }
 
 
@@ -25,6 +30,13 @@ class Result extends Component {
 
     button2() {
         this.props.history.push('/')
+    }
+
+    button4() {
+        console.log(this.state.id);
+        localStorage.setItem('resid', this.state.id);
+
+        //    this.props.history.push('/Restaurant')
     }
 
     buttonManageList() {
@@ -40,6 +52,15 @@ class Result extends Component {
     }
 
     render() {
+        let recrows = [];
+        let resrows = [];
+        console.log(this.state.size);
+        for (var i = 0; i < this.state.size; i++) {
+
+            recrows.push(<RecipeRow recdata={this.state.recdata} counter={i}/>)
+            resrows.push(<RestaurantRow resdata={this.state.resdata} counter={i} />)
+        }
+
         return (
             <div className="Result">
                 <div id="rstheader">
@@ -64,31 +85,100 @@ class Result extends Component {
                 </div>
                 <div className="col1">
                     <h2 id="reshead">Restaurants</h2>
-
-                    {/*
-                    <table>
-                        <tbody>{this.state.data.map(function (item, key) {
-
-                            return (
-                                <tr key={key}>
-                                    <td>{item.userId}</td>
-                                    <td>{item.id}</td>
-                                    <td>{item.title}</td>
-                                    <td>{item.body}</td>
-                                </tr>
-                            )
-
-                        })}</tbody>
-                    </table>
-                    */}
+                    {resrows}
 
                 </div>
                 <div className= "col2">
                     <h2 id="rechead">Recipes</h2>
+                    {recrows}
                 </div>
-               
+
             </div>
         );
+    }
+}
+
+class RestaurantRow extends Component {
+    button4() {
+        console.log("fck this");
+    }
+
+
+    render() {
+        const array = this.props.resdata[this.props.counter];
+        let row;
+        let price;
+
+        if (array.priceRating == "EXPENSIVE") {
+            price = "$$$";
+        }
+        else if (array.priceRating == "MODERATE") {
+            price = "$$";
+        }
+        else if (array.priceRating == "INEXPENSIVE") {
+            price = "$";
+        }
+        else {
+            price = "";
+        }
+
+        if (this.props.counter % 2 === 0) {
+            row = <div id="recrow1" onClick={this.button4}>
+                <font>{array.name}</font>
+                <br></br>
+                <small>Distance: {array.distance}</small>
+                <br></br>
+                <small>Address: {array.address}</small>
+                
+                <small id="price">Price: {price}</small>
+
+            </div>
+
+        }
+        else {
+            row = <div id="recrow2" onClick={this.button4}>
+                <font>{array.name}</font>
+                <br></br>
+                <small>Distance: {array.distance}</small>
+                <br></br>
+                <small>Address: {array.address}</small>
+
+                <small id="price">Price: {price}</small>
+            </div>
+
+
+        }
+        return row;
+    }
+}
+
+
+class RecipeRow extends Component {
+    render() {
+        const array = this.props.recdata[this.props.counter];
+        let row;
+        
+        if (this.props.counter % 2 === 0) {
+            row = <div id="recrow1">
+                    <font>{array.title}</font>
+                    <br></br>
+                    <small>Prep Time: {array.prepTime}</small>
+                    <br></br>
+                    <small>Cook Time: {array.cookTime}</small>
+                </div>
+        }
+        else {
+            row = <div id="recrow2">
+                <font>{array.title}</font>
+                <br></br>
+                <small>Prep Time: {array.prepTime}</small>
+                <br></br>
+                <small>Cook Time: {array.cookTime}</small>
+            </div>
+           
+
+        }
+        return row;
     }
 }
 

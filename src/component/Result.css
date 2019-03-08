@@ -54,9 +54,7 @@
 
 .col1{
     margin-left:10vw;
-    
-
-
+    margin-bottom:10vh;
     float:left;
 }
 
@@ -69,16 +67,34 @@
 }
 
 .col2{
-    margin-left:10vw;
-
+   margin-left:10vw;
+   margin-bottom:10vh;
    float:left;
 }
 
 .col2 #rechead {
         text-align: center;
         background-color: lightgray;
-        width: 34vw;
+        width: 35vw;
         height: 10vh;
         padding-top: 5vh;
-        overflow:hidden;
+}
+
+#recrow1{
+    background-color:gray;
+    height:10vh;
+    padding-left:1vh;
+    padding-top:1vh;
+}
+
+#recrow2 {
+    background-color: lightgray;
+    height: 10vh;
+    padding-left: 1vh;
+    padding-top: 1vh;
+}
+
+#price{
+    float:right;
+    padding-right:5vw;
 }
