@@ -80,14 +80,14 @@
         padding-top: 5vh;
 }
 
-#recrow1{
+.recrow1{
     background-color:gray;
     height:10vh;
     padding-left:1vh;
     padding-top:1vh;
 }
 
-#recrow2 {
+.recrow2 {
     background-color: lightgray;
     height: 10vh;
     padding-left: 1vh;

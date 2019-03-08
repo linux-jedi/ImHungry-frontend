@@ -7,18 +7,35 @@ import rest  from './JSON/rest'
 class Result extends Component {
     constructor(props) {
         super(props);
+    
+     const link1 = "http://localhost:8080/recipe?name="    +  localStorage.getItem('query') + "&amount=" + localStorage.getItem('amount') ;
+     const link2= "http://localhost:8080/restaurant?name=" +  localStorage.getItem('query') + "&amount=" + localStorage.getItem('amount');
+
+    let json1;
+
+    json1 = JSON.parse(this.loadData(link1));
 
         this.state = {
-                   rstdrop: 'blank',
-                   recdata: recip,
-                   resdata: rest,
-                   size: localStorage.getItem('amount')
+            rstdrop: 'blank',
+            recdata: json1,
+            resdata: rest,
+            size: localStorage.getItem('amount')
         };
+
         this.handleChange = this.handleChange.bind(this);
         this.button2 = this.button2.bind(this);
-        this.button4 = this.button4.bind(this);
         this.buttonManageList = this.buttonManageList.bind(this);
         
+    }
+
+    loadData(url) {
+        const Http = new XMLHttpRequest();
+        Http.open("GET", url, false);
+        Http.send();
+        if(Http.status == 200) {
+            console.log(Http.responseText)
+            return Http.responseText;
+        }
     }
 
 
@@ -30,13 +47,6 @@ class Result extends Component {
 
     button2() {
         this.props.history.push('/')
-    }
-
-    button4() {
-        console.log(this.state.id);
-        localStorage.setItem('resid', this.state.id);
-
-        //    this.props.history.push('/Restaurant')
     }
 
     buttonManageList() {
@@ -54,11 +64,11 @@ class Result extends Component {
     render() {
         let recrows = [];
         let resrows = [];
-        console.log(this.state.size);
+
         for (var i = 0; i < this.state.size; i++) {
 
-            recrows.push(<RecipeRow recdata={this.state.recdata} counter={i}/>)
-            resrows.push(<RestaurantRow resdata={this.state.resdata} counter={i} />)
+            recrows.push(<RecipeRow recdata={this.state.recdata} counter={i} history={this.props.history} />)
+            resrows.push(<RestaurantRow resdata={this.state.resdata} counter={i} history={this.props.history} />)
         }
 
         return (
@@ -99,8 +109,13 @@ class Result extends Component {
 }
 
 class RestaurantRow extends Component {
-    button4() {
-        console.log("fck this");
+
+    button4 =(e)=> {
+        console.log("temp4");
+        console.log(e.currentTarget.id);
+        localStorage.setItem('resid', e.currentTarget.id);
+
+        this.props.history.push('/Restaurant')
     }
 
 
@@ -123,7 +138,7 @@ class RestaurantRow extends Component {
         }
 
         if (this.props.counter % 2 === 0) {
-            row = <div id="recrow1" onClick={this.button4}>
+            row = <div className="recrow1" id={array.id} onClick={this.button4}>
                 <font>{array.name}</font>
                 <br></br>
                 <small>Distance: {array.distance}</small>
@@ -136,7 +151,7 @@ class RestaurantRow extends Component {
 
         }
         else {
-            row = <div id="recrow2" onClick={this.button4}>
+            row = <div className="recrow2" id={array.id} onClick={this.button4} >
                 <font>{array.name}</font>
                 <br></br>
                 <small>Distance: {array.distance}</small>
@@ -154,26 +169,35 @@ class RestaurantRow extends Component {
 
 
 class RecipeRow extends Component {
+
+    button5 =(e)=> {
+        console.log("temp5");
+        console.log(e.currentTarget.id);
+        localStorage.setItem('recid', e.currentTarget.id);
+
+        this.props.history.push('/Recipe')
+    }
+
     render() {
         const array = this.props.recdata[this.props.counter];
         let row;
         
         if (this.props.counter % 2 === 0) {
-            row = <div id="recrow1">
-                    <font>{array.title}</font>
-                    <br></br>
-                    <small>Prep Time: {array.prepTime}</small>
-                    <br></br>
-                    <small>Cook Time: {array.cookTime}</small>
-                </div>
-        }
-        else {
-            row = <div id="recrow2">
+            row = <div className="recrow1" id={array.id} onClick={this.button5}>
                 <font>{array.title}</font>
                 <br></br>
-                <small>Prep Time: {array.prepTime}</small>
+                <small>Prep Time: {array.prepTime} min</small>
                 <br></br>
-                <small>Cook Time: {array.cookTime}</small>
+                <small>Cook Time: {array.cookTime} min</small>
+            </div>
+        }
+        else {
+            row = <div className="recrow2" id={array.id} onClick={this.button5}>
+                <font>{array.title}</font>
+                <br></br>
+                <small>Prep Time: {array.prepTime} min</small>
+                <br></br>
+                <small>Cook Time: {array.cookTime} min</small>
             </div>
            
 
