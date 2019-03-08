@@ -8,18 +8,23 @@ class Result extends Component {
     constructor(props) {
         super(props);
     
-     const link1 = "http://localhost:8080/recipe?name="    +  localStorage.getItem('query') + "&amount=" + localStorage.getItem('amount') ;
-     const link2= "http://localhost:8080/restaurant?name=" +  localStorage.getItem('query') + "&amount=" + localStorage.getItem('amount');
+        const link1 = "http://localhost:8080/recipe?name="    +  localStorage.getItem('query') + "&amount=" + localStorage.getItem('amount') ;
+        const link2 = "http://localhost:8080/restaurant?name=" + localStorage.getItem('query') + "&amount=" + localStorage.getItem('amount');
+        const link3 = "http://localhost:8080/collage?searchTerm=" + localStorage.getItem('query');
 
-    let json1;
+        let json1;
+        let json2;
 
-    json1 = JSON.parse(this.loadData(link1));
+        json1 = JSON.parse(this.loadData(link1));
+        json2 = JSON.parse(this.loadData(link2));
+
 
         this.state = {
             rstdrop: 'blank',
             recdata: json1,
-            resdata: rest,
-            size: localStorage.getItem('amount')
+            resdata: json2,
+            size: localStorage.getItem('amount'),
+            link4: link3
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -74,7 +79,8 @@ class Result extends Component {
         return (
             <div className="Result">
                 <div id="rstheader">
-                    <img id="collage" src="https://i.imgur.com/LqvxCkC.png" alt="collage" />
+                    <img id="collage" src={this.state.link4} alt="collage" />
+
 
                     <div id="rstheader2">
                         <h1 id="rsttitle"> Results for: {localStorage.getItem('query')}</h1>
@@ -139,6 +145,8 @@ class RestaurantRow extends Component {
 
         if (this.props.counter % 2 === 0) {
             row = <div className="recrow1" id={array.id} onClick={this.button4}>
+                <img src="http://pngimg.com/uploads/star/star_PNG41507.png" alt="str" id="starimg"></img>
+                <font id="star"> {array.rating} </font>
                 <font>{array.name}</font>
                 <br></br>
                 <small>Distance: {array.distance}</small>
@@ -152,6 +160,8 @@ class RestaurantRow extends Component {
         }
         else {
             row = <div className="recrow2" id={array.id} onClick={this.button4} >
+                <img src="http://pngimg.com/uploads/star/star_PNG41507.png" alt="str" id="starimg"></img>
+                <font id="star"> {array.rating} </font>
                 <font>{array.name}</font>
                 <br></br>
                 <small>Distance: {array.distance}</small>
@@ -184,6 +194,8 @@ class RecipeRow extends Component {
         
         if (this.props.counter % 2 === 0) {
             row = <div className="recrow1" id={array.id} onClick={this.button5}>
+                <img src="http://pngimg.com/uploads/star/star_PNG41507.png" alt ="str" id="starimg"></img>
+                <font id="star"> {array.id % 5} </font>
                 <font>{array.title}</font>
                 <br></br>
                 <small>Prep Time: {array.prepTime} min</small>
@@ -193,6 +205,8 @@ class RecipeRow extends Component {
         }
         else {
             row = <div className="recrow2" id={array.id} onClick={this.button5}>
+                <img src="http://pngimg.com/uploads/star/star_PNG41507.png" alt="str" id="starimg"></img>
+                <font id="star"> {array.id % 5} </font>
                 <font>{array.title}</font>
                 <br></br>
                 <small>Prep Time: {array.prepTime} min</small>

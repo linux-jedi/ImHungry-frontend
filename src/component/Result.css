@@ -98,3 +98,15 @@
     float:right;
     padding-right:5vw;
 }
+
+#star{
+    float:right;
+
+}
+
+#starimg {
+    height: 3vh;
+    width: auto;
+    float: right;
+    padding-right: 5vw;
+}
