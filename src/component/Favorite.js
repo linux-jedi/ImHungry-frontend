@@ -5,9 +5,14 @@ import './Favorite.css';
 class Favorite extends Component {
     constructor(props) {
         super(props);
+
+        const link1 = "http://localhost:8080/list/FAVORITE";
+
+        let json1 = JSON.parse(this.loadData(link1));
+        console.log(json1);
+
                this.state = {
-                    //insert json into these resdata:[] and recdata:[]
-                    data:[]
+                    data:link1
                };
 
         this.handleChange = this.handleChange.bind(this);
@@ -15,6 +20,21 @@ class Favorite extends Component {
         this.button3 = this.button3.bind(this);
     }
 
+    loadData(url) {
+        const Http = new XMLHttpRequest();
+        Http.withCredentials = 'same-origin';
+        Http.open("GET", url, false);
+        Http.send();
+        if (Http.status == 200) {
+            let cookie = Http.getResponseHeader("Cookie");
+            console.log(cookie);
+            console.log("adf");
+
+            return Http.responseText;
+        }
+
+ 
+    }
 
     handleChange(event) {
         this.setState({

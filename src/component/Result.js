@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
 import './Result.css';
-import recip from './JSON/recip'
-import rest  from './JSON/rest'
 
 class Result extends Component {
     constructor(props) {
@@ -55,7 +53,6 @@ class Result extends Component {
     }
 
     buttonManageList() {
-        alert(this.state.rstdrop);
         var liststate = this.state.rstdrop;
         if (liststate == 'blank') {
             //do nothing
@@ -90,7 +87,7 @@ class Result extends Component {
                                 <option value="blank" selected></option>
                                 <option value="Favorite">Favorites</option>
                                 <option value="ToExplore">To Explore</option>
-                                <option value="NotShow">Do Not Show</option>
+                                <option value="NoShow">Do Not Show</option>
                             </select>
                             <br></br>
                             <button id="list" onClick={this.buttonManageList} > Manage List</button>
@@ -130,13 +127,13 @@ class RestaurantRow extends Component {
         let row;
         let price;
 
-        if (array.priceRating == "EXPENSIVE") {
+        if (array.priceRating === "EXPENSIVE") {
             price = "$$$";
         }
-        else if (array.priceRating == "MODERATE") {
+        else if (array.priceRating === "MODERATE") {
             price = "$$";
         }
-        else if (array.priceRating == "INEXPENSIVE") {
+        else if (array.priceRating === "INEXPENSIVE") {
             price = "$";
         }
         else {

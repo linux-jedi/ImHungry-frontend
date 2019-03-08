@@ -26,7 +26,6 @@ class Recipe extends Component {
         Http.open("GET", url, false);
         Http.send();
         if (Http.status == 200) {
-            console.log(Http.responseText)
             return Http.responseText;
         }
     }
@@ -49,8 +48,6 @@ class Recipe extends Component {
         }
 
         let ingredients = this.state.data.ingredients.join(', ');
-        let count = 2; 
-        let instruct = this.state.data.instructions.replace(/\.(?=[A-Z])/g, '\n\n' + count + '. ')
 
         let instructs = this.state.data.instructions.split(".");
         console.log(instructs);

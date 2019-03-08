@@ -17,13 +17,20 @@ class Restaurant extends Component {
         const dest2 = dest1.replace(" ", "+");
         const link2 = "https://www.google.com/maps/dir/?api=1&origin=Tommy+Trojan&destination=" + dest2 + "&travelmode=car";
 
+        const link3 = "http://localhost:8080/list/";             //  listname/restaurant
+
+
         this.state = {
+            resdrop: 'blank',
             data: json1,
-            dest2: link2
+            dest2: link2,
+            destlist: link3
 
         };
 
+        this.handleChange = this.handleChange.bind(this);
         this.button2 = this.button2.bind(this);
+        this.button3 = this.button3.bind(this);
 
     }
 
@@ -31,10 +38,23 @@ class Restaurant extends Component {
         const Http = new XMLHttpRequest();
         Http.open("GET", url, false);
         Http.send();
-        if (Http.status == 200) {
+        if (Http.status === 200) {
             console.log(Http.responseText)
             return Http.responseText;
         }
+    }
+
+    addtolist(url) {
+        const Http = new XMLHttpRequest();
+        Http.open("POST", url, false);
+        Http.setRequestHeader('Content-type', 'application/json');
+        Http.send(JSON.stringify(this.state.data));
+
+
+        if (Http.status === 200) {
+            console.log("sent")
+        }
+
     }
 
     button2() {
@@ -42,6 +62,10 @@ class Restaurant extends Component {
     }
 
     button3() {
+
+        console.log(this.state.data);
+        this.state.destlist = "http://localhost:8080/list/" + this.state.resdrop + "/restaurant";
+        this.addtolist(this.state.destlist);
     }
 
     handleChange(event) {
@@ -73,11 +97,11 @@ class Restaurant extends Component {
                         <br></br>
                         <button id="resrp" onClick={this.button2}>Return to Results Page</button>
                         <br></br>
-                        <select id="resdrop" name="resdrop">
+                        <select id="resdrop" name="resdrop" onChange={this.handleChange}>
                             <option value="blank" selected></option>
-                            <option value="fave">Favorites</option>
-                            <option value="explo">To Explore</option>
-                            <option value="noshow">Do Not Show</option>
+                            <option value="FAVORITE">Favorites</option>
+                            <option value="EXPLORE">To Explore</option>
+                            <option value="BLOCK">Do Not Show</option>
                         </select>
                         <br></br>
                         <button id="reslist" onClick={this.button3}>Add to List</button>
