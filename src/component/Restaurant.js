@@ -8,13 +8,28 @@ import './Restaurant.css';
 class Restaurant extends Component {
     constructor(props) {
         super(props);
-               this.state = {
 
-        
+        const link1 = "http://localhost:8080/restaurant/" + localStorage.getItem('resid');
+        console.log(link1);
+
+        let json1 = JSON.parse(this.loadData(link1));
+
+        this.state = {
+            data: json1
         };
 
         this.button2 = this.button2.bind(this);
 
+    }
+
+    loadData(url) {
+        const Http = new XMLHttpRequest();
+        Http.open("GET", url, false);
+        Http.send();
+        if (Http.status == 200) {
+            console.log(Http.responseText)
+            return Http.responseText;
+        }
     }
 
     button2() {
@@ -31,17 +46,17 @@ class Restaurant extends Component {
     render() {
         return (
             <div className="Restaurant">
-                <h1 id="restitle" >PLaceholder title</h1>
+                <h1 id="restitle" >{this.state.data.name}</h1>
                 <div id="wrapper">
                     <div id="resbody">
                         <p>Address:</p>
-                        <p>Placeholder Address</p>
+                        <p>{this.state.data.address}</p>
                         <br></br>
                         <p>Phone Number:</p>
-                        <p>PLACEHOLDER PHONE#</p>
+                        <p>{this.state.data.phoneNumber}</p>
                         <br></br>
                         <p>Website:</p>
-                        <p>PLACEHOLDER WEBSITE</p>
+                        <a href={this.state.data.websiteUrl} > { this.state.data.websiteUrl }</a>
                         <br></br>
                     </div>
 
