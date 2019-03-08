@@ -10,12 +10,17 @@ class Restaurant extends Component {
         super(props);
 
         const link1 = "http://localhost:8080/restaurant/" + localStorage.getItem('resid');
-        console.log(link1);
 
         let json1 = JSON.parse(this.loadData(link1));
 
+        const dest1 = json1.address;
+        const dest2 = dest1.replace(" ", "+");
+        const link2 = "https://www.google.com/maps/dir/?api=1&origin=Tommy+Trojan&destination=" + dest2 + "&travelmode=car";
+
         this.state = {
-            data: json1
+            data: json1,
+            dest2: link2
+
         };
 
         this.button2 = this.button2.bind(this);
@@ -36,6 +41,9 @@ class Restaurant extends Component {
         this.props.history.push('/Result')
     }
 
+    button3() {
+    }
+
     handleChange(event) {
         this.setState({
             [event.target.name]: event.target.value
@@ -50,7 +58,7 @@ class Restaurant extends Component {
                 <div id="wrapper">
                     <div id="resbody">
                         <p>Address:</p>
-                        <p>{this.state.data.address}</p>
+                        <a href={this.state.dest2}>{this.state.data.address}</a>
                         <br></br>
                         <p>Phone Number:</p>
                         <p>{this.state.data.phoneNumber}</p>
@@ -72,7 +80,7 @@ class Restaurant extends Component {
                             <option value="noshow">Do Not Show</option>
                         </select>
                         <br></br>
-                        <button id="reslist">Add to List</button>
+                        <button id="reslist" onClick={this.button3}>Add to List</button>
                     </div>
                 </div>
             </div>

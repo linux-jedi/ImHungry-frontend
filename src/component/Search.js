@@ -36,7 +36,6 @@ class Search extends Component {
         localStorage.setItem('query', this.state.query);
         localStorage.setItem('amount', this.state.amount);
 
-        alert(this.state.query + " " + this.state.amount);
         event.preventDefault();
 
         this.props.history.push('/Result')
