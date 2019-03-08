@@ -14,10 +14,14 @@ class Recipe extends Component {
 
 
         this.state = {
+            rcpdrop: 'blank',
             data: json1
         };
 
+        this.handleChange = this.handleChange.bind(this);
         this.button2 = this.button2.bind(this);
+        this.button3 = this.button3.bind(this);
+
 
     }
 
@@ -30,10 +34,36 @@ class Recipe extends Component {
         }
     }
 
+    handleChange(event) {
+        this.setState({
+            [event.target.name]: event.target.value
+        });
+    }
+
     button2() {
         this.props.history.push('/Result')
     }
 
+    button3() {
+
+        console.log(this.state.rcpdrop);
+
+        if (this.state.rcpdrop != 'blank') {
+            var temp = localStorage[this.state.rcpdrop + "b"];
+            console.log(temp);
+            if (temp == "") {
+                temp = [this.state.data];
+            }
+            else {
+                temp.concat(this.state.data);
+            }
+
+            localStorage[this.state.rcpdrop + "b"] = temp;
+
+            console.log(localStorage[this.state.rcpdrop]);
+
+        }
+    }
 
 
     render() {
@@ -71,14 +101,14 @@ class Recipe extends Component {
                             <br></br>
                             <button id="rcpsp" onClick={this.button2}>Return to Results Page</button>
                             <br></br>
-                            <select id="rcpdrop" name="rcpdrop">
+                            <select id="rcpdrop" name="rcpdrop" onChange={this.handleChange} >
                                 <option value="blank" selected></option>
-                                <option value="fave">Favorites</option>
-                                <option value="explo">To Explore</option>
-                                <option value="noshow">Do Not Show</option>
+                                <option value="Favorite">Favorites</option>
+                                <option value="Explore">To Explore</option>
+                                <option value="NoShow">Do Not Show</option>
                             </select>
                             <br></br>
-                            <button id="rcplist">Add to List</button>
+                            <button id="rcplist" onClick={this.button3} > Add to List</button>
                             </div>
 
                     </div>

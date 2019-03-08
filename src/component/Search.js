@@ -36,26 +36,21 @@ class Search extends Component {
         localStorage.setItem('query', this.state.query);
         localStorage.setItem('amount', this.state.amount);
 
+        //res
+        localStorage.setItem("Favoritea", []);
+        localStorage.setItem("NoShowa", []);
+        localStorage.setItem("Explorea", []);
+
+        //rec
+        localStorage.setItem("Favoriteb", []);
+        localStorage.setItem("NoShowb", []);
+        localStorage.setItem("Exploreb", []);
+
+
         event.preventDefault();
 
         this.props.history.push('/Result')
 
- /* this has not been tested and I prob need to import some library just placing this here for ref
-  *
-  * fetch('http://example.com', {
-            method: "POST",
-            body: JSON.stringify(userData),
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-        }).then(response => {
-            response.json().then(data => {
-                console.log("Successful" + data);
-            })
-        })
-    }  
-  */
     }
 
     render() {

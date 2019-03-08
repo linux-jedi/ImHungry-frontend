@@ -45,7 +45,7 @@ class Restaurant extends Component {
     }
 
     addtolist(url) {
-        const Http = new XMLHttpRequest();
+/*        const Http = new XMLHttpRequest();
         Http.open("POST", url, false);
         Http.setRequestHeader('Content-type', 'application/json');
         Http.send(JSON.stringify(this.state.data));
@@ -54,6 +54,7 @@ class Restaurant extends Component {
         if (Http.status === 200) {
             console.log("sent")
         }
+*/
 
     }
 
@@ -63,9 +64,19 @@ class Restaurant extends Component {
 
     button3() {
 
-        console.log(this.state.data);
-        this.state.destlist = "http://localhost:8080/list/" + this.state.resdrop + "/restaurant";
-        this.addtolist(this.state.destlist);
+        if (this.state.resdrop != 'blank')
+        {
+
+            //var resa = localStorage[this.state.resdrop + "a"];
+            //resa = JSON.parse(resa);
+            //resa.push(this.state.data.id);
+            //localStorage[this.state.resdrop + "a"] = JSON.stringify(resa);
+
+            console.log(localStorage[this.state.resdrop]);
+        }
+
+    //    this.state.destlist = "http://localhost:8080/list/" + this.state.resdrop + "/restaurant";
+    //    this.addtolist(this.state.destlist);
     }
 
     handleChange(event) {
@@ -99,9 +110,9 @@ class Restaurant extends Component {
                         <br></br>
                         <select id="resdrop" name="resdrop" onChange={this.handleChange}>
                             <option value="blank" selected></option>
-                            <option value="FAVORITE">Favorites</option>
-                            <option value="EXPLORE">To Explore</option>
-                            <option value="BLOCK">Do Not Show</option>
+                            <option value="Favorite">Favorites</option>
+                            <option value="Explore">To Explore</option>
+                            <option value="NoShow">Do Not Show</option>
                         </select>
                         <br></br>
                         <button id="reslist" onClick={this.button3}>Add to List</button>

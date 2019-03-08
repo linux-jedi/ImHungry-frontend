@@ -86,7 +86,7 @@ class Result extends Component {
                             <select id="rstdrop" name="rstdrop" onChange={this.handleChange} >
                                 <option value="blank" selected></option>
                                 <option value="Favorite">Favorites</option>
-                                <option value="ToExplore">To Explore</option>
+                                <option value="Explore">To Explore</option>
                                 <option value="NoShow">Do Not Show</option>
                             </select>
                             <br></br>

@@ -8,6 +8,8 @@ import Result from "./component/Result";
 import Restaurant from "./component/Restaurant";
 import Recipe from "./component/Recipe";
 import Favorite from "./component/Favorite";
+import NoShow from "./component/NoShow";
+import Explore from "./component/Explore";
 
 class App extends Component {
 
@@ -19,7 +21,9 @@ class App extends Component {
                     <Route path="/Result" component={Result} />
                     <Route path="/Restaurant" component={Restaurant} />
                     <Route path="/Recipe" component={Recipe} />
-                    <Route path="/Favorite" component={Favorite}/>
+                    <Route path="/Favorite" component={Favorite} />
+                    <Route path="/NoShow" component={NoShow} />
+                    <Route path="/Explore" component={Explore} />
                 </Switch>
             </BrowserRouter>
         );
