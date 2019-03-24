@@ -5,17 +5,42 @@ import './Result.css';
 class Result extends Component {
     constructor(props) {
         super(props);
-    
+        const fs = require('fs');
+        //console.log(fs);
+
+        //CHANGE THIS LET TO CONNECT TO ENDPOINTS
+        let test = true;
+
         const link1 = "http://localhost:8080/recipe?name="    +  localStorage.getItem('query') + "&amount=" + localStorage.getItem('amount') ;
         const link2 = "http://localhost:8080/restaurant?name=" + localStorage.getItem('query') + "&amount=" + localStorage.getItem('amount');
         const link3 = "http://localhost:8080/collage?searchTerm=" + localStorage.getItem('query');
+        
+        //TEST MODE
+        const test1 = 'imhungry/src/component/JSON/recip.json';
+        const test2 = '/JSON/rest.json';
+        
 
         let json1;
         let json2;
-
-        json1 = JSON.parse(this.loadData(link1));
-        json2 = JSON.parse(this.loadData(link2));
-
+        //technically the following code can be done in any language
+        if (test){
+            fetch(test1).then(res => console.log(res));
+            // json1 = JSON.parse(test1, {encoding: "utf8"}, function(err, data){
+            //  if(err){
+            //     console.log(err)
+            //  }              
+            //  console.log(data);
+            // });
+            json2 = JSON.parse(test2, {encoding: "utf8"}, function(err, data){
+             if(err){
+                console.log(err)
+             }              
+             console.log(data);
+          });        
+        } else {
+            json1 = JSON.parse(this.loadData(link1));
+            json2 = JSON.parse(this.loadData(link1));
+        }
 
         this.state = {
             rstdrop: 'blank',
@@ -26,7 +51,7 @@ class Result extends Component {
         };
 
         this.handleChange = this.handleChange.bind(this);
-        this.button2 = this.button2.bind(this);
+        this.returnSearch = this.returnSearch.bind(this);
         this.buttonManageList = this.buttonManageList.bind(this);
         
     }
@@ -48,7 +73,8 @@ class Result extends Component {
         });
     }
 
-    button2() {
+    returnSearch() {
+        //history redirects it and is appended to URL (i'm guessing)
         this.props.history.push('/')
     }
 
@@ -92,7 +118,7 @@ class Result extends Component {
                             <br></br>
                             <button id="list" onClick={this.buttonManageList} > Manage List</button>
                             <br></br>
-                            <button id="retsp" onClick={this.button2}>Return to Search Page</button>
+                            <button id="retsp" onClick={this.returnSearch}>Return to Search Page</button>
                         </div>
                     </div>
                 </div>
@@ -113,8 +139,8 @@ class Result extends Component {
 
 class RestaurantRow extends Component {
 
-    button4 =(e)=> {
-        console.log("temp4");
+    toResPage =(e)=> {
+        console.log("previously was button4");
         console.log(e.currentTarget.id);
         localStorage.setItem('resid', e.currentTarget.id);
 
@@ -141,7 +167,7 @@ class RestaurantRow extends Component {
         }
 
         if (this.props.counter % 2 === 0) {
-            row = <div className="recrow1" id={array.id} onClick={this.button4}>
+            row = <div className="recrow1" id={array.id} onClick={this.toResPage}>
                 <img src="http://pngimg.com/uploads/star/star_PNG41507.png" alt="str" id="starimg"></img>
                 <font id="star"> {array.rating} </font>
                 <font>{array.name}</font>
@@ -156,7 +182,7 @@ class RestaurantRow extends Component {
 
         }
         else {
-            row = <div className="recrow2" id={array.id} onClick={this.button4} >
+            row = <div className="recrow2" id={array.id} onClick={this.toResPage} >
                 <img src="http://pngimg.com/uploads/star/star_PNG41507.png" alt="str" id="starimg"></img>
                 <font id="star"> {array.rating} </font>
                 <font>{array.name}</font>
@@ -177,8 +203,8 @@ class RestaurantRow extends Component {
 
 class RecipeRow extends Component {
 
-    button5 =(e)=> {
-        console.log("temp5");
+    toRecPage =(e)=> {
+        console.log("was button5");
         console.log(e.currentTarget.id);
         localStorage.setItem('recid', e.currentTarget.id);
 
@@ -190,7 +216,7 @@ class RecipeRow extends Component {
         let row;
         
         if (this.props.counter % 2 === 0) {
-            row = <div className="recrow1" id={array.id} onClick={this.button5}>
+            row = <div className="recrow1" id={array.id} onClick={this.toRecPage}>
                 <img src="http://pngimg.com/uploads/star/star_PNG41507.png" alt ="str" id="starimg"></img>
                 <font id="star"> {array.id % 5} </font>
                 <font>{array.title}</font>
@@ -201,7 +227,7 @@ class RecipeRow extends Component {
             </div>
         }
         else {
-            row = <div className="recrow2" id={array.id} onClick={this.button5}>
+            row = <div className="recrow2" id={array.id} onClick={this.toRecPage}>
                 <img src="http://pngimg.com/uploads/star/star_PNG41507.png" alt="str" id="starimg"></img>
                 <font id="star"> {array.id % 5} </font>
                 <font>{array.title}</font>

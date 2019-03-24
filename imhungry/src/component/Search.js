@@ -15,11 +15,13 @@ class Search extends Component {
                    amount: '5',
                    open:true
                 };
-
+        //setting global parameters
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    //state.open tracks whether or not button is pressed
+        //only communicates with getImageName
     toggleImage = () => {
         this.setState(state => ({ open: !state.open }))
     }
@@ -33,6 +35,7 @@ class Search extends Component {
     }
 
     handleSubmit(event) {
+        //when adding to database, we will want to cache THIS INFO
         localStorage.setItem('query', this.state.query);
         localStorage.setItem('amount', this.state.amount);
 
@@ -54,6 +57,7 @@ class Search extends Component {
     }
 
     render() {
+        //this way the image name dynamically updates
         const imageName = this.getImageName();
         return (
             <div className="Search">
