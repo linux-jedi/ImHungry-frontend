@@ -120,7 +120,6 @@ class Result extends Component {
 
                         <div className="rstbuttons">
                             <Dropdown handleDropdown = {this.handleDropdown}/>
-                            <br></br>
                             <button id="list" onClick={this.buttonManageList} > Manage List</button>
                             <br></br>
                             <button id="retsp" onClick={this.returnSearch}>Return to Search Page</button>
