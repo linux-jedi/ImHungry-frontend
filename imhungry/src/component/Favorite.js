@@ -30,10 +30,10 @@ class Favorite extends Component {
         if (Http.status == 200) {
             //cookie Issues!
 
-            let cookie = Http.getResponseHeader("Cookie");
-            console.log(cookie);
-            console.log("adf");
-
+           // let cookie = Http.getResponseHeader("Cookie");
+           // console.log(cookie);
+//            console.log("adf");
+            console.log("yay");
             return Http.responseText;
         }
 

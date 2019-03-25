@@ -30,7 +30,7 @@ class Restaurant extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.button2 = this.button2.bind(this);
-        this.button3 = this.button3.bind(this);
+        this.addL = this.addL.bind(this);
 
     }
 
@@ -45,24 +45,30 @@ class Restaurant extends Component {
     }
 
     addtolist(url) {
-/*        const Http = new XMLHttpRequest();
+       const Http = new XMLHttpRequest();
         Http.open("POST", url, false);
-        Http.setRequestHeader('Content-type', 'application/json');
-        Http.send(JSON.stringify(this.state.data));
+        Http.setRequestHeader('Content-type', 'application/json;CHARSET=UTF-8');
+        this.state.data.distance = "1 min";
+        //this.state.data = '{\"id\":\"ChIJk2uXa-PHwoARFOHSKjqYyFo\",\"name\":\"The Habit Burger Grill\",\"address\":\"3607 Trousdale Pkwy, Los Angeles\",\"phoneNumber\":\"(213) 740-2311\",\"websiteUrl\":\"https://www.habitburger.com/locations/echo-park/\",\"rating\":4.2,\"priceRating\":\"INEXPENSIVE\",\"distance\":\"1 min\"}';
+        let json_send = JSON.stringify(this.state.data);
+        console.log("sending ", json_send, " to ", url);
+        Http.send(json_send);
 
 
         if (Http.status === 200) {
             console.log("sent")
+        }else {
+            console.log("not send because", Http.status);
         }
-*/
 
+    
     }
 
     button2() {
         this.props.history.push('/Result')
     }
 
-    button3() {
+    addL() {
 
         if (this.state.resdrop != 'blank')
         {
@@ -71,12 +77,15 @@ class Restaurant extends Component {
             //resa = JSON.parse(resa);
             //resa.push(this.state.data.id);
             //localStorage[this.state.resdrop + "a"] = JSON.stringify(resa);
+            console.log(this.state.resdrop);
+            this.state.resdrop = "EXPLORE";
+            this.state.destlist = "https://mysterious-refuge-36265.herokuapp.com/list/" + this.state.resdrop + "/restaurant";
+           this.addtolist(this.state.destlist);
 
-            console.log(localStorage[this.state.resdrop]);
+            //console.log(localStorage[this.state.resdrop]);
         }
 
     //    this.state.destlist = "http://localhost:8080/list/" + this.state.resdrop + "/restaurant";
-    //    this.addtolist(this.state.destlist);
     }
 
     handleChange(event) {
@@ -109,13 +118,13 @@ class Restaurant extends Component {
                         <button id="resrp" onClick={this.button2}>Return to Results Page</button>
                         <br></br>
                         <select id="resdrop" name="resdrop" onChange={this.handleChange}>
-                            <option value="blank" selected></option>
+                            <option value="blank" value></option>
                             <option value="Favorite">Favorites</option>
                             <option value="Explore">To Explore</option>
                             <option value="NoShow">Do Not Show</option>
                         </select>
                         <br></br>
-                        <button id="reslist" onClick={this.button3}>Add to List</button>
+                        <button id="reslist" onClick={this.addL}>Add to List</button>
                     </div>
                 </div>
             </div>

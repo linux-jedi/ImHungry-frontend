@@ -35,6 +35,7 @@ class Search extends Component {
     }
 
     handleSubmit(event) {
+        
         //when adding to database, we will want to cache THIS INFO
         localStorage.setItem('query', this.state.query);
         localStorage.setItem('amount', this.state.amount);
