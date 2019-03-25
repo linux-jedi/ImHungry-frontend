@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
-import './Recipe.css';
+import './CSS/Recipe.css';
+import Dropdown from './Dropdown';
+
 
 //will have to handle this page onload -> populate data on load
 
@@ -21,6 +23,8 @@ class Recipe extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.button2 = this.button2.bind(this);
         this.button3 = this.button3.bind(this);
+        this.handleDropdown = this.handleDropdown.bind(this);
+
 
 
     }
@@ -32,6 +36,12 @@ class Recipe extends Component {
         if (Http.status == 200) {
             return Http.responseText;
         }
+    }
+
+    handleDropdown(event, value){
+        this.setState({
+            rstdrop: value
+        });
     }
 
     handleChange(event) {
@@ -100,14 +110,7 @@ class Recipe extends Component {
                                 <button id="rcpprint" onClick={() => window.print()} > Printable View</button>
                             <br></br>
                             <button id="rcpsp" onClick={this.button2}>Return to Results Page</button>
-                            <br></br>
-                            <select id="rcpdrop" name="rcpdrop" onChange={this.handleChange} >
-                                <option value="blank" selected></option>
-                                <option value="Favorite">Favorites</option>
-                                <option value="Explore">To Explore</option>
-                                <option value="NoShow">Do Not Show</option>
-                            </select>
-                            <br></br>
+                            <Dropdown handleDropdown = {this.handleDropdown}/>
                             <button id="rcplist" onClick={this.button3} > Add to List</button>
                             </div>
 

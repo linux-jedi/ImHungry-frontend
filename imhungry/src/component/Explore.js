@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './Explore.css';
+import './CSS/Explore.css';
 
 class Explore extends Component {
     constructor(props) {

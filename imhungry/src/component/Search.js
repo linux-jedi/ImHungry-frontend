@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './Search.css';
+import './CSS/Search.css';
 
 const imagesPath = {
     grumpy: "https://i.imgur.com/q0NhwBx.png",

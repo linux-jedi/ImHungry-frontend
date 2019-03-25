@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './NoShow.css';
+import './CSS/NoShow.css';
 
 class NoShow extends Component {
     constructor(props) {

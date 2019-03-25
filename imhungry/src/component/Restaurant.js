@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import './Restaurant.css';
+import './CSS/Restaurant.css';
+import Dropdown from './Dropdown';
 
 //will have to handle this page onload -> populate data on load
 
@@ -31,6 +32,8 @@ class Restaurant extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.button2 = this.button2.bind(this);
         this.button3 = this.button3.bind(this);
+        this.handleDropdown = this.handleDropdown.bind(this);
+
 
     }
 
@@ -78,6 +81,12 @@ class Restaurant extends Component {
     //    this.state.destlist = "http://localhost:8080/list/" + this.state.resdrop + "/restaurant";
     //    this.addtolist(this.state.destlist);
     }
+ 
+    handleDropdown(event, value){
+        this.setState({
+            rstdrop: value
+        });
+    }
 
     handleChange(event) {
         this.setState({
@@ -107,14 +116,8 @@ class Restaurant extends Component {
                         <button id="resprint" onClick={() => window.print()}>Printable View</button>
                         <br></br>
                         <button id="resrp" onClick={this.button2}>Return to Results Page</button>
-                        <br></br>
-                        <select id="resdrop" name="resdrop" onChange={this.handleChange}>
-                            <option value="blank" selected></option>
-                            <option value="Favorite">Favorites</option>
-                            <option value="Explore">To Explore</option>
-                            <option value="NoShow">Do Not Show</option>
-                        </select>
-                        <br></br>
+                        <Dropdown handleDropdown = {this.handleDropdown}/>
+                       
                         <button id="reslist" onClick={this.button3}>Add to List</button>
                     </div>
                 </div>
