@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import './Restaurant.css';
+import Dropdown from './Dropdown';
 
 //will have to handle this page onload -> populate data on load
 
@@ -107,14 +108,8 @@ class Restaurant extends Component {
                         <button id="resprint" onClick={() => window.print()}>Printable View</button>
                         <br></br>
                         <button id="resrp" onClick={this.button2}>Return to Results Page</button>
-                        <br></br>
-                        <select id="resdrop" name="resdrop" onChange={this.handleChange}>
-                            <option value="blank" selected></option>
-                            <option value="Favorite">Favorites</option>
-                            <option value="Explore">To Explore</option>
-                            <option value="NoShow">Do Not Show</option>
-                        </select>
-                        <br></br>
+                        <Dropdown handleChange ={this.handleChange} />
+                       
                         <button id="reslist" onClick={this.button3}>Add to List</button>
                     </div>
                 </div>
