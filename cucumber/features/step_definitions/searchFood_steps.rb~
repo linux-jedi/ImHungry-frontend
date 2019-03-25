@@ -1,9 +1,9 @@
 Given(/^I am on the Search Page of the I'm Hungry website$/) do
-  visit 'localhost:3000/search.jsp'
+  visit 'localhost:8080/search.jsp'
 end
 
 Given(/^I just started the server$/) do
-  visit 'localhost:3000'
+  visit 'localhost:8080'
 end
 
 When(/^I search for "([^"]*)" from the search page$/) do |arg1|

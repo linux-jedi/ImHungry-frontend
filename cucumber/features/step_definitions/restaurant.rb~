@@ -1,5 +1,5 @@
 Given(/^I am on the Restaurant Page of the I'm Hungry website$/) do
-	visit 'localhost:3000/restaurant_info.jsp'
+	visit 'localhost:8080/restaurant_info.jsp'
 end
       
 Then(/^I should see the Printable Version button$/) do
