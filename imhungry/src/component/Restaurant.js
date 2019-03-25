@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './Restaurant.css';
+import './CSS/Restaurant.css';
 import Dropdown from './Dropdown';
 
 //will have to handle this page onload -> populate data on load

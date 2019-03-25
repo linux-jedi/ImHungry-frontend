@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './Favorite.css';
+import './CSS/Favorite.css';
 
 class Favorite extends Component {
     constructor(props) {

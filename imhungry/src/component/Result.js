@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './Result.css';
+import './CSS/Result.css';
 import Dropdown from './Dropdown';
 
 

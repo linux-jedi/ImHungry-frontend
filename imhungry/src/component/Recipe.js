@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './Recipe.css';
+import './CSS/Recipe.css';
 import Dropdown from './Dropdown';
 
 
