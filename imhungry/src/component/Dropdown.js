@@ -12,11 +12,13 @@ class Dropdown extends Component {
 
     }
 
+  
+
     render() {
         return (
             <div>
                 <br></br>
-                <select id="resdrop" name="resdrop" onChange={this.props.handleChange}>
+                <select id="resdrop" name="resdrop" onChange={(e) => this.props.handleDropdown(e, e.target.value)}>
                     <option value="blank" selected></option>
                     <option value="Favorite">Favorites</option>
                     <option value="Explore">To Explore</option>

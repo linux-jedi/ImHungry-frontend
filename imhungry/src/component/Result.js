@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 import './Result.css';
+import Dropdown from './Dropdown';
+
 
 class Result extends Component {
     constructor(props) {
@@ -54,6 +56,8 @@ class Result extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.returnSearch = this.returnSearch.bind(this);
         this.buttonManageList = this.buttonManageList.bind(this);
+        this.handleDropdown = this.handleDropdown.bind(this);
+
         
     }
 
@@ -67,6 +71,11 @@ class Result extends Component {
         }
     }
 
+    handleDropdown(event, value){
+        this.setState({
+            rstdrop: value
+        });
+    }
 
     handleChange(event) {
         this.setState({
@@ -110,12 +119,7 @@ class Result extends Component {
                         <h1 id="rsttitle"> Results for: {localStorage.getItem('query')}</h1>
 
                         <div className="rstbuttons">
-                            <select id="rstdrop" name="rstdrop" onChange={this.handleChange} >
-                                <option value="blank" selected></option>
-                                <option value="Favorite">Favorites</option>
-                                <option value="Explore">To Explore</option>
-                                <option value="NoShow">Do Not Show</option>
-                            </select>
+                            <Dropdown handleDropdown = {this.handleDropdown}/>
                             <br></br>
                             <button id="list" onClick={this.buttonManageList} > Manage List</button>
                             <br></br>
