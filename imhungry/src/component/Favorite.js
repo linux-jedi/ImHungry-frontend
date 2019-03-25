@@ -6,7 +6,7 @@ class Favorite extends Component {
     constructor(props) {
         super(props);
 
-        const link1 = "http://localhost:8080/list/FAVORITE";
+        const link1 = "https://mysterious-refuge-36265.herokuapp.com/list/FAVORITE";
 
         let json1 = JSON.parse(this.loadData(link1));
         console.log(json1);
@@ -28,6 +28,8 @@ class Favorite extends Component {
         Http.open("GET", url, false);
         Http.send();
         if (Http.status == 200) {
+            //cookie Issues!
+
             let cookie = Http.getResponseHeader("Cookie");
             console.log(cookie);
             console.log("adf");
@@ -64,9 +66,10 @@ class Favorite extends Component {
     render() {
 
         let faverows = [];
-
+        //once we want to connect to DB, all can be generalized here
         console.log(localStorage["Favoritea"]);
         console.log(localStorage["Favoriteb"]);
+        //we are gonna have an issue with ordering
         var favelista = localStorage["Favoritea"];
         var favelistb = localStorage["Favoriteb"];
 

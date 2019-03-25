@@ -9,7 +9,7 @@ class Restaurant extends Component {
     constructor(props) {
         super(props);
 
-        const link1 = "http://localhost:8080/restaurant/" + localStorage.getItem('resid');
+        const link1 = "https://mysterious-refuge-36265.herokuapp.com/restaurant/" + localStorage.getItem('resid');
 
         let json1 = JSON.parse(this.loadData(link1));
 
@@ -17,7 +17,7 @@ class Restaurant extends Component {
         const dest2 = dest1.replace(" ", "+");
         const link2 = "https://www.google.com/maps/dir/?api=1&origin=Tommy+Trojan&destination=" + dest2 + "&travelmode=car";
 
-        const link3 = "http://localhost:8080/list/";             //  listname/restaurant
+        const link3 = "https://mysterious-refuge-36265.herokuapp.com/list/";             //  listname/restaurant
 
 
         this.state = {

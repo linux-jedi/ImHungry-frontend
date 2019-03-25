@@ -9,15 +9,16 @@ class Result extends Component {
         //console.log(fs);
 
         //CHANGE THIS LET TO CONNECT TO ENDPOINTS
-        let test = true;
+        let test = false;
 
-        const link1 = "http://localhost:8080/recipe?name="    +  localStorage.getItem('query') + "&amount=" + localStorage.getItem('amount') ;
-        const link2 = "http://localhost:8080/restaurant?name=" + localStorage.getItem('query') + "&amount=" + localStorage.getItem('amount');
-        const link3 = "http://localhost:8080/collage?searchTerm=" + localStorage.getItem('query');
-        
+        const link1 = "https://mysterious-refuge-36265.herokuapp.com/recipe?name="    +  localStorage.getItem('query') + "&amount=" + localStorage.getItem('amount') ;
+        const link2 = "https://mysterious-refuge-36265.herokuapp.com/restaurant?name=" + localStorage.getItem('query') + "&amount=" + localStorage.getItem('amount');
+        const link3 = "https://mysterious-refuge-36265.herokuapp.com/collage?searchTerm=" + localStorage.getItem('query');
+        console.log(link1);
+        console.log(link2);
         //TEST MODE
-        const test1 = 'imhungry/src/component/JSON/recip.json';
-        const test2 = '/JSON/rest.json';
+        const test1 = 'C:/Users/karti/ImHungry-frontend/imhungry/src/component/JSON/recip.json';
+        const test2 = 'C:/Users/karti/ImHungry-frontend/imhungry/src/component/JSON/rest.json';
         
 
         let json1;
@@ -39,7 +40,7 @@ class Result extends Component {
           });        
         } else {
             json1 = JSON.parse(this.loadData(link1));
-            json2 = JSON.parse(this.loadData(link1));
+            json2 = JSON.parse(this.loadData(link2));
         }
 
         this.state = {
@@ -92,7 +93,7 @@ class Result extends Component {
     render() {
         let recrows = [];
         let resrows = [];
-
+        console.log("DATA",this.state.resdata);
         for (var i = 0; i < this.state.size; i++) {
 
             recrows.push(<RecipeRow recdata={this.state.recdata} counter={i} history={this.props.history} />)

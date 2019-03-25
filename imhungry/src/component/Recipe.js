@@ -9,7 +9,7 @@ class Recipe extends Component {
     constructor(props) {
         super(props);
 
-        const link1 = "http://localhost:8080/recipe/" + localStorage.getItem('recid');
+        const link1 = "https://mysterious-refuge-36265.herokuapp.com/recipe/" + localStorage.getItem('recid');
         let json1 = JSON.parse(this.loadData(link1));
 
 
