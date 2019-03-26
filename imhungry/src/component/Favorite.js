@@ -5,36 +5,63 @@ import './Favorite.css';
 class Favorite extends Component {
     constructor(props) {
         super(props);
-
-        const link1 = "https://mysterious-refuge-36265.herokuapp.com/list/FAVORITE";
-
-        let json1 = JSON.parse(this.loadData(link1));
+        let listWanted = localStorage.getItem("liststate");
+        let keyword = "FAVORITE";
+        if (listWanted === ("ToExplore")){
+            keyword = "EXPLORE";
+            //localStorage.setItem("liststate", "To Explore");
+        } else if (listWanted === ("NoShow")){
+            keyword = "BLOCK";
+            //localStorage.setItem("liststate", "Do Not Show");
+        }
+        const link1 = "https://mysterious-refuge-36265.herokuapp.com/list/" + keyword;
+        let json1 = JSON.stringify(this.loadData(link1));
         console.log(json1);
-
+        this.favelist = json1;
                this.state = {
                    data: link1,
-                   list1drop: 'blank'
-
+                   list1drop: listWanted,
+                   opt1: 'blank',
+                   opt2: 'blank'
                };
+        this.remanageDropdown();
+
 
         this.handleChange = this.handleChange.bind(this);
-        this.button1 = this.button1.bind(this);
-        this.button2 = this.button2.bind(this);
-        this.button3 = this.button3.bind(this);
+        this.redirectList = this.redirectList.bind(this);
+        this.returnSearch = this.returnSearch.bind(this);
+        this.returnRes = this.returnRes.bind(this);
     }
+    loadDataTest(url){
+        var xhr = new XMLHttpRequest();
 
+          xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+                console.log("CALLBACK",xhr.response);
+            } else{
+                console.log("idk"); 
+            }
+          }
+          xhr.open('GET', url, true);
+         xhr.send('');
+    }
     loadData(url) {
         const Http = new XMLHttpRequest();
-        Http.open("GET", url, false);
+        Http.open("GET", url, true);
+        Http.responseType = 'json';
         Http.send();
+        Http.onload = function() {
         if (Http.status == 200) {
-            //cookie Issues!
+            //cookie Issues! -- debug later!
 
            // let cookie = Http.getResponseHeader("Cookie");
            // console.log(cookie);
-//            console.log("adf");
-            console.log("yay");
-            return Http.responseText;
+            //  console.log("adf");
+            console.log(Http.response);
+            return Http.response;
+        } else{
+            console.log("ERROR:", Http.status);
+        }
         }
 
  
@@ -46,34 +73,56 @@ class Favorite extends Component {
         });
     }
 
-    button1() {
+    redirectList() {
         if (this.state.list1drop == 'blank') {
             //do nothing
         }
         else {
-            this.props.history.push('/' + this.state.list1drop);
+            //should just refresh the page
+            localStorage.setItem("liststate",this.state.list1drop);
+            this.props.history.push('/Favorite');
+            console.log("refreshed localstorage to ", this.state.list1drop);
+            this.remanageDropdown();
+            window.location.reload();
         }
     }
 
-    button2() {
+    remanageDropdown(){
+        if (this.state.list1drop == 'NoShow'){
+            this.state.opt1="Favorite";
+            this.state.opt2="ToExplore";
+
+        } else if (this.state.list1drop == 'ToExplore'){
+            this.state.opt1 = "Favorite";
+            this.state.opt2 ="NoShow";
+        } else if (this.state.list1drop == 'Favorite'){
+            this.state.opt1="ToExplore";
+            this.state.opt2="NoShow";
+        }
+
+        this.state.list1drop='blank';
+    }
+
+    returnSearch() {
         this.props.history.push('/')
     }
 
-    button3() {
+    returnRes() {
         this.props.history.push('/Result')
     }
 
     render() {
 
+        let favelist = [];
         let faverows = [];
         //once we want to connect to DB, all can be generalized here
-        console.log(localStorage["Favoritea"]);
-        console.log(localStorage["Favoriteb"]);
+        //console.log(localStorage["Favoritea"]);
+        //console.log(localStorage["Favoriteb"]);
         //we are gonna have an issue with ordering
-        var favelista = localStorage["Favoritea"];
-        var favelistb = localStorage["Favoriteb"];
+        //var favelista = localStorage["Favoritea"];
+        //var favelistb = localStorage["Favoriteb"];
 
-/*        for (var i = 0; i < favelist.length; i++) {
+        for (var i = 0; i < favelist.length; i++) {
 
             if (favelist[i].address == null) {
 
@@ -83,11 +132,11 @@ class Favorite extends Component {
                 faverows.push(<RestaurantRow resdata={favelist[i]} counter={i} history={this.props.history} />)
             }
         }
-*/
-        return (
-            <div className="Favorite">
 
-                        <h1 id="list1title">Favorites</h1>
+        return (
+            <div className={localStorage.getItem("liststate")}>
+
+                        <h1 id="list1title">{localStorage.getItem("liststate")}</h1>
 
   
                 <div className="list1col">
@@ -97,16 +146,16 @@ class Favorite extends Component {
 
                 <div className="list1buttons">
                     <select id="list1drop" name="list1drop" onChange={this.handleChange} >
-                        <option value="blank" selected></option>
-                        <option value="Explore">To Explore</option>
-                        <option value="NoShow">Do Not Show</option>
+                        <option value="blank" value></option>
+                        <option value={this.state.opt1}>{this.state.opt1}</option>
+                        <option value={this.state.opt2}>{this.state.opt2}</option>
                     </select>
                     <br></br>
-                    <button id="list1" onClick={this.button1}>Manage List</button>
+                    <button id="list1" onClick={this.redirectList}>Manage List</button>
                     <br></br>
-                    <button id="list1rp" onClick={this.button3}>Return to Results Page</button>
+                    <button id="list1rp" onClick={this.returnRes}>Return to Results Page</button>
                     <br></br>
-                    <button id="list1sp" onClick={this.button2}>Return to Search Page</button>
+                    <button id="list1sp" onClick={this.returnSearch}>Return to Search Page</button>
                     <br></br>
                     <button id="list1remove"> Remove</button>
                     <br></br>

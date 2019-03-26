@@ -85,7 +85,8 @@ class Result extends Component {
             //do nothing
         }
         else{
-            this.props.history.push('/' + liststate);
+            localStorage.setItem("liststate", liststate);
+            this.props.history.push('/Favorite');
         }
 
     }
@@ -96,8 +97,8 @@ class Result extends Component {
         console.log("DATA",this.state.resdata);
         for (var i = 0; i < this.state.size; i++) {
 
-            recrows.push(<RecipeRow recdata={this.state.recdata} counter={i} history={this.props.history} />)
-            resrows.push(<RestaurantRow resdata={this.state.resdata} counter={i} history={this.props.history} />)
+            recrows.push(<RecipeRow key={i} recdata={this.state.recdata} counter={i} history={this.props.history} />)
+            resrows.push(<RestaurantRow key={i} resdata={this.state.resdata} counter={i} history={this.props.history} />)
         }
 
         return (
@@ -111,7 +112,7 @@ class Result extends Component {
 
                         <div className="rstbuttons">
                             <select id="rstdrop" name="rstdrop" onChange={this.handleChange} >
-                                <option value="blank" selected></option>
+                                <option value="blank" value></option>
                                 <option value="Favorite">Favorites</option>
                                 <option value="Explore">To Explore</option>
                                 <option value="NoShow">Do Not Show</option>
