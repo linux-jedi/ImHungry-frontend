@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
+import TablePaginationActions from './Pagination';
 import './CSS/Result.css';
-import ReactPaginate from 'react-paginate';
 import Dropdown from './Dropdown';
-import PropTypes from 'prop-types';
-
 
 
 class Result extends Component {
@@ -43,106 +41,8 @@ class Result extends Component {
              console.log(data);
           });        
         } else {
-            // json1 = JSON.parse(this.loadData(link1));
-            // json2 = JSON.parse(this.loadData(link2));
-            json1 = [{
-                  "id": "852768",
-                  "title": "Chinese Mushroom Noodle Soup",
-                  "photoUrl": "PHOTO_URL_PLACEHOLDER",
-                  "prepTime": "15",
-                  "cookTime": "COOK_TIME_PLACEHOLDER",
-                  "ingredients": [],
-                  "instructions": "INSTRUCTION_PLACEHOLDER"
-                },
-                {
-                  "id": "573147",
-                  "title": "Kale Fried Rice",
-                  "photoUrl": "PHOTO_URL_PLACEHOLDER",
-                  "prepTime": "45",
-                  "cookTime": "COOK_TIME_PLACEHOLDER",
-                  "ingredients": [],
-                  "instructions": "INSTRUCTION_PLACEHOLDER"
-                },
-                {
-                  "id": "671609",
-                  "title": "Chinese Scallion Pancake�Simplified Version",
-                  "photoUrl": "PHOTO_URL_PLACEHOLDER",
-                  "prepTime": "45",
-                  "cookTime": "COOK_TIME_PLACEHOLDER",
-                  "ingredients": [],
-                  "instructions": "INSTRUCTION_PLACEHOLDER"
-                },
-                {
-                  "id": "757217",
-                  "title": "Cauliflower Fried Rice",
-                  "photoUrl": "PHOTO_URL_PLACEHOLDER",
-                  "prepTime": "35",
-                  "cookTime": "COOK_TIME_PLACEHOLDER",
-                  "ingredients": [],
-                  "instructions": "INSTRUCTION_PLACEHOLDER"
-                },
-                {
-                  "id": "483753",
-                  "title": "Brown Fried Rice with Chicken and Vegetables",
-                  "photoUrl": "PHOTO_URL_PLACEHOLDER",
-                  "prepTime": "20",
-                  "cookTime": "COOK_TIME_PLACEHOLDER",
-                  "ingredients": [],
-                  "instructions": "INSTRUCTION_PLACEHOLDER"
-                }
-              ];
-            json2 = [
-                {
-                  "id": "ChIJW-yJPuPHwoARGh0NU_IeYpI",
-                  "name": "Panda Express",
-                  "address": "3607 Trousdale Pkwy, Los Angeles",
-                  "phoneNumber": "(213) 821-3482",
-                  "websiteUrl": "http://www.pandaexpress.com/",
-                  "rating": 3.4,
-                  "priceRating": "INEXPENSIVE",
-                  "distance": "1 min"
-                },
-                {
-                  "id": "ChIJM8H8dOfHwoAR7ujtU5mnO9g",
-                  "name": "Chinatown Express",
-                  "address": "2811 S Figueroa St, Los Angeles",
-                  "phoneNumber": "(213) 745-7355",
-                  "websiteUrl": null,
-                  "rating": 4.1,
-                  "priceRating": "INEXPENSIVE",
-                  "distance": "9 mins"
-                },
-                {
-                  "id": "ChIJeUtcbefHwoAR4LUUWvXFBCo",
-                  "name": "Northern Cafe",
-                  "address": "2904 S Figueroa St, Los Angeles",
-                  "phoneNumber": "(213) 741-9050",
-                  "websiteUrl": "https://northerncafeusc.business.site/",
-                  "rating": 4.4,
-                  "priceRating": "MODERATE",
-                  "distance": "10 mins"
-                },
-                {
-                  "id": "ChIJOf6Tc-fHwoARjeOCkCRugv4",
-                  "name": "Panda Express",
-                  "address": "2828 S Figueroa St, Los Angeles",
-                  "phoneNumber": "(213) 746-0392",
-                  "websiteUrl": "http://www.pandaexpress.com/",
-                  "rating": 4.1,
-                  "priceRating": "INEXPENSIVE",
-                  "distance": "10 mins"
-                },
-                {
-                  "id": "ChIJQ_KHxQbIwoARABKnaOa6Tho",
-                  "name": "Panda King Chinese Food",
-                  "address": "Los Angeles",
-                  "phoneNumber": null,
-                  "websiteUrl": null,
-                  "rating": 3.1,
-                  "priceRating": null,
-                  "distance": "18 mins"
-                }
-              ];
+            json1 = JSON.parse(this.loadData(link1));
+            json2 = JSON.parse(this.loadData(link2));
         }
 
         this.state = {
@@ -150,15 +50,9 @@ class Result extends Component {
             recdata: json1,
             resdata: json2,
             size: localStorage.getItem('amount'),
-            link4: link3,
-            perPage: 2, //just a default for now
-            offset: 0,
-            pageCount: Math.ceil(localStorage.getItem('amount')/2),
-            indOnPage: [0, 2], //from result x to result y displayed
-
+            link4: link3
         };
 
-        this.handlePageClick = this.handlePageClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.returnSearch = this.returnSearch.bind(this);
         this.buttonManageList = this.buttonManageList.bind(this);
@@ -167,7 +61,6 @@ class Result extends Component {
         
     }
 
-    
     loadData(url) {
         const Http = new XMLHttpRequest();
         Http.open("GET", url, false);
@@ -190,19 +83,6 @@ class Result extends Component {
         });
     }
 
-    handlePageClick = data => {
-        var selected = data.selected;
-        var offset = selected;
-        var ind1 = offset * this.state.perPage;
-        var ind2 = Math.min(ind1+this.state.perPage, this.state.size);
-        console.log(ind1);
-        console.log(ind2);
-        this.setState({ 
-            offset: offset,
-            indOnPage: [ind1, ind2]
-        });
-      };
-
     returnSearch() {
         //history redirects it and is appended to URL (i'm guessing)
         this.props.history.push('/')
@@ -210,7 +90,10 @@ class Result extends Component {
 
     buttonManageList() {
         var liststate = this.state.rstdrop;
-        if (liststate != 'blank') {
+        if (liststate == 'blank') {
+            //do nothing
+        }
+        else{
             this.props.history.push('/' + liststate);
         }
 
@@ -220,7 +103,7 @@ class Result extends Component {
         let recrows = [];
         let resrows = [];
         console.log("DATA",this.state.resdata);
-        for (var i = this.state.indOnPage[0]; i < this.state.indOnPage[1]; i++) {
+        for (var i = 0; i < this.state.size; i++) {
 
             recrows.push(<RecipeRow recdata={this.state.recdata} counter={i} history={this.props.history} />)
             resrows.push(<RestaurantRow resdata={this.state.resdata} counter={i} history={this.props.history} />)
@@ -252,19 +135,6 @@ class Result extends Component {
                     <h2 id="rechead">Recipes</h2>
                     {recrows}
                 </div>
-                <ReactPaginate
-                    previousLabel={'previous'}
-                    nextLabel={'next'}
-                    breakLabel={'...'}
-                    breakClassName={'break-me'}
-                    pageCount={this.state.pageCount}
-                    marginPagesDisplayed={2}
-                    pageRangeDisplayed={5}
-                    onPageChange={this.handlePageClick}
-                    containerClassName={'pagination'}
-                    subContainerClassName={'pages pagination'}
-                    activeClassName={'active'}
-                />
 
             </div>
         );

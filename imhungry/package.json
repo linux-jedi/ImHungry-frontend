@@ -3,9 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "latest",
+    "@material-ui/icons": "latest",
     "fs": "0.0.1-security",
+    "materialize-css": "^1.0.0-rc.2",
+    "prop-types": "latest",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
+    "react-paginate": "^6.3.0",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8"
   },
