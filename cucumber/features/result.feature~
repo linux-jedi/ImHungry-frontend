@@ -9,7 +9,7 @@ Scenario: General page design
 	And I should see the Manage List button
 	And I should see a Return To Search button
 	And I should see the Restaurant and Recipe titles
-	
+
 
 Scenario: Dropdown default
 	Then I should see a blank dropdown as default
@@ -28,29 +28,6 @@ Scenario Outline: page design for a specific outline
 	| "korean" | "3" |
 	| "tacos" | "5" |
 
-Scenario: Pagination
-	Then I should see buttons on the bottom
-
-Scenario Outline: Pagination functions for more than five results
-	Given I am on the Result page for a <food> with <numresults> results
-	Then I should see five results on the page
-
-	Examples:
-	| food | numresults |
-	| "pizza" | "2" |
-	| "korean" | "3" |
-	| "tacos" | "5" |
-
-Scenario Outline: Using Pagination buttons
-	Given I am on the Result page for a <food> with <numresults> results
-	When I press the next button
-	Then I should see <numresults>-5 or 5 results on the page
-
-	Examples:
-	| food | numresults |
-	| "pizza" | "2" |
-	| "korean" | "3" |
-	| "tacos" | "5" |
 
 
 Scenario Outline: Restaurant information
