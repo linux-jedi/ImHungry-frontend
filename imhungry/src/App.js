@@ -10,7 +10,8 @@ import Recipe from "./component/Recipe";
 import Favorite from "./component/Favorite";
 import NoShow from "./component/NoShow";
 import Explore from "./component/Explore";
-
+import SignIn from "./component/SignIn"
+import Register from "./component/Register"
 class App extends Component {
 
     render() {
@@ -24,6 +25,8 @@ class App extends Component {
                     <Route path="/Favorite" component={Favorite} />
                     <Route path="/NoShow" component={NoShow} />
                     <Route path="/Explore" component={Explore} />
+                    <Route path="/SignIn" component={SignIn} />
+                    <Route path="/Register" component={Register} />
                 </Switch>
             </BrowserRouter>
         );
