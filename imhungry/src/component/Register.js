@@ -79,6 +79,7 @@ class Register extends Component {
         if (xhr.status === 200) {
           var json_obj = JSON.parse(xhr.responseText);
           status = true;
+          this.props.history.push('/Search')
           console.log(json_obj)
         } else {
           console.error(xhr.status)
