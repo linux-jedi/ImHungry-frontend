@@ -1,4 +1,4 @@
-"Rest": [
+[
     {
       "id": "852768",
       "title": "Chinese Mushroom Noodle Soup",
@@ -19,7 +19,7 @@
     },
     {
       "id": "671609",
-      "title": "Chinese Scallion Pancake—Simplified Version",
+      "title": "Chinese Scallion Pancakeï¿½Simplified Version",
       "photoUrl": "PHOTO_URL_PLACEHOLDER",
       "prepTime": "45",
       "cookTime": "COOK_TIME_PLACEHOLDER",

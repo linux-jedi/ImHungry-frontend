@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
+import TablePaginationActions from './Pagination';
 import './CSS/Result.css';
-import ReactPaginate from 'react-paginate';
 import Dropdown from './Dropdown';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-
-
 
 
 class Result extends Component {
@@ -47,7 +43,6 @@ class Result extends Component {
         } else {
             json1 = JSON.parse(this.loadData(link1));
             json2 = JSON.parse(this.loadData(link2));
-            
         }
 
         this.state = {
@@ -55,15 +50,9 @@ class Result extends Component {
             recdata: json1,
             resdata: json2,
             size: localStorage.getItem('amount'),
-            link4: link3,
-            perPage: 2, //just a default for now
-            offset: 0,
-            pageCount: Math.ceil(localStorage.getItem('amount')/2),
-            indOnPage: [0, 2], //from result x to result y displayed
-
+            link4: link3
         };
 
-        this.handlePageClick = this.handlePageClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.returnSearch = this.returnSearch.bind(this);
         this.buttonManageList = this.buttonManageList.bind(this);
@@ -72,7 +61,6 @@ class Result extends Component {
         
     }
 
-    
     loadData(url) {
         const Http = new XMLHttpRequest();
         Http.open("GET", url, false);
@@ -95,19 +83,6 @@ class Result extends Component {
         });
     }
 
-    handlePageClick = data => {
-        var selected = data.selected;
-        var offset = selected;
-        var ind1 = offset * this.state.perPage;
-        var ind2 = Math.min(ind1+this.state.perPage, this.state.size);
-        console.log(ind1);
-        console.log(ind2);
-        this.setState({ 
-            offset: offset,
-            indOnPage: [ind1, ind2]
-        });
-      };
-
     returnSearch() {
         //history redirects it and is appended to URL (i'm guessing)
         this.props.history.push('/')
@@ -115,7 +90,10 @@ class Result extends Component {
 
     buttonManageList() {
         var liststate = this.state.rstdrop;
-        if (liststate != 'blank') {
+        if (liststate == 'blank') {
+            //do nothing
+        }
+        else{
             this.props.history.push('/' + liststate);
         }
 
@@ -125,7 +103,7 @@ class Result extends Component {
         let recrows = [];
         let resrows = [];
         console.log("DATA",this.state.resdata);
-        for (var i = this.state.indOnPage[0]; i < this.state.indOnPage[1]; i++) {
+        for (var i = 0; i < this.state.size; i++) {
 
             recrows.push(<RecipeRow recdata={this.state.recdata} counter={i} history={this.props.history} />)
             resrows.push(<RestaurantRow resdata={this.state.resdata} counter={i} history={this.props.history} />)
@@ -157,21 +135,6 @@ class Result extends Component {
                     <h2 id="rechead">Recipes</h2>
                     {recrows}
                 </div>
-
-                <ReactPaginate
-                    previousLabel={<ChevronLeftIcon/>}
-                    nextLabel={<ChevronRightIcon/>}
-                    breakLabel={'...'}
-                    breakClassName={'break-me'}
-                    pageCount={this.state.pageCount}
-                    marginPagesDisplayed={2}
-                    pageRangeDisplayed={5}
-                    onPageChange={this.handlePageClick}
-                    containerClassName={'pagination'}
-                    subContainerClassName={'pages pagination'}
-                    activeClassName={'active'}
-                />
-            
 
             </div>
         );
