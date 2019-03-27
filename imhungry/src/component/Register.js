@@ -49,10 +49,46 @@ const styles = theme => ({
 class Register extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      username: '',
+      password: '',
+      email: '',
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  handleChange(event) {
+    console.log(event.target.name);
+    console.log(event.target.value);
+    this.setState({ [event.target.name]: event.target.value});
   }
   handleSubmit(event){
     event.preventDefault();
-    alert("Submitted Form");
+    console.log(this.state.username);
+    console.log(this.state.password);
+    console.log(this.state.email);
+    let username = this.state.username;
+    let password = this.state.password;
+    let email = this.state.email;
+    let address = "https://mysterious-refuge-36265.herokuapp.com/register?username=" + username + "&email=" + email + "&password=" + password ;
+    var xhr = new XMLHttpRequest();
+    var json_obj, status = false;
+    xhr.open("POST",  address, true);
+    xhr.onload = function(e){
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          var json_obj = JSON.parse(xhr.responseText);
+          status = true;
+          console.log(json_obj)
+        } else {
+          console.error(xhr.status)
+        }
+      }
+    }.bind(this);
+    xhr.onerror = function(e) {
+      console.error(xhr.statusText);
+    };
+    xhr.send(null);
   }
 
   render(){
@@ -71,15 +107,15 @@ class Register extends Component {
           <form className={classes.form} onSubmit = {this.handleSubmit}>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="email">Email</InputLabel>
-              <Input id="email" name="email" autoComplete="email" autoFocus />
+              <Input id="email" name="email" autoComplete="email" onChange = {this.handleChange} autoFocus />
             </FormControl>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="username">Username</InputLabel>
-              <Input id="username" name="username" autoComplete="username" autoFocus />
+              <Input id="username" name="username" autoComplete="username" onChange = {this.handleChange}autoFocus />
             </FormControl>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="password">Password</InputLabel>
-              <Input name="password" type="password" id="password" autoComplete="current-password" />
+              <Input name="password" type="password" id="password"onChange = {this.handleChange} autoComplete="current-password" />
             </FormControl>
             <Button
               type="submit"
