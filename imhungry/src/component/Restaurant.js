@@ -103,21 +103,22 @@ class Restaurant extends Component {
                     <div id="resbody">
                         <p>Address:</p>
                         <a href={this.state.dest2}>{this.state.data.address}</a>
-                        <br></br>
+                        <br/>
                         <p>Phone Number:</p>
                         <p>{this.state.data.phoneNumber}</p>
-                        <br></br>
+                        <br/>
                         <p>Website:</p>
                         <a href={this.state.data.websiteUrl} > { this.state.data.websiteUrl }</a>
-                        <br></br>
+                        <br/>
                     </div>
 
                     <div className="resbuttons">
                         <button id="resprint" onClick={() => window.print()}>Printable View</button>
                         <br></br>
                         <button id="resrp" onClick={this.button2}>Return to Results Page</button>
+                        <br/>
                         <Dropdown handleDropdown = {this.handleDropdown}/>
-                       
+                        <br/>
                         <button id="reslist" onClick={this.button3}>Add to List</button>
                     </div>
                 </div>
