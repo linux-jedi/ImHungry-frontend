@@ -4,6 +4,8 @@ import ReactPaginate from 'react-paginate';
 import Dropdown from './Dropdown';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import Collage2 from './Collage2';
+import Collage from './Collage';
 
 
 
@@ -23,8 +25,8 @@ class Result extends Component {
         console.log(link1);
         console.log(link2);
         //TEST MODE
-        const test1 = 'C:/Users/karti/ImHungry-frontend/imhungry/src/component/JSON/recip.json';
-        const test2 = 'C:/Users/karti/ImHungry-frontend/imhungry/src/component/JSON/rest.json';
+        const test1 = './JSON/recip.json';
+        const test2 = './JSON/rest.json';
         
 
         let json1;
@@ -32,12 +34,12 @@ class Result extends Component {
         //technically the following code can be done in any language
         if (test){
             fetch(test1).then(res => console.log(res));
-            // json1 = JSON.parse(test1, {encoding: "utf8"}, function(err, data){
-            //  if(err){
-            //     console.log(err)
-            //  }              
-            //  console.log(data);
-            // });
+            json1 = JSON.parse(test1, {encoding: "utf8"}, function(err, data){
+             if(err){
+                console.log(err)
+             }              
+             console.log(data);
+            });
             json2 = JSON.parse(test2, {encoding: "utf8"}, function(err, data){
              if(err){
                 console.log(err)
@@ -45,8 +47,108 @@ class Result extends Component {
              console.log(data);
           });        
         } else {
-            json1 = JSON.parse(this.loadData(link1));
-            json2 = JSON.parse(this.loadData(link2));
+            // json1 = JSON.parse(this.loadData(link1));
+            // json2 = JSON.parse(this.loadData(link2));
+            json2 =[
+                {
+                  "id": "852768",
+                  "title": "Chinese Mushroom Noodle Soup",
+                  "photoUrl": "PHOTO_URL_PLACEHOLDER",
+                  "prepTime": "15",
+                  "cookTime": "COOK_TIME_PLACEHOLDER",
+                  "ingredients": [],
+                  "instructions": "INSTRUCTION_PLACEHOLDER"
+                },
+                {
+                  "id": "573147",
+                  "title": "Kale Fried Rice",
+                  "photoUrl": "PHOTO_URL_PLACEHOLDER",
+                  "prepTime": "45",
+                  "cookTime": "COOK_TIME_PLACEHOLDER",
+                  "ingredients": [],
+                  "instructions": "INSTRUCTION_PLACEHOLDER"
+                },
+                {
+                  "id": "671609",
+                  "title": "Chinese Scallion Pancake�Simplified Version",
+                  "photoUrl": "PHOTO_URL_PLACEHOLDER",
+                  "prepTime": "45",
+                  "cookTime": "COOK_TIME_PLACEHOLDER",
+                  "ingredients": [],
+                  "instructions": "INSTRUCTION_PLACEHOLDER"
+                },
+                {
+                  "id": "757217",
+                  "title": "Cauliflower Fried Rice",
+                  "photoUrl": "PHOTO_URL_PLACEHOLDER",
+                  "prepTime": "35",
+                  "cookTime": "COOK_TIME_PLACEHOLDER",
+                  "ingredients": [],
+                  "instructions": "INSTRUCTION_PLACEHOLDER"
+                },
+                {
+                  "id": "483753",
+                  "title": "Brown Fried Rice with Chicken and Vegetables",
+                  "photoUrl": "PHOTO_URL_PLACEHOLDER",
+                  "prepTime": "20",
+                  "cookTime": "COOK_TIME_PLACEHOLDER",
+                  "ingredients": [],
+                  "instructions": "INSTRUCTION_PLACEHOLDER"
+                }
+              ];
+              json1 = [
+                {
+                  "id": "ChIJW-yJPuPHwoARGh0NU_IeYpI",
+                  "name": "Panda Express",
+                  "address": "3607 Trousdale Pkwy, Los Angeles",
+                  "phoneNumber": "(213) 821-3482",
+                  "websiteUrl": "http://www.pandaexpress.com/",
+                  "rating": 3.4,
+                  "priceRating": "INEXPENSIVE",
+                  "distance": "1 min"
+                },
+                {
+                  "id": "ChIJM8H8dOfHwoAR7ujtU5mnO9g",
+                  "name": "Chinatown Express",
+                  "address": "2811 S Figueroa St, Los Angeles",
+                  "phoneNumber": "(213) 745-7355",
+                  "websiteUrl": null,
+                  "rating": 4.1,
+                  "priceRating": "INEXPENSIVE",
+                  "distance": "9 mins"
+                },
+                {
+                  "id": "ChIJeUtcbefHwoAR4LUUWvXFBCo",
+                  "name": "Northern Cafe",
+                  "address": "2904 S Figueroa St, Los Angeles",
+                  "phoneNumber": "(213) 741-9050",
+                  "websiteUrl": "https://northerncafeusc.business.site/",
+                  "rating": 4.4,
+                  "priceRating": "MODERATE",
+                  "distance": "10 mins"
+                },
+                {
+                  "id": "ChIJOf6Tc-fHwoARjeOCkCRugv4",
+                  "name": "Panda Express",
+                  "address": "2828 S Figueroa St, Los Angeles",
+                  "phoneNumber": "(213) 746-0392",
+                  "websiteUrl": "http://www.pandaexpress.com/",
+                  "rating": 4.1,
+                  "priceRating": "INEXPENSIVE",
+                  "distance": "10 mins"
+                },
+                {
+                  "id": "ChIJQ_KHxQbIwoARABKnaOa6Tho",
+                  "name": "Panda King Chinese Food",
+                  "address": "Los Angeles",
+                  "phoneNumber": null,
+                  "websiteUrl": null,
+                  "rating": 3.1,
+                  "priceRating": null,
+                  "distance": "18 mins"
+                }
+              ];
+             
             
         }
 
@@ -132,48 +234,48 @@ class Result extends Component {
         }
 
         return (
-            <div className="Result">
-                <div id="rstheader">
-                    <img id="collage" src={this.state.link4} alt="collage" />
+            // <div className="Result">
+            //     <div id="rstheader">
+            //         <img id="collage" src={this.state.link4} alt="collage" />
 
 
-                    <div id="rstheader2">
-                        <h1 id="rsttitle"> Results for: {localStorage.getItem('query')}</h1>
+            //         <div id="rstheader2">
+            //             <h1 id="rsttitle"> Results for: {localStorage.getItem('query')}</h1>
 
-                        <div className="rstbuttons">
-                            <Dropdown handleDropdown = {this.handleDropdown}/>
-                            <button id="list" onClick={this.buttonManageList} > Manage List</button>
-                            <br></br>
-                            <button id="retsp" onClick={this.returnSearch}>Return to Search Page</button>
-                        </div>
-                    </div>
-                </div>
-                <div className="col1">
-                    <h2 id="reshead">Restaurants</h2>
-                    {resrows}
+            //             <div className="rstbuttons">
+            //                 <Dropdown handleDropdown = {this.handleDropdown}/>
+            //                 <button id="list" onClick={this.buttonManageList} > Manage List</button>
+            //                 <br></br>
+            //                 <button id="retsp" onClick={this.returnSearch}>Return to Search Page</button>
+            //             </div>
+            //         </div>
+            //     </div>
+            //     <div className="col1">
+            //         <h2 id="reshead">Restaurants</h2>
+            //         {resrows}
 
-                </div>
-                <div className= "col2">
-                    <h2 id="rechead">Recipes</h2>
-                    {recrows}
-                </div>
+            //     </div>
+            //     <div className= "col2">
+            //         <h2 id="rechead">Recipes</h2>
+            //         {recrows}
+            //     </div>
 
-                <ReactPaginate
-                    previousLabel={<ChevronLeftIcon/>}
-                    nextLabel={<ChevronRightIcon/>}
-                    breakLabel={'...'}
-                    breakClassName={'break-me'}
-                    pageCount={this.state.pageCount}
-                    marginPagesDisplayed={2}
-                    pageRangeDisplayed={5}
-                    onPageChange={this.handlePageClick}
-                    containerClassName={'pagination'}
-                    subContainerClassName={'pages pagination'}
-                    activeClassName={'active'}
-                />
-            
+            //     <ReactPaginate
+            //         previousLabel={<ChevronLeftIcon/>}
+            //         nextLabel={<ChevronRightIcon/>}
+            //         breakLabel={'...'}
+            //         breakClassName={'break-me'}
+            //         pageCount={this.state.pageCount}
+            //         marginPagesDisplayed={2}
+            //         pageRangeDisplayed={5}
+            //         onPageChange={this.handlePageClick}
+            //         containerClassName={'pagination'}
+            //         subContainerClassName={'pages pagination'}
+            //         activeClassName={'active'}
+            //     />
+                <Collage/>
 
-            </div>
+           // </div>
         );
     }
 }
