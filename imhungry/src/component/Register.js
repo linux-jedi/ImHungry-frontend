@@ -26,6 +26,13 @@ const styles = theme => ({
       marginRight: 'auto',
     },
   },
+  button: {
+    margin: theme.spacing.unit * 2,
+    alignItems: 'center'
+  },
+  input: {
+    display: 'none',
+  },
   paper: {
     marginTop: theme.spacing.unit * 8,
     display: 'flex',
@@ -56,10 +63,9 @@ class Register extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSignIn = this.handleSignIn.bind(this);
   }
   handleChange(event) {
-    console.log(event.target.name);
-    console.log(event.target.value);
     this.setState({ [event.target.name]: event.target.value});
   }
   handleSubmit(event){
@@ -79,6 +85,8 @@ class Register extends Component {
         if (xhr.status === 200) {
           var json_obj = JSON.parse(xhr.responseText);
           status = true;
+          localStorage.setItem('id', json_obj.id);
+          localStorage.setItem('username', json_obj.username);
           this.props.history.push('/Search')
           console.log(json_obj)
         } else {
@@ -91,7 +99,9 @@ class Register extends Component {
     };
     xhr.send(null);
   }
-
+  handleSignIn(){
+    this.props.history.push('/SignIn');
+  }
   render(){
     const { classes } = this.props;
 
@@ -128,6 +138,9 @@ class Register extends Component {
               Register
             </Button>
           </form>
+        <Button onClick={this.handleSignIn} variant="outlined" justify="center" className={classes.button}>
+            Back to Sign in
+        </Button>
         </Paper>
       </main>
     );

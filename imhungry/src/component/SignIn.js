@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import Fab from '@material-ui/core/Fab';
 import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import NavigationIcon from '@material-ui/icons/Navigation';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -24,6 +26,13 @@ const styles = theme => ({
       marginLeft: 'auto',
       marginRight: 'auto',
     },
+  },
+  button: {
+    margin: theme.spacing.unit * 2,
+    alignItems: 'center'
+  },
+  input: {
+    display: 'none',
   },
   paper: {
     marginTop: theme.spacing.unit * 8,
@@ -53,6 +62,7 @@ class SignIn extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleRegistration = this.handleRegistration.bind(this);
   }
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value});
@@ -72,8 +82,10 @@ class SignIn extends Component {
         if (xhr.status === 200) {
           var json_obj = JSON.parse(xhr.responseText);
           status = true;
+          localStorage.setItem('id', json_obj.id);
+          localStorage.setItem('username', json_obj.username);
           this.props.history.push('/Search');
-          console.log(json_obj)
+          console.log(json_obj);
         } else {
           console.error(xhr.status)
         }
@@ -83,6 +95,9 @@ class SignIn extends Component {
       console.error(xhr.statusText);
     };
     xhr.send(null);
+  }
+  handleRegistration(){
+    this.props.history.push('/Register');
   }
   render() {
     const { classes } = this.props;
@@ -115,6 +130,9 @@ class SignIn extends Component {
               Sign in
             </Button>
           </form>
+          <Button onClick={this.handleRegistration} variant="outlined" justify="center" className={classes.button}>
+              Register
+          </Button>
         </Paper>
       </main>
     );
