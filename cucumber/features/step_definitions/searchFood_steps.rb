@@ -1,5 +1,5 @@
 Given(/^I am on the Search Page of the I'm Hungry website$/) do
-  visit 'localhost:3000'
+  visit 'localhost:3000/Search'
 end
 
 Given(/^I just started the server$/) do
@@ -7,7 +7,7 @@ Given(/^I just started the server$/) do
 end
 
 When(/^I search for "([^"]*)" from the search page$/) do |arg1|
-  visit 'localhost:3000'
+  visit 'localhost:3000/Search'
   fill_in 'query', :with => arg1
   fill_in 'amount', :with => 5
   find('#pik').click
@@ -23,7 +23,7 @@ When(/^I search for "([^"]*)" in the number box$/) do |arg1|
 end
 
 When(/^I hover over the number field$/) do
-  find('#amount.numFood').hover
+  find('#amount.numFood', :wait, ).hover
 end
 
 When(/^I press Submit$/) do

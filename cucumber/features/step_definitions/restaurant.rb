@@ -1,5 +1,5 @@
 Given(/^I am on the Restaurant Page of the I'm Hungry website$/) do
-	visit 'localhost:3000/restaurant_info.jsp'
+	visit 'localhost:3000/Restaurant'
 end
       
 Then(/^I should see the Printable Version button$/) do
@@ -15,7 +15,7 @@ Then(/^I should see the Add to List button$/) do
 end
 
 Then(/^I should see the website link$/) do
-	expect(page.has_link?('Restaurant website and additional information'))
+	assert_text('Website:')
 end
 
 Then(/^I should see the Address title$/) do
@@ -27,8 +27,11 @@ Then(/^I should see the Phone Number title$/) do
 end
 
 Given(/^I am on the Restaurant page for restaurant "([^"]*)" from search "([^"]*)" with count "([^"]*)"$/) do |arg1, arg2, arg3|
-	visit 'localhost:8080/Search?q='+arg2+'&num='+arg3
-	visit 'localhost:8080/RestaurantInfo?id='+arg1 
+  visit 'localhost:3000/Search'
+  fill_in 'query', :with => arg1
+  fill_in 'amount', :with => arg2
+  find('#pik').click
+  find(arg3).click
 end
 
 Then(/^I should see name "([^"]*)"$/) do |arg1|
@@ -36,23 +39,23 @@ Then(/^I should see name "([^"]*)"$/) do |arg1|
 end
 
 Then(/^I should see address$/) do
-	expect(page).to have_css('td.address')
+	expect(page).to have_css('a.address')
 end
 
 Then(/^I should see phone number$/) do
-	expect(page).to have_css('td.phoneNumber')
+	expect(page).to have_css('.phoneNumber')
 end
 
 Then(/^I should see the link "([^"]*)" to google maps$/) do |arg1|
-	expect(page.find('a#address')[:href]).to include(arg1)
+	expect(page.find('a.address')[:href]).to include(arg1)
 end
 
 Then(/^I should see the link "([^"]*)" to the website$/) do |arg1|
-	expect(page.find('a#site_link')[:href]).to include(arg1)
+	expect(page.find('a.web')[:href]).to include(arg1)
 end
 
 Then(/^I should remain on the Restaurant Page$/) do 
-	expect(page).to have_current_path('/restaurant_info.jsp')
+	expect(page).to have_current_path('/Restaurant')
 end
 
 When(/^I select the Add to List button$/) do
@@ -64,7 +67,7 @@ Then(/^I select the Back to Results button$/) do
 end
 
 Then(/^I should see the Results Page for "([^"]*)"$/) do |arg1|
-	page.should have_content('Results for '+arg1)
+	page.should have_content('Results for: '+arg1)
 end
 
 Then(/^I should see item "([^"]*)" in list "([^']*)"$/) do |arg1, arg2|
@@ -78,5 +81,5 @@ Given(/^I select the Printable Version button$/) do
 end
 
 Then(/^the page should be a printable version$/) do
-	page.should have_no_content('table#dropdownButtons')
+	page.should have_no_content('.rebuttons')
 end
