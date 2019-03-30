@@ -33,24 +33,25 @@ Scenario: Pagination
 
 Scenario Outline: Pagination functions for more than five results
 	Given I am on the Result page for a <food> with <numresults> results
-	Then I should see five results on the page
+	Then I should see <numresults> items for recipe and restaurants
 
 	Examples:
-	| food | numresults |
-	| "pizza" | "2" |
-	| "korean" | "3" |
-	| "tacos" | "5" |
+	| food | numresults | perPage |
+	| "pizza" | "2" | "2" |
+	| "korean" | "3" | "2" |
+	| "tacos" | "5" | "2" |
 
 Scenario Outline: Using Pagination buttons
 	Given I am on the Result page for a <food> with <numresults> results
 	When I press the next button
-	Then I should see <numresults>-5 or 5 results on the page
+	Then I should see <perPage> restaurant names
+	And I should see <perPage> restaurant address
 
 	Examples:
-	| food | numresults |
-	| "pizza" | "2" |
-	| "korean" | "3" |
-	| "tacos" | "5" |
+	| food | numresults | perPage |
+	| "pizza" | "2" | "2" |
+	| "korean" | "3" | "2" |
+	| "tacos" | "5" | "2" |
 
 
 Scenario Outline: Restaurant information
