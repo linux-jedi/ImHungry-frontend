@@ -9,9 +9,9 @@ import Dropdown from './Dropdown';
 class Restaurant extends Component {
     constructor(props) {
         super(props);
-
+        let id = localStorage.getItem("id");
         const link1 = "https://mysterious-refuge-36265.herokuapp.com/restaurant/" + localStorage.getItem('resid');
-
+            console.log(id);
         let json1 = JSON.parse(this.loadData(link1));
 
         const dest1 = json1.address;
@@ -31,9 +31,7 @@ class Restaurant extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.button2 = this.button2.bind(this);
-        this.button3 = this.button3.bind(this);
-        this.handleDropdown = this.handleDropdown.bind(this);
-
+        this.addL = this.addL.bind(this);
 
     }
 
@@ -48,44 +46,43 @@ class Restaurant extends Component {
     }
 
     addtolist(url) {
-/*        const Http = new XMLHttpRequest();
+       const Http = new XMLHttpRequest();
         Http.open("POST", url, false);
-        Http.setRequestHeader('Content-type', 'application/json');
-        Http.send(JSON.stringify(this.state.data));
+        Http.setRequestHeader('Content-type', 'application/json;CHARSET=UTF-8');
+        let json_send = JSON.stringify(this.state.data);
+        console.log("sending ", json_send, " to ", url);
+        Http.send(json_send);
 
 
         if (Http.status === 200) {
             console.log("sent")
+        }else {
+            console.log("not send because", Http.status);
         }
-*/
 
+    
     }
 
     button2() {
         this.props.history.push('/Result')
     }
 
-    button3() {
+    addL() {
 
         if (this.state.resdrop != 'blank')
         {
+            if (this.state.resdrop == "Favorite"){
+                this.state.resdrop = "FAVORITE";
+            } else if (this.state.resdrop == "Explore"){
+                this.state.resdrop = "EXPLORE";
+            } else if (this.state.resdrop == "NoShow"){
+                this.state.resdrop = "BLOCK";
+            }
+            this.state.destlist = "https://mysterious-refuge-36265.herokuapp.com/list/" + this.state.resdrop + "/restaurant?userId="+localStorage.getItem("id");
+           this.addtolist(this.state.destlist);
 
-            //var resa = localStorage[this.state.resdrop + "a"];
-            //resa = JSON.parse(resa);
-            //resa.push(this.state.data.id);
-            //localStorage[this.state.resdrop + "a"] = JSON.stringify(resa);
-
-            console.log(localStorage[this.state.resdrop]);
         }
 
-    //    this.state.destlist = "http://localhost:8080/list/" + this.state.resdrop + "/restaurant";
-    //    this.addtolist(this.state.destlist);
-    }
- 
-    handleDropdown(event, value){
-        this.setState({
-            rstdrop: value
-        });
     }
 
     handleChange(event) {
@@ -103,23 +100,28 @@ class Restaurant extends Component {
                     <div id="resbody">
                         <p>Address:</p>
                         <a href={this.state.dest2}>{this.state.data.address}</a>
-                        <br/>
+                        <br></br>
                         <p>Phone Number:</p>
                         <p>{this.state.data.phoneNumber}</p>
-                        <br/>
+                        <br></br>
                         <p>Website:</p>
                         <a href={this.state.data.websiteUrl} > { this.state.data.websiteUrl }</a>
-                        <br/>
+                        <br></br>
                     </div>
 
                     <div className="resbuttons">
                         <button id="resprint" onClick={() => window.print()}>Printable View</button>
                         <br></br>
                         <button id="resrp" onClick={this.button2}>Return to Results Page</button>
-                        <br/>
-                        <Dropdown handleDropdown = {this.handleDropdown}/>
-                        <br/>
-                        <button id="reslist" onClick={this.button3}>Add to List</button>
+                        <br></br>
+                        <select id="resdrop" name="resdrop" onChange={this.handleChange}>
+                            <option value="blank" value></option>
+                            <option value="Favorite">Favorites</option>
+                            <option value="Explore">To Explore</option>
+                            <option value="NoShow">Do Not Show</option>
+                        </select>
+                        <br></br>
+                        <button id="reslist" onClick={this.addL}>Add to List</button>
                     </div>
                 </div>
             </div>
