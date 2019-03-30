@@ -1,5 +1,5 @@
 Given(/^I am on the Results Page of the I'm Hungry website$/) do
-  visit 'localhost:3000/results.jsp'
+  visit 'localhost:3000/Results'
 end
 
 
