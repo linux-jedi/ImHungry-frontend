@@ -66,7 +66,7 @@ class Search extends Component {
                     <div id="form">
                         <form onSubmit={this.handleSubmit}>
                             <input type="text" name="query" id="query" placeholder="Enter Food" onChange={this.handleChange} required />
-                            <input type="number" name="amount" id="amount" min="1" value={this.state.amount} onChange={this.handleChange} required
+                            <input type="number" class="numFood" name="amount" id="amount" min="1" value={this.state.amount} onChange={this.handleChange} required
                             href=" " title= "Number of items to show in results"/>
                         <br></br>
                             <br></br>

@@ -1,5 +1,5 @@
 Given(/^I am on the Recipe Page of the I'm Hungry website$/) do
-	visit('localhost:3000/recipe_info.jsp')
+	visit('localhost:3000/Recipe')
 end
 
 Then(/^I should see the prep time$/) do
