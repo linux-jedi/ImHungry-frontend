@@ -4,6 +4,8 @@ import ReactPaginate from 'react-paginate';
 import Dropdown from './Dropdown';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import Collage2 from './Collage2';
+import Collage from './Collage';
 
 
 
@@ -23,8 +25,8 @@ class Result extends Component {
         console.log(link1);
         console.log(link2);
         //TEST MODE
-        const test1 = 'C:/Users/karti/ImHungry-frontend/imhungry/src/component/JSON/recip.json';
-        const test2 = 'C:/Users/karti/ImHungry-frontend/imhungry/src/component/JSON/rest.json';
+        const test1 = './JSON/recip.json';
+        const test2 = './JSON/rest.json';
         
 
         let json1;
@@ -32,12 +34,12 @@ class Result extends Component {
         //technically the following code can be done in any language
         if (test){
             fetch(test1).then(res => console.log(res));
-            // json1 = JSON.parse(test1, {encoding: "utf8"}, function(err, data){
-            //  if(err){
-            //     console.log(err)
-            //  }              
-            //  console.log(data);
-            // });
+            json1 = JSON.parse(test1, {encoding: "utf8"}, function(err, data){
+             if(err){
+                console.log(err)
+             }              
+             console.log(data);
+            });
             json2 = JSON.parse(test2, {encoding: "utf8"}, function(err, data){
              if(err){
                 console.log(err)
@@ -47,6 +49,8 @@ class Result extends Component {
         } else {
             json1 = JSON.parse(this.loadData(link1));
             json2 = JSON.parse(this.loadData(link2));
+            
+             
             
         }
 
@@ -171,7 +175,7 @@ class Result extends Component {
                     subContainerClassName={'pages pagination'}
                     activeClassName={'active'}
                 />
-            
+             {/* <Collage/> */}
 
             </div>
         );

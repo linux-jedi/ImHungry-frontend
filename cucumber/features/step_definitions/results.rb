@@ -2,6 +2,7 @@ Given(/^I am on the Results Page of the I'm Hungry website$/) do
   visit 'localhost:3000/results.jsp'
 end
 
+
 Then(/^I should see the Manage List button$/) do
    expect(page.has_button?('Manage List'))
 end
@@ -118,4 +119,13 @@ Then(/^I should not see "([^"]*)"$/) do |arg1|
   assert_no_text(arg1)
 end
 
+
+Then(/^I should see buttons on the bottom$/) do
+	assert_text('1') and expect(page).to have_css('li.previous', count: 1) and expect(page).to have_css('li.next', count: 1)
+end
+
+
+When(/^I press the next button$/) do
+  find('li.next').click
+end
 
