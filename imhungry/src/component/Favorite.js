@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import './CSS/Favorite.css';
+import Dropdown from './Dropdown'
 
 class Favorite extends Component {
     constructor(props) {
@@ -24,7 +25,8 @@ class Favorite extends Component {
                    list1drop: listWanted,
                    opt1: 'blank',
                    opt2: 'blank',
-                   title: keyword
+                   title: keyword,
+                   keyword: keyword
                };
         this.state.data.push.apply(json1.restaurants,json1.recipes)
         console.log(this.state.data);
@@ -140,23 +142,16 @@ class Favorite extends Component {
     render() {
 
         let favelist = this.state.data;
-        // favelist.push.apply(favelist, this.state.data.recipes);
         let faverows = [];
-        //once we want to connect to DB, all can be generalized here
-        //console.log(localStorage["Favoritea"]);
-        //console.log(localStorage["Favoriteb"]);
-        //we are gonna have an issue with ordering
-        //var favelista = localStorage["Favoritea"];
-        //var favelistb = localStorage["Favoriteb"];
-
+console.log("KEYWORD", this.state.keyword);
         for (var i = 0; i < favelist.length; i++) {
                 console.log(favelist[i]);
             if (favelist[i].address == null) {
 
-                faverows.push(<RecipeRow recdata={favelist[i]} counter={i} history={this.props.history} />)
+                faverows.push(<RecipeRow id={localStorage.getItem("id")} recdata={favelist[i]} currList={this.state.keyword} counter={i} history={this.props.history} />)
             }
             else {
-                faverows.push(<RestaurantRow resdata={favelist[i]} counter={i} history={this.props.history} />)
+                faverows.push(<RestaurantRow id={localStorage.getItem("id")} resdata={favelist[i]} currList={this.state.keyword} counter={i} history={this.props.history} />)
             }
         }
 
@@ -194,15 +189,83 @@ class Favorite extends Component {
 }
 
 class RestaurantRow extends Component {
+    constructor(props) {
+        super(props);
+        this.state =  {
+            ddown: 'blank'
+        };
+            this.deleteRes = this.deleteRes.bind(this);
+            this.addRes= this.addRes.bind(this);
 
+    }
+    deleteRes(resid) {
+        let url = "https://mysterious-refuge-36265.herokuapp.com/list/" + this.props.currList + "/restaurant?userId=" + this.props.id + "&restaurantId=" + resid;
+        console.log("deleting restaurant from ", url);
+          const Http = new XMLHttpRequest();
+        Http.open("DELETE", url, false);
+        Http.send();
+        if (Http.status === 200) {
+            console.log("DELETE SUCCESSFUL");
+        } else{
+            console.log("DELETE UNSUCCESSFUL");
+        }
+
+    }
+
+    addRes(resid, newList) {
+         const Http = new XMLHttpRequest();
+         let url = "https://mysterious-refuge-36265.herokuapp.com/list/" + newList + "/restaurant?userId="+ this.props.id;
+         console.log("adding restaurant from ", url);
+       Http.open("POST", url, false);
+        Http.setRequestHeader('Content-type', 'application/json;CHARSET=UTF-8');
+        let json_send = JSON.stringify(this.props.resdata);
+        console.log("sending ", json_send, " to ", url);
+        Http.send(json_send);
+
+
+        if (Http.status === 200) {
+            console.log("sent")
+        }else {
+            console.log("not send because", Http.status);
+        }
+    }
     button4 = (e) => {
         console.log("temp4");
-        console.log(e.currentTarget.id);
-        localStorage.setItem('resid', e.currentTarget.id);
+        console.log(this.props.resdata.id);
+        localStorage.setItem('resid', this.props.resdata.id);
 
         this.props.history.push('/Restaurant')
     }
+    handleDropdown = (e, value) => {
+        let newval = "blank";
+        if (value == "Favorite"){
+                newval = "FAVORITE";
+            } else if (value == "Explore"){
+                newval = "EXPLORE";
+            } else if (value == "NoShow"){
+                newval = "BLOCK";
+            } 
 
+        this.setState({
+               ddown: newval
+        });
+    }
+    move = (e) => {
+        console.log("moving " + this.props.resdata.id + " to " + this.state.ddown);
+        if (this.props.currList === this.state.ddown){
+            console.log("LIST MUST CHANGE");
+        } else if (this.state.ddown ==="blank"){
+            console.log("please pick valid list");
+        } else{
+            this.deleteRes(this.props.resdata.id);
+            this.addRes(this.props.resdata.id, this.state.ddown);
+            window.location.reload();
+        }
+    }
+    remove = (e) =>{
+        console.log("removing " + this.props.resdata.id);
+        this.deleteRes(this.props.resdata.id);
+    }
 
     render() {
         const array = this.props.resdata;
@@ -222,32 +285,37 @@ class RestaurantRow extends Component {
             price = "";
         }
 
-        if (this.props.counter % 2 === 0) {
-            row = <div className="recrow1" id={array.id} onClick={this.button4}>
+        if (this.props.counter % 2 === 0 ) {
+            row = <div className="recrow1" id={array.id} >
                 <img src="http://pngimg.com/uploads/star/star_PNG41507.png" alt="str" id="starimg"></img>
                 <font id="star"> {array.rating} </font>
-                <font>{array.name}</font>
+                <font onClick={this.button4}>{array.name}</font>
                 <br></br>
                 <small>Distance: {array.distance}</small>
                 <br></br>
                 <small>Address: {array.address}</small>
 
                 <small id="price">Price: {price}</small>
-
+                <Dropdown style="margin-top:0" handleDropdown = {this.handleDropdown}/>
+                <button onClick={this.move}> Move </button>
+                <button  onClick={this.remove}> Remove </button>
             </div>
 
         }
         else {
-            row = <div className="recrow2" id={array.id} onClick={this.button4} >
+            row = <div className="recrow2" id={array.id}  >
                 <img src="http://pngimg.com/uploads/star/star_PNG41507.png" alt="str" id="starimg"></img>
                 <font id="star"> {array.rating} </font>
-                <font>{array.name}</font>
+                <font onClick={this.button4}>{array.name}</font>
                 <br></br>
                 <small>Distance: {array.distance}</small>
                 <br></br>
                 <small>Address: {array.address}</small>
 
-                <small id="price">Price: {price}</small>
+                <small id="price">Price: {price}</small>               
+                <Dropdown style="margin-top:0" handleDropdown = {this.handleDropdown}/>
+                <button onClick={this.move}> Move </button>
+                <button  onClick={this.remove}> Remove </button>
             </div>
 
 
@@ -258,13 +326,84 @@ class RestaurantRow extends Component {
 
 
 class RecipeRow extends Component {
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            ddown: 'blank'
+        }
+            this.deleteRec = this.deleteRec.bind(this);
+            this.addRec= this.addRec.bind(this);
+    }
     button5 = (e) => {
         console.log("temp5");
-        console.log(e.currentTarget.id);
-        localStorage.setItem('recid', e.currentTarget.id);
+        console.log(this.props.recdata.id);
+        localStorage.setItem('recid', this.props.recdata.id);
 
         this.props.history.push('/Recipe')
+    }
+    deleteRec(resid) {
+        const Http = new XMLHttpRequest();
+        let url = "https://mysterious-refuge-36265.herokuapp.com/list/" + this.props.currList + "/recipe?userId=" + this.props.id + "&recipeId=" + resid;
+        console.log("deleting recipe from ", url);
+        Http.open("DELETE", url, false);
+        Http.send();
+        if (Http.status === 200) {
+            console.log("DELETE SUCCESSFUL");
+        } else{
+            console.log("DELETE UNSUCCESSFUL");
+        }
+
+    }
+
+    addRec(resid, newList) {
+         const Http = new XMLHttpRequest();
+         let url = "https://mysterious-refuge-36265.herokuapp.com/list/" + newList + "/recipe?userId="+ this.props.id;
+        console.log("adding recipe to ", url);
+        Http.open("POST", url, false);
+        Http.setRequestHeader('Content-type', 'application/json;CHARSET=UTF-8');
+        let json_send = JSON.stringify(this.props.recdata);
+        console.log("sending ", json_send, " to ", url);
+        Http.send(json_send);
+
+
+        if (Http.status === 200) {
+            console.log("sent")
+        }else {
+            console.log("not send because", Http.status);
+        }
+    }
+    handleDropdown = (e, value) => {
+         let newval = "blank";
+        if (value == "Favorite"){
+                newval = "FAVORITE";
+            } else if (value == "Explore"){
+                newval = "EXPLORE";
+            } else if (value == "NoShow"){
+                newval = "BLOCK";
+            } 
+            this.setState({
+                    ddown: newval
+            });
+    }
+     move = (e) => {
+        console.log("moving " + this.props.recdata.id + " to " + this.state.ddown);
+        if (this.props.currList === this.state.ddown){
+            console.log("LIST MUST CHANGE");
+        } else if (this.state.ddown ==="blank"){
+            console.log("please pick valid list");
+        } else{
+            this.deleteRec(this.props.recdata.id);
+            this.addRec(this.props.recdata.id, this.state.ddown);
+                
+            window.location.reload();
+
+        }
+
+    }
+    remove = (e) =>{
+        console.log("removing " + this.props.recdata.id);
+        this.deleteRec(this.props.recdata.id);
+        window.location.reload();
     }
 
     render() {
@@ -272,25 +411,31 @@ class RecipeRow extends Component {
         let row;
 
         if (this.props.counter % 2 === 0) {
-            row = <div className="recrow1" id={array.id} onClick={this.button5}>
+            row = <div className="recrow1" id={array.id} >
                 <img src="http://pngimg.com/uploads/star/star_PNG41507.png" alt="str" id="starimg"></img>
                 <font id="star"> {array.id % 5} </font>
-                <font>{array.title}</font>
+                <font onClick={this.button5}>{array.title}</font>
                 <br></br>
                 <small>Prep Time: {array.prepTime} min</small>
                 <br></br>
                 <small>Cook Time: {array.cookTime} min</small>
+                <Dropdown style="margin-top:0px" handleDropdown = {this.handleDropdown}/>
+                <button onClick={this.move}> Move </button>
+                <button  onClick={this.remove}> Remove </button>
             </div>
         }
         else {
-            row = <div className="recrow2" id={array.id} onClick={this.button5}>
+            row = <div className="recrow2" id={array.id} >
                 <img src="http://pngimg.com/uploads/star/star_PNG41507.png" alt="str" id="starimg"></img>
                 <font id="star"> {array.id % 5} </font>
-                <font>{array.title}</font>
+                <font onClick={this.button5}>{array.title}</font>
                 <br></br>
                 <small>Prep Time: {array.prepTime} min</small>
                 <br></br>
-                <small>Cook Time: {array.cookTime} min</small>
+                <small>Cook Time: {array.cookTime} min</small>               
+                <Dropdown style="margin-top:0" handleDropdown = {this.handleDropdown}/>
+                <button onClick={this.move}> Move </button>
+                <button  onClick={this.remove}> Remove </button>
             </div>
 
 

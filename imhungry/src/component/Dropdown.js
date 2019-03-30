@@ -9,15 +9,14 @@ class Dropdown extends Component {
         this.state = {
             resdrop: 'blank',
         };
-
     }
 
   
 
     render() {
         return (
-            <div>
-                <select id="resdrop" name="resdrop" onChange={(e) => this.props.handleDropdown(e, e.target.value)}>
+            <div >
+                <select style={{margin:'0px'}} id="resdrop" name="resdrop" onChange={(e) => this.props.handleDropdown(e, e.target.value)}>
                     <option value="blank" selected></option>
                     <option value="Favorite">Favorites</option>
                     <option value="Explore">To Explore</option>
