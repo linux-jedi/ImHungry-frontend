@@ -99,18 +99,20 @@ class Restaurant extends Component {
                 <div id="wrapper">
                     <div id="resbody">
                         <p>Address:</p>
-                        <a href={this.state.dest2}>{this.state.data.address}</a>
-                        <br></br>
+
+                        <a class="address" href={this.state.dest2}>{this.state.data.address}</a>
+                        <br/>
                         <p>Phone Number:</p>
-                        <p>{this.state.data.phoneNumber}</p>
-                        <br></br>
+                        <p class = "phoneNumber">{this.state.data.phoneNumber}</p>
+                        <br/>
                         <p>Website:</p>
-                        <a href={this.state.data.websiteUrl} > { this.state.data.websiteUrl }</a>
-                        <br></br>
+                        <a class="web" href={this.state.data.websiteUrl} > { this.state.data.websiteUrl }</a>
+                        <br/>
+
                     </div>
 
                     <div className="resbuttons">
-                        <button id="resprint" onClick={() => window.print()}>Printable View</button>
+                        <button id="resprint" onClick={() => window.print()}>Printable Version</button>
                         <br></br>
                         <button id="resrp" onClick={this.button2}>Return to Results Page</button>
                         <br></br>

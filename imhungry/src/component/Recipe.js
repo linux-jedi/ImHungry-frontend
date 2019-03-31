@@ -122,7 +122,7 @@ class Recipe extends Component {
                         <img id="rcpimg" src={this.state.data.photoUrl} />
 
                             <div className="rcpbuttons">
-                                <button id="rcpprint" onClick={() => window.print()} > Printable View</button>
+                                <button id="rcpprint" onClick={() => window.print()} > Printable Version</button>
                             <br></br>
                             <button id="rcpsp" onClick={this.button2}>Return to Results Page</button>
                             <Dropdown handleDropdown = {this.handleDropdown}/>
