@@ -119,8 +119,12 @@ class Result extends Component {
 
     buttonManageList() {
         var liststate = this.state.rstdrop;
-        if (liststate != 'blank') {
-            this.props.history.push('/' + liststate);
+        if (liststate == 'blank') {
+            //do nothing
+        }
+        else{
+            localStorage.setItem("liststate", liststate);
+            this.props.history.push('/Favorite');
         }
 
     }

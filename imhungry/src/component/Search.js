@@ -18,6 +18,7 @@ class Search extends Component {
         //setting global parameters
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSignout = this.handleSignout.bind(this);
     }
 
     //state.open tracks whether or not button is pressed
@@ -52,9 +53,13 @@ class Search extends Component {
 
         event.preventDefault();
 
-        this.props.history.push('/Result')
+        this.props.history.push('/Result');
 
     }
+    handleSignout(event){
+        this.props.history.push('/SignIn');
+    }
+
 
     render() {
         //this way the image name dynamically updates
@@ -74,8 +79,11 @@ class Search extends Component {
                                 src={ imagesPath[imageName] } value="Submit"/>
                     </form>
                     </div>
-
+                    <button onClick={this.handleSignout}>
+                        Sign Out
+                    </button>
             </div>
+            
         );
     }
 }

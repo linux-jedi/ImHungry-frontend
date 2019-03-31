@@ -12,10 +12,6 @@ Scenario: page design
 	And I should see a submit button
 
 
-Scenario: hover text
-	When I hover over the number field
-	Then I should see a tooltip
-
 Scenario Outline: try form with well formed inputs
 	When I search for <food>
 	And I search for <numresults> in the number box

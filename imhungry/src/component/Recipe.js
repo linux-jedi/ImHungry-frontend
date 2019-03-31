@@ -17,7 +17,8 @@ class Recipe extends Component {
 
         this.state = {
             rcpdrop: 'blank',
-            data: json1
+            data: json1,
+            destlist: 'blank'
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -43,7 +44,23 @@ class Recipe extends Component {
             rstdrop: value
         });
     }
+    addtolist(url) {
+       const Http = new XMLHttpRequest();
+        Http.open("POST", url, false);
+        Http.setRequestHeader('Content-type', 'application/json;CHARSET=UTF-8');
+        let json_send = JSON.stringify(this.state.data);
+        console.log("sending ", json_send, " to ", url);
+        Http.send(json_send);
 
+
+        if (Http.status === 200) {
+            console.log("sent")
+        }else {
+            console.log("not send because", Http.status);
+        }
+
+    
+    }
     handleChange(event) {
         this.setState({
             [event.target.name]: event.target.value
@@ -56,21 +73,19 @@ class Recipe extends Component {
 
     button3() {
 
-        console.log(this.state.rcpdrop);
+        console.log(this.state.rstdrop);
 
-        if (this.state.rcpdrop != 'blank') {
-            var temp = localStorage[this.state.rcpdrop + "b"];
-            console.log(temp);
-            if (temp == "") {
-                temp = [this.state.data];
+        if (this.state.rstdrop != 'blank')
+        {
+            if (this.state.rstdrop == "Favorite"){
+                this.state.rstdrop = "FAVORITE";
+            } else if (this.state.rstdrop == "Explore"){
+                this.state.rstdrop = "EXPLORE";
+            } else if (this.state.rstdrop == "NoShow"){
+                this.state.resdrop = "BLOCK";
             }
-            else {
-                temp.concat(this.state.data);
-            }
-
-            localStorage[this.state.rcpdrop + "b"] = temp;
-
-            console.log(localStorage[this.state.rcpdrop]);
+            this.state.destlist = "https://mysterious-refuge-36265.herokuapp.com/list/" + this.state.rstdrop + "/recipe?userId="+localStorage.getItem("id");
+           this.addtolist(this.state.destlist);
 
         }
     }

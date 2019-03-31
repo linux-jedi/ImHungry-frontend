@@ -35,7 +35,7 @@ Then(/^I should see a tooltip$/) do
 end
 
 Then(/^I should be on the Results Page for "([^"]*)" with "([^"]*)"$/) do |arg1, arg2|
-	assert_text("Results for: "+arg1)
+  assert_text("Results for: "+arg1)
 
 end
 
@@ -44,6 +44,7 @@ Then(/^I should see the Search Page$/) do
 end
 
 Then(/^I should see a white smoke background$/) do
+ visit 'localhost:3000/Search'
  color = find('.Search').native.css_value('background-color')
  expect(color).to eq('rgba(245, 245, 245, 1)')
 end
@@ -65,4 +66,3 @@ end
 Then(/^I should see a submit button$/) do
  expect(page.has_button?('Feed Me!'))
 end
-
