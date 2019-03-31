@@ -160,7 +160,7 @@ console.log("KEYWORD", this.state.keyword);
 
                         <h1 id="list1title">{this.state.title}</h1>
   
-                <div className="list1col">
+                <div id="restContent" className="list1col">
                         {faverows}
 
                 </div>
@@ -296,7 +296,9 @@ class RestaurantRow extends Component {
                 <small>Address: {array.address}</small>
 
                 <small id="price">Price: {price}</small>
-                <Dropdown style="margin-top:0" handleDropdown = {this.handleDropdown}/>
+                <div style="margin-top:0">
+                <Dropdown handleDropdown = {this.handleDropdown}/>
+                </div>
                 <button onClick={this.move}> Move </button>
                 <button  onClick={this.remove}> Remove </button>
             </div>
@@ -313,8 +315,9 @@ class RestaurantRow extends Component {
                 <small>Address: {array.address}</small>
 
                 <small id="price">Price: {price}</small>               
-                <Dropdown style="margin-top:0" handleDropdown = {this.handleDropdown}/>
-                <button onClick={this.move}> Move </button>
+                <div style="margin-top:0">
+                <Dropdown handleDropdown = {this.handleDropdown}/>
+                </div>                <button onClick={this.move}> Move </button>
                 <button  onClick={this.remove}> Remove </button>
             </div>
 
@@ -419,8 +422,9 @@ class RecipeRow extends Component {
                 <small>Prep Time: {array.prepTime} min</small>
                 <br></br>
                 <small>Cook Time: {array.cookTime} min</small>
-                <Dropdown style="margin-top:0px" handleDropdown = {this.handleDropdown}/>
-                <button onClick={this.move}> Move </button>
+                <div style="margin-top:0">
+                <Dropdown handleDropdown = {this.handleDropdown}/>
+                </div>                  <button onClick={this.move}> Move </button>
                 <button  onClick={this.remove}> Remove </button>
             </div>
         }
@@ -433,7 +437,9 @@ class RecipeRow extends Component {
                 <small>Prep Time: {array.prepTime} min</small>
                 <br></br>
                 <small>Cook Time: {array.cookTime} min</small>               
-                <Dropdown style="margin-top:0" handleDropdown = {this.handleDropdown}/>
+                <div style="margin-top:0">
+                <Dropdown handleDropdown = {this.handleDropdown}/>
+                </div>  
                 <button onClick={this.move}> Move </button>
                 <button  onClick={this.remove}> Remove </button>
             </div>
