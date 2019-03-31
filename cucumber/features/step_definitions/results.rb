@@ -2,7 +2,6 @@ Given(/^I am on the Results Page of the I'm Hungry website$/) do
   visit 'localhost:3000/Results'
 end
 
-
 Then(/^I should see the Manage List button$/) do
    expect(page.has_button?('Manage List'))
 end
@@ -12,17 +11,21 @@ Then(/^I should see a Return To Search button$/) do
 end
 
 Then(/^I should see the Restaurant and Recipe titles$/) do
-  fontsize1 = find('h2', text: 'Restaurant').native.css_value('font-size')
-  fontsize2 = find('h2', text: 'Recipe').native.css_value('font-size')
+  visit 'localhost:3000/Search'
+  fill_in 'query', :with => 'burger'
+  fill_in 'amount', :with => 5
+  find('#pik').click
+  fontsize1 = find_by_id('reshead').native.css_value('font-size')
+  fontsize2 = find_by_id('rechead').native.css_value('font-size')
   assert_text('Restaurant') and assert_text('Recipe') and expect(fontsize1).to eq(fontsize2) and expect(fontsize1).to be >('20px')
 end
 
 Then(/^I should see a blank dropdown as default$/) do
-  expect(page.find('#dropdown').value =='')
+  expect(page.find_by_id('resdrop').value =='')
 end
 
 When(/^I click on the dropdown$/) do
-  find('select').click()
+  find_by_id('resdrop').click()
 end
 
 Then(/^I should see the different lists$/) do
@@ -30,7 +33,10 @@ Then(/^I should see the different lists$/) do
 end
 
 Given(/^I am on the Result page for a "([^"]*)" with "([^"]*)" results$/) do |arg1, arg2|
-  visit 'localhost:8080/Search?q='+arg1+'&num='+arg2
+  visit 'localhost:3000/Search'
+  fill_in 'query', :with => arg1
+  fill_in 'amount', :with => 5
+  find('#pik').click
 end
 
 Then(/^I should see "([^"]*)" items for recipe and restaurants$/) do |arg1|
@@ -103,7 +109,7 @@ When(/^I click on Return to Search Page$/) do
 end
 
 Then(/^I should be on the Search Page$/) do
-  expect(page).to have_current_path('/search.jsp')
+  expect(page).to have_current_path('/Search')
 end
 
 

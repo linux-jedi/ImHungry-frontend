@@ -7,22 +7,26 @@ Background:
 Scenario: page design
 	Then I should see a text field for username
 	And I should see a text field for password
-	And I should see a submit button
+	And I should see a signin button
+	And I should see a register button
+
+Scenario Outline: press register button
+	When I press Register
+	Then I should be on the Register Page
 
 Scenario Outline: try form with well formed inputs
-	When I type in for <username>
-	And I type in for <password>
-	And I press Submit
+	When I search for <username> and <password>
+	And I press Sign In
 	Then I should be on the Search Page
 
 	Examples:
 	| username | password |
-	| "ericdchoi" | "eric's password" |
+	| "ericchoi" | "eric's password" |
 	| "kartikmahajan" | "kartik's password" |
 
 Scenario Outline: try form without a username
-	When I type in for <password>
-	And I press Submit
+	When I search in for <username> and <password>
+	And I press Sign In
 	Then I should be on the Login Page
 	
 	Examples:
@@ -31,24 +35,23 @@ Scenario Outline: try form without a username
 	| "" | "kartik's password" |
 
 Scenario Outline: try form without a password
-	When I type in for <username>
-	And I press Submit
+	When I search in for <username> and <password>
+	And I press Sign In
 	Then I should be on the Login Page
 	
 	Examples:
 	| username | password |
-	| "ericdchoi" | "" |
+	| "ericchoi" | "" |
 	| "kartikmahajan" | "    " |
 
 
 Scenario Outline: try form with a invalid password and username
-	When I type in for <username>
-	And I type in for <password>
-	And I press Submit
+	When I search in for <username> and <password>
+	And I press Sign In
 	Then I should be on the Login Page
 	Examples:
 	| username | password |
-	| "ericdchoi" | "kartik's password" |
+	| "ericchoi" | "kartik's password" |
 	| "kartikmahajan" | "eric's password" |
 
 

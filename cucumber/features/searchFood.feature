@@ -11,13 +11,6 @@ Scenario: page design
 	And I should see a field for number
 	And I should see a submit button
 
-Scenario: Default Page
-	Given I just started the server
-	Then I should see the Search Page
-
-Scenario: hover text
-	When I hover over the number field
-	Then I should see a tooltip
 
 Scenario Outline: try form with well formed inputs
 	When I search for <food>

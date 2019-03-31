@@ -13,7 +13,91 @@ import DvrOutlinedIcon from '@material-ui/icons/DvrOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
+//all snackbar dependencies
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import ErrorIcon from '@material-ui/icons/Error';
+import InfoIcon from '@material-ui/icons/Info';
+import CloseIcon from '@material-ui/icons/Close';
+import green from '@material-ui/core/colors/green';
+import amber from '@material-ui/core/colors/amber';
+import IconButton from '@material-ui/core/IconButton';
+import Snackbar from '@material-ui/core/Snackbar';
+import SnackbarContent from '@material-ui/core/SnackbarContent';
+import WarningIcon from '@material-ui/icons/Warning';
+import classNames from 'classnames';
+//all the snackbar component elements
+const variantIcon = {
+  success: CheckCircleIcon,
+  warning: WarningIcon,
+  error: ErrorIcon,
+  info: InfoIcon,
+};
 
+const styles1 = theme => ({
+  success: {
+    backgroundColor: green[600],
+  },
+  error: {
+    backgroundColor: theme.palette.error.dark,
+  },
+  info: {
+    backgroundColor: theme.palette.primary.dark,
+  },
+  warning: {
+    backgroundColor: amber[700],
+  },
+  icon: {
+    fontSize: 20,
+  },
+  iconVariant: {
+    opacity: 0.9,
+    marginRight: theme.spacing.unit,
+  },
+  message: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+});
+function MySnackbarContent(props) {
+  const { classes, className, message, onClose, variant, ...other } = props;
+  const Icon = variantIcon[variant];
+
+  return (
+    <SnackbarContent
+      className={classNames(classes[variant], className)}
+      aria-describedby="client-snackbar"
+      message={
+        <span id="client-snackbar" className={classes.message}>
+          <Icon className={classNames(classes.icon, classes.iconVariant)} />
+          {message}
+        </span>
+      }
+      action={[
+        <IconButton
+          key="close"
+          aria-label="Close"
+          color="inherit"
+          className={classes.close}
+          onClick={onClose}
+        >
+          <CloseIcon className={classes.icon} />
+        </IconButton>,
+      ]}
+      {...other}
+    />
+  );
+}
+
+MySnackbarContent.propTypes = {
+  classes: PropTypes.object.isRequired,
+  className: PropTypes.string,
+  message: PropTypes.node,
+  onClose: PropTypes.func,
+  variant: PropTypes.oneOf(['success', 'warning', 'error', 'info']).isRequired,
+};
+
+const MySnackbarContentWrapper = withStyles(styles1)(MySnackbarContent);
+//regular stuff
 const styles = theme => ({
   main: {
     width: 'auto',
@@ -60,11 +144,25 @@ class Register extends Component {
       username: '',
       password: '',
       email: '',
+      open: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSignIn = this.handleSignIn.bind(this);
   }
+  //snackbar stuff
+    handleClick = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    this.setState({ open: false });
+  };
+  //regular stuff
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value});
   }
@@ -89,8 +187,10 @@ class Register extends Component {
           localStorage.setItem('username', json_obj.username);
           this.props.history.push('/Search')
           console.log(json_obj)
+        } else if (xhr.status == 500){
+          this.setState({ open: true });
         } else {
-          console.error(xhr.status)
+          console.error(xhr.status);
         }
       }
     }.bind(this);
@@ -118,7 +218,7 @@ class Register extends Component {
           <form className={classes.form} onSubmit = {this.handleSubmit}>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="email">Email</InputLabel>
-              <Input id="email" name="email" autoComplete="email" onChange = {this.handleChange} autoFocus />
+              <Input id="email" type ="email" name="email" autoComplete="email" onChange = {this.handleChange} autoFocus />
             </FormControl>
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="username">Username</InputLabel>
@@ -134,13 +234,31 @@ class Register extends Component {
               variant="contained"
               color="primary"
               className={classes.submit}
+              value="register"
+              id="register"
             >
               Register
             </Button>
           </form>
-        <Button onClick={this.handleSignIn} variant="outlined" justify="center" className={classes.button}>
+        <Button value="login"id="login" onClick={this.handleSignIn} variant="outlined" justify="center" className={classes.button}>
             Back to Sign in
         </Button>
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+          open={this.state.open}
+          autoHideDuration={6000}
+          onClose={this.handleClose}
+          >
+          <MySnackbarContentWrapper
+          onClose={this.handleClose}
+          variant="error"
+          className={classes.margin}
+          message="Username or email is already taken!"
+          />
+          </Snackbar>
         </Paper>
       </main>
     );
