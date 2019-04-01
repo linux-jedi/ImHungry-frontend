@@ -125,7 +125,7 @@ class Result extends Component {
 
     returnSearch() {
         //history redirects it and is appended to URL (i'm guessing)
-        this.props.history.push('/')
+        this.props.history.push('/Search')
     }
 
     buttonManageList() {

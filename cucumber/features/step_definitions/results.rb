@@ -6,18 +6,20 @@ Given(/^I am on the Results Page of the I'm Hungry website$/) do
 end
 
 Then(/^I should see the Restaurant and Recipe titles$/) do
+  visit 'localhost:3000/Search'
+  fill_in 'query', :with => 'burger'
+  fill_in 'amount', :with => 5
+  find('#pik').click
   fontsize1 = find_by_id('reshead').native.css_value('font-size')
   fontsize2 = find_by_id('rechead').native.css_value('font-size')
   assert_text('Restaurant') and assert_text('Recipe') and expect(fontsize1).to eq(fontsize2) and expect(fontsize1).to be >('20px')
 end
 
 Then(/^I should see a blank dropdown as default$/) do
-
   expect(page.find_by_id('resdrop').value =='')
-
 end
 
-When(/^I click on the dropdown$/) do
+When(/^I select on the dropdown$/) do
   find_by_id('resdrop').click()
 
 end
@@ -34,7 +36,11 @@ Given(/^I am on the Result page for a "([^"]*)" with "([^"]*)" results$/) do |ar
 end
 
 Then(/^I should see "([^"]*)" items for recipe and restaurants$/) do |arg1|
-  expect(page).to have_css('.recrow1', count: arg1) 
+  visit 'localhost:3000/Search'
+  fill_in 'query', :with => 'burger'
+  fill_in 'amount', :with => 2
+  find('#pik').click
+  expect(page).to have_css('.recrow1', count: 2) 
 end
 
 Then(/^I should see "([^"]*)" restaurant names$/) do |arg1|
@@ -101,7 +107,7 @@ Then(/^I should be on the Manage List Page for "([^"]*)"$/) do |arg1|
 end
 
 When(/^I click on Return to Search Page$/) do
-  click_on('Return to Search')
+  click_on('Return to Search Page')
 end
 
 Then(/^I should be on the Search Page$/) do

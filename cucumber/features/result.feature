@@ -26,7 +26,7 @@ Scenario Outline: Dropdown default
 
 Scenario Outline: Dropdown options
 	Given I am on the Result page for a <food> with <numresults> results
-	When I click on the dropdown
+	When I select on the dropdown
 	Then I should see the different lists
 	
 	Examples:
