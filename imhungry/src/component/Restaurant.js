@@ -4,14 +4,24 @@ import './CSS/Restaurant.css';
 import Dropdown from './Dropdown';
 
 //will have to handle this page onload -> populate data on load
-
-
+// this block is to help with testing
+let link_address1 = "https://mysterious-refuge-36265.herokuapp.com/";
+let link_address2 = "https://arcane-woodland-80551.herokuapp.com/";
+let official_link;
+//change the variable below to fit demo or testing
+let link_value = 2;
+if (link_value == 1){
+   official_link = link_address1;
+} else if (link_value == 2){
+   official_link = link_address2;
+}
+//end block
 class Restaurant extends Component {
     constructor(props) {
         super(props);
 
         let id = localStorage.getItem("id");
-        const link1 = "https://mysterious-refuge-36265.herokuapp.com/restaurant/" + localStorage.getItem('resid');
+        const link1 = official_link+"restaurant/" + localStorage.getItem('resid');
             console.log(id);
 
         let json1 = JSON.parse(this.loadData(link1));
@@ -20,7 +30,9 @@ class Restaurant extends Component {
         const dest2 = dest1.replace(" ", "+");
         const link2 = "https://www.google.com/maps/dir/?api=1&origin=Tommy+Trojan&destination=" + dest2 + "&travelmode=car";
 
-        const link3 = "https://arcane-woodland-80551.herokuapp.com/list/";             //  listname/restaurant
+
+        const link3 = official_link + "list/";             //  listname/restaurant
+
 
 
         this.state = {
@@ -80,7 +92,7 @@ class Restaurant extends Component {
             } else if (this.state.resdrop == "NoShow"){
                 this.state.resdrop = "BLOCK";
             }
-            this.state.destlist = "https://mysterious-refuge-36265.herokuapp.com/list/" + this.state.resdrop + "/restaurant?userId="+localStorage.getItem("id");
+            this.state.destlist = official_link+"list/" + this.state.resdrop + "/restaurant?userId="+localStorage.getItem("id");
            this.addtolist(this.state.destlist);
 
         }

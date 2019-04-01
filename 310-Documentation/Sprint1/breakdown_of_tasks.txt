@@ -1,0 +1,55 @@
+Meeting on 3/20/18 | 5-6pm | Team members present: Shray, Kartik, Katrina, Eric, Caleb | Location: SAL
+
+Breakdown of all tasks (visible on Asana):
+Clean code:
+	- Fix manage list feature 
+	- manage list show
+
+1. Web application must be secure and protect confidentiality of a user’s ImHungry data
+	- API authentication method (Backend)
+	- Create User Object (Backend)
+	- Integrate Spring and Database (Backend)
+	- Registration Page (Frontend)
+	- Login Page (Frontend)
+		-Cucumber Tests for Login
+	- Database Mock (Backend)
+	- Design Mock-Up (Frontend)
+2. Maintain information beyond just a single session
+	- Integrate lists into database (Backend)
+	- manage cookies between front-end and backend (both)
+3. Allow for pagination of results returned by the search.
+	- Front-End pagination design
+	- Review further requirements at sprint 1
+4. View results of prior searches by clicking on a quick access list that shows prior search
+terms.
+	- visually design quick-access list (Front-End)
+	- store search history (back-end)
+		-create endpoints to access history (back-end)
+	- Review further requirements at sprint 1
+
+5. User interfaces must look modern and be attractive
+	- redesign Search Page
+	- redesign Results Page
+	- redesign Lists Page
+	- redesign Restaurant Page
+	- redesign Result Page
+	- Review further requirements at sprint 1
+6. Keep track of a grocery list for selected recipes
+	- Extract all ingredients per recipe (Back-end)
+	- Selection mechanism
+		- Pick which recipes are selected (Frontend)
+		- store recipe ingredients (backend)
+	- View grocery list
+		- front end "view grocery' page (Frontend)
+		- return grocery list info cleanly (backend)
+		- design way to reach 'grocery' page (Frontend)
+7. Reorder any of the three predetermined lists.
+	- Mock up the List
+	- Create End-Points to change order (Back-End)
+	- Edit Front-End design (Front-End)	
+	- Integrate Front-End design with back-end
+		- create Cucumber tests
+8. Set the radius of the restaurant search
+	- edit back-end code to recieve radius (Backend)
+	- Add textfield to give radius input (Frontend)
+	- cucumber test both
