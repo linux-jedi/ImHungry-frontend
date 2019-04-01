@@ -265,6 +265,8 @@ class RestaurantRow extends Component {
     remove = (e) =>{
         console.log("removing " + this.props.resdata.id);
         this.deleteRes(this.props.resdata.id);
+            window.location.reload();
+
     }
 
     render() {
@@ -296,9 +298,7 @@ class RestaurantRow extends Component {
                 <small>Address: {array.address}</small>
 
                 <small id="price">Price: {price}</small>
-                <div style="margin-top:0">
                 <Dropdown handleDropdown = {this.handleDropdown}/>
-                </div>
                 <button onClick={this.move}> Move </button>
                 <button  onClick={this.remove}> Remove </button>
             </div>
@@ -315,9 +315,8 @@ class RestaurantRow extends Component {
                 <small>Address: {array.address}</small>
 
                 <small id="price">Price: {price}</small>               
-                <div style="margin-top:0">
                 <Dropdown handleDropdown = {this.handleDropdown}/>
-                </div>                <button onClick={this.move}> Move </button>
+                             <button onClick={this.move}> Move </button>
                 <button  onClick={this.remove}> Remove </button>
             </div>
 
@@ -422,9 +421,8 @@ class RecipeRow extends Component {
                 <small>Prep Time: {array.prepTime} min</small>
                 <br></br>
                 <small>Cook Time: {array.cookTime} min</small>
-                <div style="margin-top:0">
                 <Dropdown handleDropdown = {this.handleDropdown}/>
-                </div>                  <button onClick={this.move}> Move </button>
+                                <button onClick={this.move}> Move </button>
                 <button  onClick={this.remove}> Remove </button>
             </div>
         }
@@ -437,9 +435,8 @@ class RecipeRow extends Component {
                 <small>Prep Time: {array.prepTime} min</small>
                 <br></br>
                 <small>Cook Time: {array.cookTime} min</small>               
-                <div style="margin-top:0">
                 <Dropdown handleDropdown = {this.handleDropdown}/>
-                </div>  
+                 
                 <button onClick={this.move}> Move </button>
                 <button  onClick={this.remove}> Remove </button>
             </div>
