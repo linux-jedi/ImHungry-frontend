@@ -2,21 +2,34 @@ Feature:
 	View restaurant and recipe results
 
 Background: 
-	Given I am on the Results Page of the I'm Hungry website
 
-Scenario: General page design
+Scenario Outline: General page design
+	Given I am on the Result page for a <food> with <numresults> results
 	Then I should see a white smoke background
 	And I should see the Manage List button
 	And I should see a Return To Search button
 	And I should see the Restaurant and Recipe titles
 	
+	Examples:
+	| food | numresults |
+	| "burger" | "2" |
 
-Scenario: Dropdown default
+Scenario Outline: Dropdown default
+	Given I am on the Result page for a <food> with <numresults> results
 	Then I should see a blank dropdown as default
+	
+	Examples:
+	| food | numresults |
+	| "burger" | "2" |
 
-Scenario: Dropdown options
+Scenario Outline: Dropdown options
+	Given I am on the Result page for a <food> with <numresults> results
 	When I click on the dropdown
 	Then I should see the different lists
+	
+	Examples:
+	| food | numresults |
+	| "burger" | "2" |
 
 Scenario Outline: page design for a specific outline
 	Given I am on the Result page for a <food> with <numresults> results
@@ -26,8 +39,13 @@ Scenario Outline: page design for a specific outline
 	| food | numresults |
 	| "burger" | "2" |
 
-Scenario: Pagination
+Scenario Outline: Pagination
+	Given I am on the Result page for a <food> with <numresults> results
 	Then I should see buttons on the bottom
+	
+	Examples:
+	| food | numresults |
+	| "burger" | "2" |
 
 Scenario Outline: Pagination functions for more than five results
 	Given I am on the Result page for a <food> with <numresults> results
@@ -87,11 +105,15 @@ Scenario Outline: selecting a recipe result
 	| "burger" | "2" | "Halloumi aubergine burgers with harissa relish" |
 
 
-Scenario: selecting Manage List with nothing chosen
+Scenario Outline: selecting Manage List with nothing chosen
+	Given I am on the Result page for a <food> with <numresults> results
 	When the dropdown is blank
 	And I select the Manage List button
 	Then I remain on the Results Page
-
+	
+	Examples:
+	| food | numresults |
+	| "burger" | "2" |
 Scenario Outline: selecting Manage List with something chosen
 	When I search for <food> from the search page
 	And I select <list> in the dropdown
@@ -104,9 +126,14 @@ Scenario Outline: selecting Manage List with something chosen
 	|"burger" | "Do Not Show" |
 	|"burger" | "To Explore" |
 
-Scenario: Selecting Back to Search
+Scenario Outline: Selecting Back to Search
+	Given I am on the Result page for a <food> with <numresults> results
 	When I click on Return to Search Page
 	Then I should be on the Search Page
+
+	Examples:
+	| food | numresults |
+	| "burger" | "2" |
 
 Scenario Outline: Favorites filtering with Restaurants
 	Given I am on the Restaurant page for restaurant <id> from search <food> with count <numresult> 
