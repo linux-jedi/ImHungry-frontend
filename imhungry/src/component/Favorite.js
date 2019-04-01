@@ -2,19 +2,7 @@ import React, { Component } from 'react';
 
 import './CSS/Favorite.css';
 import Dropdown from './Dropdown'
-//will have to handle this page onload -> populate data on load
-// this block is to help with testing
-let link_address1 = "https://mysterious-refuge-36265.herokuapp.com/";
-let link_address2 = "https://arcane-woodland-80551.herokuapp.com/";
-let official_link;
-//change the variable below to fit demo or testing
-let link_value = 2;
-if (link_value == 1){
-   official_link = link_address1;
-} else if (link_value == 2){
-   official_link = link_address2;
-}
-//end block
+
 class Favorite extends Component {
     constructor(props) {
         super(props);
@@ -27,7 +15,7 @@ class Favorite extends Component {
         } else if (listWanted === ("NoShow")){
             keyword = "BLOCK";
         }
-        const link1 = official_link + "list/" + keyword + "?userId=" + userId;
+        const link1 = "https://mysterious-refuge-36265.herokuapp.com/list/" + keyword + "?userId=" + userId;
         let json1 = JSON.parse(this.loadData(link1));
         console.log("HERE");
             console.log(json1);
@@ -211,7 +199,7 @@ class RestaurantRow extends Component {
 
     }
     deleteRes(resid) {
-        let url = official_link + "list/" + this.props.currList + "/restaurant?userId=" + this.props.id + "&restaurantId=" + resid;
+        let url = "https://mysterious-refuge-36265.herokuapp.com/list/" + this.props.currList + "/restaurant?userId=" + this.props.id + "&restaurantId=" + resid;
         console.log("deleting restaurant from ", url);
           const Http = new XMLHttpRequest();
         Http.open("DELETE", url, false);
@@ -226,7 +214,7 @@ class RestaurantRow extends Component {
 
     addRes(resid, newList) {
          const Http = new XMLHttpRequest();
-         let url = official_link + "list/" + newList + "/restaurant?userId="+ this.props.id;
+         let url = "https://mysterious-refuge-36265.herokuapp.com/list/" + newList + "/restaurant?userId="+ this.props.id;
          console.log("adding restaurant from ", url);
        Http.open("POST", url, false);
         Http.setRequestHeader('Content-type', 'application/json;CHARSET=UTF-8');
@@ -358,7 +346,7 @@ class RecipeRow extends Component {
     }
     deleteRec(resid) {
         const Http = new XMLHttpRequest();
-        let url = official_link + "list/" + this.props.currList + "/recipe?userId=" + this.props.id + "&recipeId=" + resid;
+        let url = "https://mysterious-refuge-36265.herokuapp.com/list/" + this.props.currList + "/recipe?userId=" + this.props.id + "&recipeId=" + resid;
         console.log("deleting recipe from ", url);
         Http.open("DELETE", url, false);
         Http.send();
@@ -372,7 +360,7 @@ class RecipeRow extends Component {
 
     addRec(resid, newList) {
          const Http = new XMLHttpRequest();
-         let url = official_link + "list/" + newList + "/recipe?userId="+ this.props.id;
+         let url = "https://mysterious-refuge-36265.herokuapp.com/list/" + newList + "/recipe?userId="+ this.props.id;
         console.log("adding recipe to ", url);
         Http.open("POST", url, false);
         Http.setRequestHeader('Content-type', 'application/json;CHARSET=UTF-8');
