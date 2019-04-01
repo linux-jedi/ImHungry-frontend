@@ -3,7 +3,7 @@ Given(/^I am on the Lists Page of the I'm Hungry website$/) do
 end
 
 
-And(/^I should see a title of Favorites$/) do
+And(/^I should see a title of Favorite$/) do
 	assert_text('Favorites')
 end
 And(/^I should see the Manage List button$/) do
@@ -23,7 +23,7 @@ end
 When(/^I click on the dropdown$/) do
   find('select').click()
 end
-Then(/^I should see the different lists not including <current_list>$/) do
+Then(/^I should see different lists, not including current list$/) do
   assert_text('Do Not Show') and assert_text('To Explore')
 end
 
@@ -55,10 +55,8 @@ Then(/^I should be able to move <list_item> to Do Not Show$/) do
 	find('move').click()
 end
 
-Given(/^<current_list> is shown$/) do
-  visit 'localhost:3000/Favorite'
-end
-Then(/^I should be able to remove <list_item> to <new_list>$/) do
+
+Then(/^I should be able to remove Item from Favorites$/) do
 	find('remove').click()
 end
 
