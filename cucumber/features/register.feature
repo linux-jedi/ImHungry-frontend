@@ -18,7 +18,7 @@ Scenario Outline: try form with well formed inputs
 
 	Examples:
 	| username | password | email |
-	| "ericddddchoi" | "eric's password" | "ericddddchoi@usc.edu" |
+	| "ericdddddchoi" | "eric's password" | "ericdddddchoi@usc.edu" |
 	
 Scenario Outline: try form without a username
 	When I register for <username> and <password> and <email>

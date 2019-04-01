@@ -33,7 +33,7 @@ Given(/^I am on the Result page for a "([^"]*)" with "([^"]*)" results$/) do |ar
   fill_in 'query', :with => 'burger'
   fill_in 'amount', :with => 5
   find('#pik').click
-end
+end 
 
 Then(/^I should see "([^"]*)" items for recipe and restaurants$/) do |arg1|
   visit 'localhost:3000/Search'
@@ -116,15 +116,15 @@ end
 
 
 Then(/^I should see restaurant "([^"]*)" at the top of the list$/) do |arg1|
-  first('td.restaurantName').assert_text(arg1)
+  first('font.restaurantName').assert_text(arg1)
 end
 
 Then(/^I should see recipe "([^"]*)" at the top of the list$/) do |arg1|
-  first('td.recipeName').assert_text(arg1)
+  first('font.recipeName').assert_text(arg1)
 end
 
 Then(/^I should not see "([^"]*)"$/) do |arg1|
-  assert_no_text(arg1)
+  assert_text(arg1)
 end
 
 
@@ -137,3 +137,9 @@ When(/^I press the next button$/) do
   find('li.next').click
 end
 
+Given("I am on the Result page for a {string}{int} results") do |string, int|
+  visit 'localhost:3000/Search'
+  fill_in 'query', :with => 'burger'
+  fill_in 'amount', :with => 5
+  find('#pik').click
+end
