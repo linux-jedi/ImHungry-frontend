@@ -2,6 +2,7 @@ Feature:
 	View restaurant and recipe results
 
 Background: 
+	Given I am on the Results Page of the I'm Hungry website
 
 Scenario Outline: General page design
 	Given I am on the Result page for a <food> with <numresults> results
@@ -12,7 +13,8 @@ Scenario Outline: General page design
 	
 	Examples:
 	| food | numresults |
-	| "burger" | "2" |
+	| "burger" | "5" |
+	
 
 Scenario Outline: Dropdown default
 	Given I am on the Result page for a <food> with <numresults> results
@@ -20,7 +22,7 @@ Scenario Outline: Dropdown default
 	
 	Examples:
 	| food | numresults |
-	| "burger" | "2" |
+	| "burger" | "5" |
 
 Scenario Outline: Dropdown options
 	Given I am on the Result page for a <food> with <numresults> results
@@ -29,7 +31,7 @@ Scenario Outline: Dropdown options
 	
 	Examples:
 	| food | numresults |
-	| "burger" | "2" |
+	| "burger" | "5" |
 
 Scenario Outline: page design for a specific outline
 	Given I am on the Result page for a <food> with <numresults> results
@@ -37,7 +39,7 @@ Scenario Outline: page design for a specific outline
 
 	Examples:
 	| food | numresults |
-	| "burger" | "2" |
+	| "burger" | "5" |
 
 Scenario Outline: Pagination
 	Given I am on the Result page for a <food> with <numresults> results
@@ -45,7 +47,7 @@ Scenario Outline: Pagination
 	
 	Examples:
 	| food | numresults |
-	| "burger" | "2" |
+	| "burger" | "5" |
 
 Scenario Outline: Pagination functions for more than five results
 	Given I am on the Result page for a <food> with <numresults> results
@@ -114,7 +116,9 @@ Scenario Outline: selecting Manage List with nothing chosen
 	Examples:
 	| food | numresults |
 	| "burger" | "2" |
+
 Scenario Outline: selecting Manage List with something chosen
+	Given I am on the Result page for a <food> with <numresults> results
 	When I search for <food> from the search page
 	And I select <list> in the dropdown
 	And I select the Manage List button
@@ -130,10 +134,10 @@ Scenario Outline: Selecting Back to Search
 	Given I am on the Result page for a <food> with <numresults> results
 	When I click on Return to Search Page
 	Then I should be on the Search Page
-
+	
 	Examples:
 	| food | numresults |
-	| "burger" | "2" |
+	| "burger" | "5" |
 
 Scenario Outline: Favorites filtering with Restaurants
 	Given I am on the Restaurant page for restaurant <id> from search <food> with count <numresult> 

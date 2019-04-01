@@ -20,8 +20,7 @@ Scenario Outline: try form with well formed inputs
 
 	Examples:
 	| food | numresults |
-	| "pizza" | "2" |
-	| "korean" | "3" |
+	| "burger" | "2" |
 
 Scenario Outline: try form without a food query
 	When I search for <numresults> in the number box
@@ -42,9 +41,9 @@ Scenario Outline: try form with a fraction in number box
 
 	Examples:
 	| food | numresults |
-	| "pizza" | "0.5" |
-	| "korean" | "1.23" |
-	| "korean" | "10.5241" |
+	| "burger" | "0.5" |
+	| "burger" | "1.23" |
+	| "burger" | "10.5241" |
 
 
 Scenario Outline: try form with a number less than 2 in number box
@@ -55,8 +54,8 @@ Scenario Outline: try form with a number less than 2 in number box
 
 	Examples:
 	| food | numresults |
-	| "pizza" | "0" |
-	| "korean" | "-1" |
+	| "burger" | "0" |
+	| "burger" | "-1" |
 
 
 
