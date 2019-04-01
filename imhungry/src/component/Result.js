@@ -14,9 +14,9 @@ let link_address2 = "https://arcane-woodland-80551.herokuapp.com/";
 let official_link;
 //change the variable below to fit demo or testing
 let link_value = 1;
-if (link_value = 1){
+if (link_value == 1){
    official_link = link_address1;
-} else if (link_value = 2){
+} else if (link_value == 2){
    official_link = link_address2;
 }
 //end block
@@ -29,7 +29,8 @@ class Result extends Component {
         //CHANGE THIS LET TO CONNECT TO ENDPOINTS
         let test = false;
 
-        const link1 = official_link + "recipe?name=burger&amount=5&radius=10000";
+        const link1 = official_link + "recipe?name=burger&amount=5&radius=10000";   
+        console.log(link1);
         const link2 = official_link + "restaurant?name=burger&amount=5&radius=10000";
         const link3 = official_link + "collage?searchTerm=burgers";
         console.log(link1);

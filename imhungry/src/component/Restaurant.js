@@ -10,9 +10,9 @@ let link_address2 = "https://arcane-woodland-80551.herokuapp.com/";
 let official_link;
 //change the variable below to fit demo or testing
 let link_value = 1;
-if (link_value = 1){
+if (link_value == 1){
    official_link = link_address1;
-} else if (link_value = 2){
+} else if (link_value == 2){
    official_link = link_address2;
 }
 //end block
