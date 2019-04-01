@@ -15,7 +15,7 @@ Then(/^I should see the Add to List button$/) do
 end
 
 Then(/^I should see the website link$/) do
-	assert_text('Website:')
+	assert_text('Website')
 end
 
 Then(/^I should see the Address title$/) do
@@ -72,7 +72,6 @@ end
 
 Then(/^I should see item "([^"]*)" in list "([^']*)"$/) do |arg1, arg2|
 	#expect correct list page
-	visit 'localhost:3000/' + arg2
 
 	page.should have_content(arg2)
 	page.should have_content(arg1)
