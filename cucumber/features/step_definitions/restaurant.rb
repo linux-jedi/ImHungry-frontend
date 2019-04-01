@@ -34,6 +34,7 @@ Given(/^I am on the Restaurant page for restaurant "([^"]*)" from search "([^"]*
   find('div.recrow1', :text => arg1).click
 end
 
+
 Then(/^I should see name "([^"]*)"$/) do |arg1|
 	assert_text(arg1)
 end
