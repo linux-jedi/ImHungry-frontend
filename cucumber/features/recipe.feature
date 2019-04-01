@@ -56,18 +56,22 @@ Scenario Outline: Selecting Back to Results
 	| food | count | id | 
 	| "burger" | "5" | "Halloumi aubergine burgers with harissa relish" |
 	
-
+@test1
 Scenario Outline: Adding a recipe to a list 
-	Given I am on the Recipe page for recipe <id> from search <food> with count <count> 
-	When I select <list> in the dropdown
+	Given I am on the SignIn page of the I'm Hungry website
+	When I search for <username> and <password>
+	And I press Sign In
+	And I am on the Recipe page for recipe <id> from search <food> with count <count> 
+	And I select <list> in the dropdown
 	And I select the Add to List button
+	And I select the Back to Results button
 	Then I should see item <name> in list <list>
 	
 	Examples:
-	| food | count | id | name | list |listPage |
-	| "burger" | "5" | "Halloumi aubergine burgers with harissa relish" | "Halloumi aubergine burgers with harissa relish" | "Favorites" | "Favorites" |
-	| "burger" | "5" | "Halloumi aubergine burgers with harissa relish" | "Halloumi aubergine burgers with harissa relish" | "Do Not Show" |"DoNotShow" |
-	| "burger" | "5" | "Halloumi aubergine burgers with harissa relish" | "Halloumi aubergine burgers with harissa relish" | "To Explore" | "ToExplore" |
+	| food | count | id | name | list |listPage | username | password |
+	| "burger" | "5" | "Halloumi aubergine burgers with harissa relish" | "Halloumi aubergine burgers with harissa relish" | "Favorites" | "Favorites" |"ericdchoi" | "eric's password" |
+	| "burger" | "5" | "Halloumi aubergine burgers with harissa relish" | "Halloumi aubergine burgers with harissa relish" | "Do Not Show" |"DoNotShow" |"ericdchoi" | "eric's password" |
+	| "burger" | "5" | "Halloumi aubergine burgers with harissa relish" | "Halloumi aubergine burgers with harissa relish" | "To Explore" | "ToExplore" |"ericdchoi" | "eric's password" |
 	
 
 	

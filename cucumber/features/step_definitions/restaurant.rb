@@ -15,7 +15,7 @@ Then(/^I should see the Add to List button$/) do
 end
 
 Then(/^I should see the website link$/) do
-	assert_text('Website:')
+	assert_text('Website')
 end
 
 Then(/^I should see the Address title$/) do
@@ -33,6 +33,7 @@ Given(/^I am on the Restaurant page for restaurant "([^"]*)" from search "([^"]*
   find('#pik').click
   find('div.recrow1', :text => arg1).click
 end
+
 
 Then(/^I should see name "([^"]*)"$/) do |arg1|
 	assert_text(arg1)
@@ -72,7 +73,6 @@ end
 
 Then(/^I should see item "([^"]*)" in list "([^']*)"$/) do |arg1, arg2|
 	#expect correct list page
-	visit 'localhost:3000/' + arg2
 
 	page.should have_content(arg2)
 	page.should have_content(arg1)
