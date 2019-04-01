@@ -16,7 +16,7 @@ Then(/^I should see the Restaurant and Recipe titles$/) do
 end
 
 Then(/^I should see a blank dropdown as default$/) do
-  expect(page.find_by_id('resdrop').value =='')
+  expect(find('select#resdrop').value =='')
 end
 
 Then(/^I should see the different lists$/) do
@@ -59,40 +59,56 @@ Then(/^I should see "([^"]*)" cook and prep time of the recipe$/) do |arg1|
 end
 
 When(/^I select the restaurant "([^"]*)" result$/) do |arg2|
- find('font', text: arg2, match: :prefer_exact).click
+visit 'localhost:3000/Search'
+  fill_in 'query', :with => 'burger'
+  fill_in 'amount', :with => 5
+  find('#pik').click
+  find('font.restaurantname', text: arg2, match: :prefer_exact).click
 end
 
 When(/^I select the recipe "([^"]*)" result$/) do |arg2|
- find('font', text: arg2, match: :prefer_exact).click
+visit 'localhost:3000/Search'
+  fill_in 'query', :with => 'burger'
+  fill_in 'amount', :with => 5
+  find('#pik').click
+  page.find('font.recipename', text: arg2, match: :prefer_exact).click
 end
 
 Then(/^I should see the Result Page the restaurant "([^"]*)" result$/) do |arg2|
-  expect(find('#restitle').value).to eq (arg2) and  expect(page).to have_current_path("/Restaurant")
+  find('h1').native.text.should have_content(arg2) and  expect(page).to have_current_path("/Restaurant")
 end
 
 
 Then(/^I should see the Result Page for the recipe "([^"]*)" result$/) do |arg2|
-  expect(find('#rcptitle').value).to eq (arg2) and expect(page).to have_current_path("/Recipe")
+  find('h1').native.text.should have_content(arg2) and expect(page).to have_current_path("/Recipe")
 end
 
 When(/^the dropdown is blank$/) do
- select('', from: 'list')
+  visit 'localhost:3000/Search'
+  fill_in 'query', :with => 'burger'
+  fill_in 'amount', :with => 5
+  find('#pik').click
+ page.select '', from: "resdrop"
 end
 
 When(/^I select the Manage List button$/) do
-  click_on('Manage List')
+  find('button#list').click
 end
 
 Then(/^I remain on the Results Page$/) do
-  expect(page).to have_current_path('/results.jsp')
+  expect(page).to have_current_path('/Result')
 end
 
 When(/^I select "([^"]*)" in the dropdown$/) do |arg1|
-  select(arg1, from: 'list')
+  visit 'localhost:3000/Search'
+  fill_in 'query', :with => 'burger'
+  fill_in 'amount', :with => 5
+  find('#pik').click
+  page.select arg1, from: "resdrop"
 end
 
 Then(/^I should be on the Manage List Page for "([^"]*)"$/) do |arg1|
-  expect(page.current_path).to match('/UserList') and assert_text(arg1)
+  assert_text(arg1)
 end
 
 When(/^I click on Return to Search Page$/) do

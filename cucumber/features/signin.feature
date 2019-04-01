@@ -21,8 +21,7 @@ Scenario Outline: try form with well formed inputs
 
 	Examples:
 	| username | password |
-	| "ericchoi" | "eric's password" |
-	| "kartikmahajan" | "kartik's password" |
+	| "ericdchoi" | "eric's password" |
 
 Scenario Outline: try form without a username
 	When I search in for <username> and <password>

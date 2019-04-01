@@ -26,6 +26,20 @@ import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 import WarningIcon from '@material-ui/icons/Warning';
 import classNames from 'classnames';
+
+// this block is to help with testing
+let link_address1 = "https://mysterious-refuge-36265.herokuapp.com/";
+let link_address2 = "https://arcane-woodland-80551.herokuapp.com/";
+let official_link;
+//change the variable below to fit demo or testing
+let link_value = 2;
+if (link_value == 1){
+   official_link = link_address1;
+} else if (link_value == 2){
+   official_link = link_address2;
+}
+//end block
+
 //all the snackbar stuff will go below
 const variantIcon = {
   success: CheckCircleIcon,
@@ -173,7 +187,7 @@ class SignIn extends Component {
     console.log(this.state.password);
     let username = this.state.username;
     let password = this.state.password;
-    let address = "https://mysterious-refuge-36265.herokuapp.com/login?username=" + username + "&password=" + password;
+    let address = official_link + "login?username=" + username + "&password=" + password;
     var xhr = new XMLHttpRequest();
     var json_obj, status = false;
     xhr.open("POST",  address, true);

@@ -128,8 +128,7 @@ Scenario Outline: Do Not Show filtering with Restaurants
 	
 	Examples:
 	| food | numresult | id | name | list |
-	| "pizza" | "2" | "16836104" | "The Pizza Studio" | "Do Not Show" |
-	| "taco" | "5" | "18543808" | "Holbox" | "Do Not Show" |
+	| "burger" | "2" | "ChIJRaPCphDHwoARRKD4kcOtCA0" | "The Habit Burger Grill" | "Favorites" |
 
 
 Scenario Outline: Do Not Show filtering with Recipes
@@ -141,8 +140,7 @@ Scenario Outline: Do Not Show filtering with Recipes
 	
 	Examples:
 	| food | count | id | name | list |
-	| "pizza" | "5" | "1071372" | "Breakfast Pizza" | "Do Not Show" |
-	| "bagel" | "2" | "273654" | "Morning Bagel" | "Do Not Show" |
+	| "burger" | "2" | "ChIJRaPCphDHwoARRKD4kcOtCA0" | "The Habit Burger Grill" | "Favorites" |
 
 Scenario Outline: Favorites filtering with Restaurants
 	Given I am on the Recipe page for recipe <id> from search <food> with count <count> 
@@ -153,5 +151,4 @@ Scenario Outline: Favorites filtering with Restaurants
 	
 	Examples:
 	| food | count | id | name | list |
-	| "pizza" | "5" | "1071372" | "Breakfast Pizza" | "Favorites" |
-	| "bagel" | "2" | "273654" | "Morning Bagel" | "Favorites" |
+	| "burger" | "2" | "ChIJRaPCphDHwoARRKD4kcOtCA0" | "The Habit Burger Grill" | "Favorites" |
