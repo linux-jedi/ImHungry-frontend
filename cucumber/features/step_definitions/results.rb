@@ -6,10 +6,6 @@ Given(/^I am on the Results Page of the I'm Hungry website$/) do
 end
 
 Then(/^I should see the Restaurant and Recipe titles$/) do
-  visit 'localhost:3000/Search'
-  fill_in 'query', :with => 'burger'
-  fill_in 'amount', :with => 5
-  find('#pik').click
   fontsize1 = find_by_id('reshead').native.css_value('font-size')
   fontsize2 = find_by_id('rechead').native.css_value('font-size')
   assert_text('Restaurant') and assert_text('Recipe') and expect(fontsize1).to eq(fontsize2) and expect(fontsize1).to be >('20px')
@@ -59,18 +55,10 @@ Then(/^I should see "([^"]*)" cook and prep time of the recipe$/) do |arg1|
 end
 
 When(/^I select the restaurant "([^"]*)" result$/) do |arg2|
-visit 'localhost:3000/Search'
-  fill_in 'query', :with => 'burger'
-  fill_in 'amount', :with => 5
-  find('#pik').click
   find('font.restaurantname', text: arg2, match: :prefer_exact).click
 end
 
 When(/^I select the recipe "([^"]*)" result$/) do |arg2|
-visit 'localhost:3000/Search'
-  fill_in 'query', :with => 'burger'
-  fill_in 'amount', :with => 5
-  find('#pik').click
   page.find('font.recipename', text: arg2, match: :prefer_exact).click
 end
 
@@ -84,11 +72,7 @@ Then(/^I should see the Result Page for the recipe "([^"]*)" result$/) do |arg2|
 end
 
 When(/^the dropdown is blank$/) do
-  visit 'localhost:3000/Search'
-  fill_in 'query', :with => 'burger'
-  fill_in 'amount', :with => 5
-  find('#pik').click
- page.select '', from: "resdrop"
+	page.select '', from: "resdrop"
 end
 
 When(/^I select the Manage List button$/) do
@@ -100,10 +84,6 @@ Then(/^I remain on the Results Page$/) do
 end
 
 When(/^I select "([^"]*)" in the dropdown$/) do |arg1|
-  visit 'localhost:3000/Search'
-  fill_in 'query', :with => 'burger'
-  fill_in 'amount', :with => 5
-  find('#pik').click
   page.select arg1, from: "resdrop"
 end
 
