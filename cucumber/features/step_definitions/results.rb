@@ -22,6 +22,7 @@ end
 
 Then(/^I should see a blank dropdown as default$/) do
   expect(page.find_by_id('resdrop').value =='')
+
 end
 
 When(/^I click on the dropdown$/) do
@@ -85,7 +86,7 @@ Then(/^I should see the Result Page for the recipe "([^"]*)" result$/) do |arg1|
 end
 
 When(/^the dropdown is blank$/) do
- select('', from: 'list')
+ select('', from: 'resdrop')
 end
 
 When(/^I select the Manage List button$/) do
@@ -97,7 +98,7 @@ Then(/^I remain on the Results Page$/) do
 end
 
 When(/^I select "([^"]*)" in the dropdown$/) do |arg1|
-  select(arg1, from: 'list')
+  select(arg1, from: 'resdrop')
 end
 
 Then(/^I should be on the Manage List Page for "([^"]*)"$/) do |arg1|

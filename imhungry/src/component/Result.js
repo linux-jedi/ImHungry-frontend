@@ -19,9 +19,9 @@ class Result extends Component {
         //CHANGE THIS LET TO CONNECT TO ENDPOINTS
         let test = false;
 
-        const link1 = "https://mysterious-refuge-36265.herokuapp.com/recipe?name="    +  localStorage.getItem('query') + "&amount=" + localStorage.getItem('amount') ;
-        const link2 = "https://mysterious-refuge-36265.herokuapp.com/restaurant?name=" + localStorage.getItem('query') + "&amount=" + localStorage.getItem('amount');
-        const link3 = "https://mysterious-refuge-36265.herokuapp.com/collage?searchTerm=" + localStorage.getItem('query');
+        const link1 = "https://arcane-woodland-80551.herokuapp.com//recipe?name="    +  localStorage.getItem('query') + "&amount=" + localStorage.getItem('amount') ;
+        const link2 = "https://arcane-woodland-80551.herokuapp.com//restaurant?name=" + localStorage.getItem('query') + "&amount=" + localStorage.getItem('amount');
+        const link3 = "https://mysterious-refuge-36265.herokuapp.com//collage?searchTerm=" + localStorage.getItem('query');
         console.log(link1);
         console.log(link2);
         //TEST MODE
