@@ -24,9 +24,7 @@ Scenario Outline: page design for a specific outline
 
 	Examples:
 	| food | numresults |
-	| "pizza" | "2" |
-	| "korean" | "3" |
-	| "tacos" | "5" |
+	| "burger" | "2" |
 
 Scenario: Pagination
 	Then I should see buttons on the bottom
@@ -37,9 +35,7 @@ Scenario Outline: Pagination functions for more than five results
 
 	Examples:
 	| food | numresults | perPage |
-	| "pizza" | "2" | "2" |
-	| "korean" | "3" | "2" |
-	| "tacos" | "5" | "2" |
+	| "burger" | "2" | "2" |
 
 Scenario Outline: Using Pagination buttons
 	Given I am on the Result page for a <food> with <numresults> results
@@ -49,10 +45,7 @@ Scenario Outline: Using Pagination buttons
 
 	Examples:
 	| food | numresults | perPage |
-	| "pizza" | "2" | "2" |
-	| "korean" | "3" | "2" |
-	| "tacos" | "5" | "2" |
-
+	| "burger | "2" | "2" |
 
 Scenario Outline: Restaurant information
 	Given I am on the Result page for a <food> with <numresults> results
@@ -63,9 +56,7 @@ Scenario Outline: Restaurant information
 
 	Examples:
 	| food | numresults |
-	| "pizza" | "2" |
-	| "korean" | "3" |
-	| "tacos" | "5" |
+	| "burger" | "2" |
 
 
 Scenario Outline: Recipe information
@@ -75,9 +66,7 @@ Scenario Outline: Recipe information
 
 	Examples:
 	| food | numresults |
-	| "pizza" | "2" |
-	| "korean" | "3" |
-	| "tacos" | "5" |
+	| "burger" | "2" |
 
 Scenario Outline: selecting a restaurant result
 	Given I am on the Result page for a <food> with <numresults> results
@@ -86,7 +75,7 @@ Scenario Outline: selecting a restaurant result
 
 	Examples:
 	| food | numresults | result |
-	| "pizza" | "5" | "Rance's Pizza" |
+	| "burger" | "2" | "The Habit Burger Grill" |
 
 Scenario Outline: selecting a recipe result
 	Given I am on the Result page for a <food> with <numresults> results
@@ -95,7 +84,7 @@ Scenario Outline: selecting a recipe result
 
 	Examples:
 	| food | numresults | result |
-	| "pizza" | "5" | "Loaded Olive Pizza" |
+	| "burger" | "2" | "Halloumi aubergine burgers with harissa relish" |
 
 
 Scenario: selecting Manage List with nothing chosen
@@ -111,9 +100,9 @@ Scenario Outline: selecting Manage List with something chosen
 	
 	Examples:
 	|food | list |
-	|"pizza" | "Favorites" |
-	|"pizza" | "Do Not Show" |
-	|"pizza" | "To Explore" |
+	|"burger" | "Favorites" |
+	|"burger" | "Do Not Show" |
+	|"burger" | "To Explore" |
 
 Scenario: Selecting Back to Search
 	When I click on Return to Search Page
@@ -128,8 +117,7 @@ Scenario Outline: Favorites filtering with Restaurants
 	
 	Examples:
 	| food | numresult | id | name | list |
-	| "pizza" | "2" | "16836104" | "The Pizza Studio" | "Favorites" |
-	| "taco" | "5" | "18543808" | "Holbox" | "Favorites" |
+	| "burger" | "2" | "ChIJRaPCphDHwoARRKD4kcOtCA0" | "The Habit Burger Grill" | "Favorites" |
 
 Scenario Outline: Do Not Show filtering with Restaurants
 	Given I am on the Restaurant page for restaurant <id> from search <food> with count <numresult> 

@@ -6,12 +6,22 @@ import Dropdown from './Dropdown';
 
 //will have to handle this page onload -> populate data on load
 
-
+// this block is to help with testing
+let link_address1 = "https://mysterious-refuge-36265.herokuapp.com/";
+let link_address2 = "https://arcane-woodland-80551.herokuapp.com/";
+let official_link;
+//change the variable below to fit demo or testing
+let link_value = 1;
+if (link_value = 1){
+   official_link = link_address1;
+} else if (link_value = 2){
+   official_link = link_address2;
+}
+// end block
 class Recipe extends Component {
     constructor(props) {
         super(props);
-
-        const link1 = "https://mysterious-refuge-36265.herokuapp.com/recipe/" + localStorage.getItem('recid');
+        const link1 = official_link + "recipe/" + localStorage.getItem('recid');
         let json1 = JSON.parse(this.loadData(link1));
 
 
@@ -84,7 +94,7 @@ class Recipe extends Component {
             } else if (this.state.rstdrop == "NoShow"){
                 this.state.resdrop = "BLOCK";
             }
-            this.state.destlist = "https://mysterious-refuge-36265.herokuapp.com/list/" + this.state.rstdrop + "/recipe?userId="+localStorage.getItem("id");
+            this.state.destlist = official_link+"list/" + this.state.rstdrop + "/recipe?userId="+localStorage.getItem("id");
            this.addtolist(this.state.destlist);
 
         }

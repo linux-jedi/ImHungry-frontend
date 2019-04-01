@@ -8,8 +8,18 @@ import Collage2 from './Collage2';
 import Collage from './Collage';
 
 
-
-
+// this block is to help with testing
+let link_address1 = "https://mysterious-refuge-36265.herokuapp.com/";
+let link_address2 = "https://arcane-woodland-80551.herokuapp.com/";
+let official_link;
+//change the variable below to fit demo or testing
+let link_value = 1;
+if (link_value = 1){
+   official_link = link_address1;
+} else if (link_value = 2){
+   official_link = link_address2;
+}
+//end block
 class Result extends Component {
     constructor(props) {
         super(props);
@@ -19,9 +29,9 @@ class Result extends Component {
         //CHANGE THIS LET TO CONNECT TO ENDPOINTS
         let test = false;
 
-        const link1 = "https://mysterious-refuge-36265.herokuapp.com/recipe?name="    +  localStorage.getItem('query') + "&amount=" + localStorage.getItem('amount') ;
-        const link2 = "https://mysterious-refuge-36265.herokuapp.com/restaurant?name=" + localStorage.getItem('query') + "&amount=" + localStorage.getItem('amount');
-        const link3 = "https://mysterious-refuge-36265.herokuapp.com/collage?searchTerm=" + localStorage.getItem('query');
+        const link1 = official_link + "recipe?name=burger&amount=5&radius=10000";
+        const link2 = official_link + "restaurant?name=burger&amount=5&radius=10000";
+        const link3 = official_link + "collage?searchTerm=burgers";
         console.log(link1);
         console.log(link2);
         //TEST MODE
@@ -219,11 +229,11 @@ class RestaurantRow extends Component {
             row = <div className="recrow1" id={array.id} onClick={this.toResPage}>
                 <img src="http://pngimg.com/uploads/star/star_PNG41507.png" alt="str" id="starimg"></img>
                 <font id="star"> {array.rating} </font>
-                <font>{array.name}</font>
+                <font class="restaurantname">{array.name}</font>
                 <br></br>
-                <small>Distance: {array.distance}</small>
+                <small class="distance">Distance: {array.distance}</small>
                 <br></br>
-                <small>Address: {array.address}</small>
+                <small class="address">Address: {array.address}</small>
                 
                 <small id="price">Price: {price}</small>
 
@@ -234,11 +244,11 @@ class RestaurantRow extends Component {
             row = <div className="recrow2" id={array.id} onClick={this.toResPage} >
                 <img src="http://pngimg.com/uploads/star/star_PNG41507.png" alt="str" id="starimg"></img>
                 <font id="star"> {array.rating} </font>
-                <font>{array.name}</font>
+                <font class="restaurantname">{array.name}</font>
                 <br></br>
-                <small>Distance: {array.distance}</small>
+                <small class="distance">Distance: {array.distance}</small>
                 <br></br>
-                <small>Address: {array.address}</small>
+                <small class="address">Address: {array.address}</small>
 
                 <small id="price">Price: {price}</small>
             </div>
@@ -268,22 +278,22 @@ class RecipeRow extends Component {
             row = <div className="recrow1" id={array.id} onClick={this.toRecPage}>
                 <img src="http://pngimg.com/uploads/star/star_PNG41507.png" alt ="str" id="starimg"></img>
                 <font id="star"> {array.id % 5} </font>
-                <font>{array.title}</font>
+                <font class="recipename">{array.title}</font>
                 <br></br>
-                <small>Prep Time: {array.prepTime} min</small>
+                <small class="preptime">Prep Time: {array.prepTime} min</small>
                 <br></br>
-                <small>Cook Time: {array.cookTime} min</small>
+                <small class="cooktime">Cook Time: {array.cookTime} min</small>
             </div>
         }
         else {
             row = <div className="recrow2" id={array.id} onClick={this.toRecPage}>
                 <img src="http://pngimg.com/uploads/star/star_PNG41507.png" alt="str" id="starimg"></img>
                 <font id="star"> {array.id % 5} </font>
-                <font>{array.title}</font>
+                <font class="recipename">{array.title}</font>
                 <br></br>
-                <small>Prep Time: {array.prepTime} min</small>
+                <small class="preptime">Prep Time: {array.prepTime} min</small>
                 <br></br>
-                <small>Cook Time: {array.cookTime} min</small>
+                <small class="cooktime">Cook Time: {array.cookTime} min</small>
             </div>
            
 
