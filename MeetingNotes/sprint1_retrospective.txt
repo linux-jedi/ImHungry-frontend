@@ -1,0 +1,64 @@
+﻿Members: Shray, Kartik, Katrina, Eric, Caleb | Location: Hack Nights (Ground Zero) | Date: 4/3 | Time: 7:20pm
+
+Overall Notes:
+
+
+1. [20] Web application must be secure and protect confidentiality of a user’s ImHungry
+data
+ - Completed mostly
+ - only need https front-end
+ - password hashing was good
+ - host on heroku front-end to enable https://
+
+
+2. [15] Maintain information beyond just a single session
+ - Product broke down during presentation
+ 	- Tests successful
+ - List Management broke down (saving didn't show)
+
+
+3. [20] Allow for pagination of results returned by the search.
+ - Front- End
+	 - 5 items per list (simple front-end change) [1 pagination list]
+	 - next and previous for the pagination buttons
+	 - atleast 5 pages in an example (for a demo) 
+
+
+4. [30] View results of prior searches by clicking on a quick access list that shows prior
+search terms.
+	- Did not implement
+
+5. [20] User interfaces must look modern and be attractive
+	- Login and registration had to match color scheme
+		- specifically background white, box color (match rest of theme)
+	- navigational menu need better padding between buttons
+		- two different frames we are considering ---> PICK FRAME FILLED IN WITH COLOR
+6. [25] Keep track of a grocery list for selected recipes
+	- DID NOT IMPLEMENT
+7. [10] Reorder any of the three predetermined lists.
+	- DID NOT IMPLEMENT
+8. [10] Set the radius of the restaurant search
+	- DID NOT IMPLEMENT FRONT-END
+
+
+_____________________________
+Team recap/feedback:
+	Cons:
+		- synchronization between back-end and front-end
+		- more discussion in sprint meeting about progress on either team
+		- space out the scrums
+		- write tests first
+		- Outline documentation earlier
+		- don't commit to master
+	Pros:
+		- Clean distribution of work
+		- Good use of the slack channel
+		- Meeting times were easy to communicate
+		- Good division of labor
+		- good information documentation
+_____________
+Plan for next time:
+	- at scrum meetings divide section into front-end/back-end discussion
+	- Meet earlier
+	- write tests for new sections
+	- delegate back-end front-end tasks at the next sprint
