@@ -12,9 +12,9 @@ let link_address2 = "https://arcane-woodland-80551.herokuapp.com/";
 let official_link;
 //change the variable below to fit demo or testing
 let link_value = 2;
-if (link_value == 1){
+if (link_value === 1){
    official_link = link_address1;
-} else if (link_value == 2){
+} else if (link_value === 2){
    official_link = link_address2;
 }
 // end block
@@ -44,7 +44,7 @@ class Recipe extends Component {
         const Http = new XMLHttpRequest();
         Http.open("GET", url, false);
         Http.send();
-        if (Http.status == 200) {
+        if (Http.status === 200) {
             return Http.responseText;
         }
     }
@@ -85,31 +85,39 @@ class Recipe extends Component {
 
         console.log(this.state.rstdrop);
 
-        if (this.state.rstdrop != 'blank')
+        if (this.state.rstdrop !== 'blank')
         {
-            if (this.state.rstdrop == "Favorite"){
-                this.state.rstdrop = "FAVORITE";
-            } else if (this.state.rstdrop == "Explore"){
-                this.state.rstdrop = "EXPLORE";
-            } else if (this.state.rstdrop == "NoShow"){
-                this.state.resdrop = "BLOCK";
+            let rstDropNew;
+            if (this.state.rstdrop === "Favorite"){
+                rstDropNew = "FAVORITE";
+            } else if (this.state.rstdrop === "Explore"){
+                rstDropNew = "EXPLORE";
+            } else if (this.state.rstdrop === "NoShow"){
+                rstDropNew = "BLOCK";
             }
-            this.state.destlist = official_link+"list/" + this.state.rstdrop + "/recipe?userId="+localStorage.getItem("id");
-           this.addtolist(this.state.destlist);
 
+            let destListNew = official_link+"list/" + rstDropNew + "/recipe?userId="+localStorage.getItem("id");
+            this.setState({
+                rstdrop: rstDropNew,
+                destlist: destListNew
+                
+            });
+            this.addtolist(this.state.destlist);
+
+    
         }
     }
 
 
     render() {
-
-        if (this.state.data.prepTime == null) {
-            this.state.data.prepTime = 0;
+        var prepTimeNew = this.state.prepTime;
+        var cookTimeNew = this.state.cookTime;
+        if (this.state.data.prepTime === null) {
+            prepTimeNew = 0;
         }
 
-        if (this.state.data.cookTime == null) {
-
-            this.state.data.cookTime = 0;
+        if (this.state.data.cookTime === null) {
+            cookTimeNew = 0;
         }
 
         let ingredients = this.state.data.ingredients.join(', ');
@@ -129,13 +137,15 @@ class Recipe extends Component {
                 <h1 id="rcptitle">{this.state.data.title}</h1>
                 <div id="rcpbody">
                     <div id="rcpupper">
-                        <img id="rcpimg" src={this.state.data.photoUrl} />
+                        <img id="rcpimg" src={this.state.data.photoUrl} alt='dish'/>
 
                             <div className="rcpbuttons">
                                 <button id="rcpprint" onClick={() => window.print()} > Printable Version</button>
                             <br></br>
                             <button id="rcpsp" onClick={this.button2}>Return to Results Page</button>
+                            <br></br>
                             <Dropdown handleDropdown = {this.handleDropdown}/>
+                            <br></br>
                             <button id="rcplist" onClick={this.button3} > Add to List</button>
                             </div>
 
@@ -143,11 +153,11 @@ class Recipe extends Component {
 
                     <div id="prep">
                         <p>Prep Time:</p>
-                        <p>{this.state.data.prepTime} mins</p>
+                        <p>{prepTimeNew} mins</p>
                     </div>
                     <div id="cook">
                         <p>Cook Time:</p>
-                        <p>{this.state.data.cookTime} mins</p>
+                        <p>{cookTimeNew} mins</p>
                     </div>
                     <br></br>
                     <p>Ingredients:</p>

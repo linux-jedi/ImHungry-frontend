@@ -71,10 +71,10 @@ class Result extends Component {
             resdata: json2,
             size: localStorage.getItem('amount'),
             link4: link3,
-            perPage: 2, //just a default for now
+            perPage: 5, //just a default for now
             offset: 0,
-            pageCount: Math.ceil(localStorage.getItem('amount')/2),
-            indOnPage: [0, 2], //from result x to result y displayed
+            pageCount: Math.ceil(localStorage.getItem('amount')/5),
+            indOnPage: [0, 5], //from result x to result y displayed
 
         };
 
@@ -178,12 +178,12 @@ class Result extends Component {
                 </div>
 
                 <ReactPaginate
-                    previousLabel={<ChevronLeftIcon/>}
-                    nextLabel={<ChevronRightIcon/>}
+                    previousLabel={'Previous'}
+                    nextLabel={'Next'}
                     breakLabel={'...'}
                     breakClassName={'break-me'}
                     pageCount={this.state.pageCount}
-                    marginPagesDisplayed={2}
+                    marginPagesDisplayed={5}
                     pageRangeDisplayed={5}
                     onPageChange={this.handlePageClick}
                     containerClassName={'pagination'}
