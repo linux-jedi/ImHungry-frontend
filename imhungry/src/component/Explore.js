@@ -26,7 +26,7 @@ class Explore extends Component {
         const Http = new XMLHttpRequest();
         Http.open("GET", url, false);
         Http.send();
-        if (Http.status == 200) {
+        if (Http.status === 200) {
             let cookie = Http.getResponseHeader("Cookie");
             console.log(cookie);
             console.log("adf");
@@ -38,7 +38,7 @@ class Explore extends Component {
     }
 
     button1() {
-        if (this.state.list3drop == 'blank') {
+        if (this.state.list3drop === 'blank') {
             //do nothing
         }
         else {
