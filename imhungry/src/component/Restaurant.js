@@ -108,7 +108,11 @@ class Restaurant extends Component {
 
     render() {
         if (localStorage.getItem('id') == -1){
+<<<<<<< HEAD
             this.props.history.push('/SignIn');
+=======
+            this.props.history.push('/SignIn')
+>>>>>>> 6afe287d13e14ef5dbb36d640a3a2f0e62d37a06
         }
         return (
             <div className="Restaurant">
