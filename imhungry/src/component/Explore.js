@@ -38,10 +38,7 @@ class Explore extends Component {
     }
 
     button1() {
-        if (this.state.list3drop === 'blank') {
-            //do nothing
-        }
-        else {
+        if (this.state.list3drop !== 'blank') {
             this.props.history.push('/' + this.state.list3drop);
         }
     }
@@ -61,7 +58,7 @@ class Explore extends Component {
     }
 
     render() {
-        if (localStorage.getItem('id') == -1){
+        if (localStorage.getItem('id') === -1){
             this.props.history.push('/SignIn');
         }
         return (
