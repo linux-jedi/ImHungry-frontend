@@ -216,6 +216,7 @@ class SignIn extends Component {
     this.props.history.push('/Register');
   }
   render() {
+    localStorage.setItem('id', -1);
     const { classes } = this.props;
     return (
       <main className={classes.main}>

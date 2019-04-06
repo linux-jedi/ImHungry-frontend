@@ -64,6 +64,9 @@ class Search extends Component {
     render() {
         //this way the image name dynamically updates
         const imageName = this.getImageName();
+        if (localStorage.getItem('id') == -1){
+            this.props.history.push('/SignIn');
+        }
         return (
             <div className="Search">
                     <h1 id="title">I'm Hungry</h1>

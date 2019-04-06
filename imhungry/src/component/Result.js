@@ -141,6 +141,9 @@ class Result extends Component {
     }
 
     render() {
+        if (localStorage.getItem('id') == -1){
+            this.props.history.push('/SignIn');
+        }
         let recrows = [];
         let resrows = [];
         console.log("DATA",this.state.resdata);
