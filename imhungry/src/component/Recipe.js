@@ -110,6 +110,9 @@ class Recipe extends Component {
 
 
     render() {
+        if (localStorage.getItem('id') == -1){
+            this.props.history.push('/SignIn')
+        }
         var prepTimeNew = this.state.prepTime;
         var cookTimeNew = this.state.cookTime;
         if (this.state.data.prepTime === null) {
