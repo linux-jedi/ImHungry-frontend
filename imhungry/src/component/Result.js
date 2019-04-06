@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import './CSS/Result.css';
 import ReactPaginate from 'react-paginate';
 import Dropdown from './Dropdown';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import Collage2 from './Collage2';
 import Collage from './Collage';
 
@@ -14,16 +12,16 @@ let link_address2 = "https://arcane-woodland-80551.herokuapp.com/";
 let official_link;
 //change the variable below to fit demo or testing
 let link_value = 2;
-if (link_value == 1){
+if (link_value === 1){
    official_link = link_address1;
-} else if (link_value == 2){
+} else if (link_value === 2){
    official_link = link_address2;
 }
 //end block
 class Result extends Component {
     constructor(props) {
         super(props);
-        const fs = require('fs');
+       // const fs = require('fs');
         //console.log(fs);
 
         //CHANGE THIS LET TO CONNECT TO ENDPOINTS
@@ -92,7 +90,7 @@ class Result extends Component {
         const Http = new XMLHttpRequest();
         Http.open("GET", url, false);
         Http.send();
-        if(Http.status == 200) {
+        if(Http.status === 200) {
             console.log(Http.responseText)
             return Http.responseText;
         }
@@ -130,10 +128,7 @@ class Result extends Component {
 
     buttonManageList() {
         var liststate = this.state.rstdrop;
-        if (liststate == 'blank') {
-            //do nothing
-        }
-        else{
+        if (liststate !== 'blank') {
             localStorage.setItem("liststate", liststate);
             this.props.history.push('/Favorite');
         }

@@ -87,7 +87,7 @@ class Recipe extends Component {
 
         if (this.state.rstdrop !== 'blank')
         {
-            let rstDropNew;
+            let rstDropNew = this.state.rstdrop;
             if (this.state.rstdrop === "Favorite"){
                 rstDropNew = "FAVORITE";
             } else if (this.state.rstdrop === "Explore"){
