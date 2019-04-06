@@ -110,7 +110,7 @@ class Recipe extends Component {
 
 
     render() {
-        if (localStorage.getItem('id') == -1){
+        if (localStorage.getItem('id') === -1){
             this.props.history.push('/SignIn');
         }
         var prepTimeNew = this.state.prepTime;
