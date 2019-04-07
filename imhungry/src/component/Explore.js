@@ -26,7 +26,7 @@ class Explore extends Component {
         const Http = new XMLHttpRequest();
         Http.open("GET", url, false);
         Http.send();
-        if (Http.status == 200) {
+        if (Http.status === 200) {
             let cookie = Http.getResponseHeader("Cookie");
             console.log(cookie);
             console.log("adf");
@@ -38,10 +38,7 @@ class Explore extends Component {
     }
 
     button1() {
-        if (this.state.list3drop == 'blank') {
-            //do nothing
-        }
-        else {
+        if (this.state.list3drop !== 'blank') {
             this.props.history.push('/' + this.state.list3drop);
         }
     }
@@ -61,8 +58,8 @@ class Explore extends Component {
     }
 
     render() {
-        if (localStorage.getItem('id') == -1){
-            this.props.history.push('/SignIn')
+        if (localStorage.getItem('id') === -1){
+            this.props.history.push('/SignIn');
         }
         return (
             <div className="Explore">

@@ -85,15 +85,21 @@ class Restaurant extends Component {
 
         if (this.state.resdrop !== 'blank')
         {
+            let rstDropNew = this.state.resdrop;  
             if (this.state.resdrop === "Favorite"){
-                this.state.resdrop = "FAVORITE";
+                rstDropNew = "FAVORITE";
             } else if (this.state.resdrop === "Explore"){
-                this.state.resdrop = "EXPLORE";
+                rstDropNew = "EXPLORE";
             } else if (this.state.resdrop === "NoShow"){
-                this.state.resdrop = "BLOCK";
-            }
-            this.state.destlist = official_link+"list/" + this.state.resdrop + "/restaurant?userId="+localStorage.getItem("id");
-           this.addtolist(this.state.destlist);
+                rstDropNew = "BLOCK";
+            }           
+           let destListNew = official_link+"list/" + rstDropNew + "/restaurant?userId="+localStorage.getItem("id");
+            this.setState({
+                resdrop: rstDropNew,
+                destlist: destListNew
+                
+            });
+            this.addtolist(this.state.destlist);
 
         }
 
@@ -107,8 +113,8 @@ class Restaurant extends Component {
 
 
     render() {
-        if (localStorage.getItem('id') == -1){
-            this.props.history.push('/SignIn')
+        if (localStorage.getItem('id') === -1){
+            this.props.history.push('/SignIn');
         }
         return (
             <div className="Restaurant">

@@ -87,7 +87,7 @@ class Recipe extends Component {
 
         if (this.state.rstdrop !== 'blank')
         {
-            let rstDropNew;
+            let rstDropNew = this.state.rstdrop;
             if (this.state.rstdrop === "Favorite"){
                 rstDropNew = "FAVORITE";
             } else if (this.state.rstdrop === "Explore"){
@@ -110,8 +110,8 @@ class Recipe extends Component {
 
 
     render() {
-        if (localStorage.getItem('id') == -1){
-            this.props.history.push('/SignIn')
+        if (localStorage.getItem('id') === -1){
+            this.props.history.push('/SignIn');
         }
         var prepTimeNew = this.state.prepTime;
         var cookTimeNew = this.state.cookTime;

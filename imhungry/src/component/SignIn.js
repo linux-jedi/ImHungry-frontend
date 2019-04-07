@@ -3,14 +3,10 @@ import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Fab from '@material-ui/core/Fab';
 import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import NavigationIcon from '@material-ui/icons/Navigation';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -33,9 +29,9 @@ let link_address2 = "https://arcane-woodland-80551.herokuapp.com/";
 let official_link;
 //change the variable below to fit demo or testing
 let link_value = 2;
-if (link_value == 1){
+if (link_value === 1){
    official_link = link_address1;
-} else if (link_value == 2){
+} else if (link_value === 2){
    official_link = link_address2;
 }
 //end block
@@ -189,18 +185,19 @@ class SignIn extends Component {
     let password = this.state.password;
     let address = official_link + "login?username=" + username + "&password=" + password;
     var xhr = new XMLHttpRequest();
-    var json_obj, status = false;
+    var json_obj;
+    //var status = false;
     xhr.open("POST",  address, true);
     xhr.onload = function(e){
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
-          var json_obj = JSON.parse(xhr.responseText);
-          status = true;
+          json_obj = JSON.parse(xhr.responseText);
+          //status = true;
           localStorage.setItem('id', json_obj.id);
           localStorage.setItem('username', json_obj.username);
           this.props.history.push('/Search');
           console.log(json_obj);
-        } else if(xhr.status == 500){
+        } else if(xhr.status === 500){
           this.setState({ open: true });
         } else {
           console.error(xhr.status);
@@ -216,6 +213,7 @@ class SignIn extends Component {
     this.props.history.push('/Register');
   }
   render() {
+    localStorage.setItem('id', -1);
     const { classes } = this.props;
     return (
       <main className={classes.main}>

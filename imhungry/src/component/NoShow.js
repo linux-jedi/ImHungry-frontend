@@ -27,7 +27,7 @@ class NoShow extends Component {
         const Http = new XMLHttpRequest();
         Http.open("GET", url, false);
         Http.send();
-        if (Http.status == 200) {
+        if (Http.status === 200) {
             let cookie = Http.getResponseHeader("Cookie");
             console.log(cookie);
             console.log("adf");
@@ -45,10 +45,7 @@ class NoShow extends Component {
     }
 
     button1() {
-        if (this.state.list2drop == 'blank') {
-            //do nothing
-        }
-        else {
+        if (this.state.list2drop !== 'blank') {
             this.props.history.push('/' + this.state.list2drop);
         }
     }
@@ -62,8 +59,8 @@ class NoShow extends Component {
     }
 
     render() {
-        if (localStorage.getItem('id') == -1){
-            this.props.history.push('/SignIn')
+        if (localStorage.getItem('id') === -1){
+            this.props.history.push('/SignIn');
         }
         return (
             <div className="NoShow">
