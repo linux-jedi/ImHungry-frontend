@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
+import TextField from '@material-ui/core/TextField';
 
 import './CSS/Search.css';
+import {MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
-const imagesPath = {
-    grumpy: "https://i.imgur.com/q0NhwBx.png",
-    happy: "https://i.imgur.com/gUtYQH7.png"
-}
+const theme = createMuiTheme({
+  palette: {
+    primary: {main:"#b7525f", text:"#FFFFFF"},
+
+    secondary: {main:"#FFFFFF"}
+  },
+});
+
 
 class Search extends Component {
     constructor(props) {
@@ -71,24 +77,51 @@ class Search extends Component {
             this.props.history.push('/SignIn');
         }
         return (
+            <MuiThemeProvider theme={theme}>
+
             <div className="Search">
-                    <h1 id="title">I'm Hungry</h1>
 
                     <div id="form">
-                        <form onSubmit={this.handleSubmit}>
-                            <input type="text" name="query" id="query" placeholder="Enter Food" onChange={this.handleChange} required />
-                            <input type="number" class="numFood" name="amount" id="amount" min="1" value={this.state.amount} onChange={this.handleChange} required
-                            href=" " title= "Number of items to show in results"/>
-                        <br></br>
+                    <h1 id="title">I'm Hungry</h1>
+
+                    <TextField
+                        required
+                        id="query"
+                        label="Enter Food"
+                        name="query"
+                        onChange={this.handleChange}
+                        value={this.state.query}
+                        variant="outlined"
+
+                        margin="normal"
+                        />
+
+                    <TextField
+                        required
+                        min='1'
+                        type="number"
+                        id="amount"
+                        label="Number of Results"
+                        name="amount"
+                        onChange={this.handleChange}
+                        value={this.state.amount}
+                        variant="outlined"
+
+                        margin="normal"
+                        />
+                       
                             <br></br>
-                            <input type="image" alt="pikachu" id="pik" onClick={this.toggleImage}
-                                src={ imagesPath[imageName] } value="Submit"/>
-                    </form>
+                            <input type="button" alt="pikachu" id="pik" onClick={this.toggleImage}
+                                 value="Submit"/>
+                    
                     </div>
                     <button onClick={this.handleSignout}>
                         Sign Out
                     </button>
+                    
             </div>
+            </MuiThemeProvider>
+
             
         );
     }
